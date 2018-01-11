@@ -1,0 +1,631 @@
+{% extends "ad_layout.twig" %}
+{# cette page correspond à la page qui va s'afficher à l'url ad/Liste #}
+{% set menu_selected = 'admin' %}
+
+{% block title %}recherche{% endblock %}
+
+{% block content %}
+    <div class="row">
+    <div style="text-align: center"> <h2>Admin</h2></div>
+
+
+
+
+        <div class="col-md-8">
+            <h1>Liste des Morts pour la France</h1>
+
+            <div class="col-lg-12 button_group aleatoir">
+                {% if info["recherche"] == true %}
+                    <a href="{{ path('list') }}" type="button" class="btn btn-primary">Annuler</a>
+                {% endif %}
+            </div>
+
+            <script>
+                $(document).ready(function(){
+                    $(".nav-tabs a").click(function(){
+                        $(this).tab('show');
+                    });
+                });
+            </script>
+
+            <div>
+                {#création du menu déroulant pour afficher la liste par periode ou par conflit#}
+                <ul id="nav" style="z-index: 10" class="btn">
+                    <li>
+                        <a>liste des conflits</a>
+                        <ul style="z-index: 10">
+                            <li>
+                                <a href="#1914-1918" aria-controls="1914-1918" role="tab" data-toggle="tab">1GM</a>
+                                <ul style="z-index: 10">
+                                    <li role="presentation"><a href="#1914" aria-controls="1914" role="tab" data-toggle="tab">1914</a></li>
+                                    <li role="presentation"><a href="#1915" aria-controls="1915" role="tab" data-toggle="tab">1915</a></li>
+                                    <li role="presentation"><a href="#1916" aria-controls="1916" role="tab" data-toggle="tab">1916</a></li>
+                                    <li role="presentation"><a href="#1917" aria-controls="1917" role="tab" data-toggle="tab">1917</a></li>
+                                    <li role="presentation"><a href="#1918" aria-controls="1918" role="tab" data-toggle="tab">1918</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#1939-1945" aria-controls="1939-1945" role="tab" data-toggle="tab">2GM</a>
+                                <ul style="z-index: 10">
+                                    <li role="presentation"><a href="#1939" aria-controls="1939" role="tab" data-toggle="tab">1939</a></li>
+                                    <li role="presentation"><a href="#1940" aria-controls="1940" role="tab" data-toggle="tab">1940</a></li>
+                                    <li role="presentation"><a href="#1941" aria-controls="1941" role="tab" data-toggle="tab">1941</a></li>
+                                    <li role="presentation"><a href="#1942" aria-controls="1941" role="tab" data-toggle="tab">1942</a></li>
+                                    <li role="presentation"><a href="#1943" aria-controls="1943" role="tab" data-toggle="tab">1943</a></li>
+                                    <li role="presentation"><a href="#1944" aria-controls="1944" role="tab" data-toggle="tab">1944</a></li>
+                                    <li role="presentation"><a href="#1945" aria-controls="1945" role="tab" data-toggle="tab">1945</a></li>
+
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a>Liste par période</a>
+                        <ul style="z-index: 10">
+                            <li role="presentation"><a href="#1914-1918" aria-controls="1914-1918" role="tab" data-toggle="tab">1914-1918</a></li>
+                            <li role="presentation"><a href="#1919-1938" aria-controls="1919-1938" role="tab" data-toggle="tab">1919-1938</a></li>
+                            <li role="presentation"><a href="#1939-1945" aria-controls="1939-1945" role="tab" data-toggle="tab">1939-1945</a></li>
+                        </ul>
+                    </li>
+
+                </ul><br><br>
+                {# création de la fenêtre d'affichage de la liste des soldats de 1914 #}
+                    <div class="tab-content defil col-lg-12" style="background-color:rgba(230,230,230,0.90); z-index: 1">
+                        <div role="tabpanel" class="tab-pane fade" id="1914">
+                            <table id="miyazaki">
+                                <tr>
+                                    <th class="dark">Photo</th>
+                                    <th class="dark">Nom</th>
+                                    <th class="dark">Prénoms</th>
+                                    <th class="_visible dark">Grade</th>
+                                    <th class="visible dark">Date de Naissance</th>
+                                    <th class="_visible dark">Date de Décès</th>
+                                </tr>
+                                <tbody>
+                                {% for soldat in soldats['1914'] %}
+                                    <tr class='tr_soldat' onclick="parent.location='{{ path('soldat_ad', {'id': soldat.id,'data': 'liste'}) }}'">
+                                        {% if  soldat.image  != NULL %}
+                                            <td><img src="{{ app.request.basepath }}/images/soldat/{{soldat.image}}" class="img-circle img-responsive" alt="soldat" style="height: 50px; width: auto" ></td>
+                                        {% else %}
+                                            <td></td>
+                                        {% endif %}
+                                        <td>{{ soldat.nom }}</a></td>
+                                        <td>{{ soldat.prenom }}</td>
+                                        <td class="_visible">{{ soldat.grade }}</td>
+                                        <td class="visible">{% if soldat.dateNaissance != "30/11/-0001" %} {{ soldat.dateNaissance }} {% else %} <i>Non renseigné</i> {% endif %}</td>
+                                        <td class="_visible">{{ soldat.dateDeces }}</td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div  role="tabpanel" class="tab-pane fade" id="1915">
+                            <table>
+                                <tr>
+                                    <!--  -->
+                                    <th class="dark">Photo</th>
+                                    <th class="dark">Nom</th>
+                                    <th class="dark">Prénoms</th>
+                                    <th class="visible dark">Grade</th>
+                                    <th class="visible dark">Date de Naissance</th>
+                                    <th class="visible dark">Date de Décès</th>
+                                </tr>
+                                {% for soldat in soldats['1915'] %}
+                                    <tr class='tr_soldat' onclick="parent.location='{{ path('soldat_ad', {'id': soldat.id, 'data': 'liste'}) }}'">
+                                        {% if  soldat.image  != NULL %}
+                                            <td><img src="{{ app.request.basepath }}/images/soldat/{{soldat.image}}" class="img-circle img-responsive" alt="soldat" style="height: 50px; width: auto" ></td>
+                                        {% else %}
+                                            <td></td>
+                                        {% endif %}
+                                        <td>{{ soldat.nom }}</a></td>
+                                        <td>{{ soldat.prenom }}</td>
+                                        <td class="visible">{{ soldat.grade }}</td>
+                                        <td class="visible">{{ soldat.dateNaissance }}</td>
+                                        <td class="visible">{{ soldat.dateDeces }}</td>
+                                    </tr>
+                                {% endfor %}
+                            </table>
+                        </div>
+
+                        <div  role="tabpanel" class="tab-pane fade" id="1916">
+                            <table>
+                                <tr>
+                                    <th class="dark">Photo</th>
+                                    <th class="dark">Nom</th>
+                                    <th class="dark">Prénoms</th>
+                                    <th class="visible dark">Grade</th>
+                                    <th class="visible dark">Date de Naissance</th>
+                                    <th class="visible dark">Date de Décès</th>
+                                </tr>
+                                {% for soldat in soldats['1916'] %}
+                                    <tr class='tr_soldat' onclick="parent.location='{{ path('soldat_ad', {'id': soldat.id,'data': 'liste'}) }}'">
+                                        {% if  soldat.image  != NULL %}
+                                            <td><img src="{{ app.request.basepath }}/images/soldat/{{soldat.image}}" class="img-circle img-responsive" alt="soldat" style="height: 50px; width: auto" ></td>
+                                        {% else %}
+                                            <td></td>
+                                        {% endif %}
+                                        <td>{{ soldat.nom }}</a></td>
+                                        <td>{{ soldat.prenom }}</td>
+                                        <td class="visible">{{ soldat.grade }}</td>
+                                        <td class="visible">{{ soldat.dateNaissance }}</td>
+                                        <td class="visible">{{ soldat.dateDeces }}</td>
+                                    </tr>
+                                {% endfor %}
+                            </table>
+                        </div>
+
+                        <div  role="tabpanel" class="tab-pane fade" id="1917">
+                            <table>
+                                <tr>
+                                    <th class="dark">Photo</th>
+                                    <th class="dark">Nom</th>
+                                    <th class="dark">Prénoms</th>
+                                    <th class="visible dark">Grade</th>
+                                    <th class="visible dark">Date de Naissance</th>
+                                    <th class="visible dark">Date de Décès</th>
+                                </tr>
+                                {% for soldat in soldats['1917'] %}
+                                    <tr class='tr_soldat' onclick="parent.location='{{ path('soldat_ad', {'id': soldat.id,'data': 'liste'}) }}'">
+                                        {% if  soldat.image  != NULL %}
+                                            <td><img src="{{ app.request.basepath }}/images/soldat/{{soldat.image}}" class="img-circle img-responsive" alt="soldat" style="height: 50px; width: auto" ></td>
+                                        {% else %}
+                                            <td></td>
+                                        {% endif %}
+                                        <td>{{ soldat.nom }}</a></td>
+                                        <td>{{ soldat.prenom }}</td>
+                                        <td class="visible">{{ soldat.grade }}</td>
+                                        <td class="visible">{{ soldat.dateNaissance }}</td>
+                                        <td class="visible">{{ soldat.dateDeces }}</td>
+                                    </tr>
+                                {% endfor %}
+                            </table>
+                        </div>
+
+                        <div  role="tabpanel" class="tab-pane fade" id="1918">
+                            <table>
+                                <tr>
+                                    <th class="dark">Photo</th>
+                                    <th class="dark">Nom</th>
+                                    <th class="dark">Prénoms</th>
+                                    <th class="visible dark">Grade</th>
+                                    <th class="visible dark">Date de Naissance</th>
+                                    <th class="visible dark">Date de Décès</th>
+                                </tr>
+                                {% for soldat in soldats['1918'] %}
+                                    <tr class='tr_soldat' onclick="parent.location='{{ path('soldat_ad', {'id': soldat.id,'data': 'liste'}) }}'">
+                                    {% if  soldat.image  != NULL %}
+                                        <td><img src="{{ app.request.basepath }}/images/soldat/{{soldat.image}}" class="img-circle img-responsive" alt="soldat" style="height: 50px; width: auto" ></td>
+                                    {% else %}
+                                        <td></td>
+                                    {% endif %}
+                                        <td>{{ soldat.nom }}</a></td>
+                                        <td>{{ soldat.prenom }}</td>
+                                        <td class="visible">{{ soldat.grade }}</td>
+                                        <td class="visible">{{ soldat.dateNaissance }}</td>
+                                        <td class="visible">{{ soldat.dateDeces }}</td>
+                                    </tr>
+                                {% endfor %}
+                            </table>
+                        </div>
+                        <div  role="tabpanel" class="tab-pane fade" id="1919">
+                            <table>
+                                <tr>
+                                    <th class="dark">Photo</th>
+                                    <th class="dark">Nom</th>
+                                    <th class="dark">Prénoms</th>
+                                    <th class="visible dark">Grade</th>
+                                    <th class="visible dark">Date de Naissance</th>
+                                    <th class="visible dark">Date de Décès</th>
+                                </tr>
+                                {% for soldat in soldats['1919'] %}
+                                    <tr class='tr_soldat' onclick="parent.location='{{ path('soldat_ad', {'id': soldat.id,'data': 'liste'}) }}'">
+                                        {% if  soldat.image  != NULL %}
+                                            <td><img src="{{ app.request.basepath }}/images/soldat/{{soldat.image}}" class="img-circle img-responsive" alt="soldat" style="height: 50px; width: auto" ></td>
+                                        {% else %}
+                                            <td></td>
+                                        {% endif %}
+                                        <td>{{ soldat.nom }}</a></td>
+                                        <td>{{ soldat.prenom }}</td>
+                                        <td class="visible">{{ soldat.grade }}</td>
+                                        <td class="visible">{{ soldat.dateNaissance }}</td>
+                                        <td class="visible">{{ soldat.dateDeces }}</td>
+                                    </tr>
+                                {% endfor %}
+                            </table>
+                        </div>
+                        <div  role="tabpanel" class="tab-pane fade" id="1939">
+                            <table>
+                                <tr>
+                                    <th class="dark">Photo</th>
+                                    <th class="dark">Nom</th>
+                                    <th class="dark">Prénoms</th>
+                                    <th class="visible dark">Grade</th>
+                                    <th class="visible dark">Date de Naissance</th>
+                                    <th class="visible dark">Date de Décès</th>
+                                </tr>
+                                {% for soldat in soldats['1939'] %}
+                                    <tr class='tr_soldat' onclick="parent.location='{{ path('soldat_ad', {'id': soldat.id,'data': 'liste'}) }}'">
+                                        {% if  soldat.image  != NULL %}
+                                        <td><img src="{{ app.request.basepath }}/images/soldat/{{soldat.image}}" class="img-circle img-responsive" alt="soldat" style="height: 50px; width: auto" ></td>
+                                        {% else %}
+                                        <td></td>
+                                        {% endif %}
+                                        <td>{{ soldat.nom }}</a></td>
+                                        <td>{{ soldat.prenom }}</td>
+                                        <td class="visible">{{ soldat.grade }}</td>
+                                        <td class="visible">{{ soldat.dateNaissance }}</td>
+                                        <td class="visible">{{ soldat.dateDeces }}</td>
+                                    </tr>
+                                {% endfor %}
+                            </table>
+                        </div>
+
+
+                        <div  role="tabpanel" class="tab-pane fade" id="1940">
+                            <table>
+                                <tr>
+                                    <th class="dark">Photo</th>
+                                    <th class="dark">Nom</th>
+                                    <th class="dark">Prénoms</th>
+                                    <th class="visible dark">Grade</th>
+                                    <th class="visible dark">Date de Naissance</th>
+                                    <th class="visible dark">Date de Décès</th>
+                                </tr>
+                                {% for soldat in soldats['1940'] %}
+                                    <tr class='tr_soldat' onclick="parent.location='{{ path('soldat_ad', {'id': soldat.id,'data': 'liste'}) }}'">
+                                        {% if  soldat.image  != NULL %}
+                                            <td><img src="{{ app.request.basepath }}/images/soldat/{{soldat.image}}" class="img-circle img-responsive" alt="soldat" style="height: 50px; width: auto" ></td>
+                                        {% else %}
+                                            <td></td>
+                                        {% endif %}
+                                        <td>{{ soldat.nom }}</a></td>
+                                        <td>{{ soldat.prenom }}</td>
+                                        <td class="visible">{{ soldat.grade }}</td>
+                                        <td class="visible">{{ soldat.dateNaissance }}</td>
+                                        <td class="visible">{{ soldat.dateDeces }}</td>
+                                    </tr>
+                                {% endfor %}
+                            </table>
+                        </div>
+                        <div  role="tabpanel" class="tab-pane fade" id="1941">
+                            <table>
+                                <tr>
+                                    <th class="dark">Photo</th>
+                                    <th class="dark">Nom</th>
+                                    <th class="dark">Prénoms</th>
+                                    <th class="visible dark">Grade</th>
+                                    <th class="visible dark">Date de Naissance</th>
+                                    <th class="visible dark">Date de Décès</th>
+                                </tr>
+                                {% for soldat in soldats['1941'] %}
+                                    <tr class='tr_soldat' onclick="parent.location='{{ path('soldat_ad', {'id': soldat.id,'data': 'liste'}) }}'">
+                                        {% if  soldat.image  != NULL %}
+                                            <td><img src="{{ app.request.basepath }}/images/soldat/{{soldat.image}}" class="img-circle img-responsive" alt="soldat" style="height: 50px; width: auto" ></td>
+                                        {% else %}
+                                            <td></td>
+                                        {% endif %}
+                                        <td>{{ soldat.nom }}</a></td>
+                                        <td>{{ soldat.prenom }}</td>
+                                        <td class="visible">{{ soldat.grade }}</td>
+                                        <td class="visible">{{ soldat.dateNaissance }}</td>
+                                        <td class="visible">{{ soldat.dateDeces }}</td>
+                                    </tr>
+                                {% endfor %}
+                            </table>
+                        </div>
+                        <div  role="tabpanel" class="tab-pane fade" id="1942">
+                            <table>
+                                <tr>
+                                    <th class="dark">Photo</th>
+                                    <th class="dark">Nom</th>
+                                    <th class="dark">Prénoms</th>
+                                    <th class="visible dark">Grade</th>
+                                    <th class="visible dark">Date de Naissance</th>
+                                    <th class="visible dark">Date de Décès</th>
+                                </tr>
+                                {% for soldat in soldats['1942'] %}
+                                    <tr class='tr_soldat' onclick="parent.location='{{ path('soldat_ad', {'id': soldat.id,'data': 'liste'}) }}'">
+                                        {% if  soldat.image  != NULL %}
+                                            <td><img src="{{ app.request.basepath }}/images/soldat/{{soldat.image}}" class="img-circle img-responsive" alt="soldat" style="height: 50px; width: auto" ></td>
+                                        {% else %}
+                                            <td></td>
+                                        {% endif %}
+                                        <td>{{ soldat.nom }}</a></td>
+                                        <td>{{ soldat.prenom }}</td>
+                                        <td class="visible">{{ soldat.grade }}</td>
+                                        <td class="visible">{{ soldat.dateNaissance }}</td>
+                                        <td class="visible">{{ soldat.dateDeces }}</td>
+                                    </tr>
+                                {% endfor %}
+                            </table>
+                        </div>
+                        <div  role="tabpanel" class="tab-pane fade" id="1943">
+                            <table>
+                                <tr>
+                                    <th class="dark">Photo</th>
+                                    <th class="dark">Nom</th>
+                                    <th class="dark">Prénoms</th>
+                                    <th class="visible dark">Grade</th>
+                                    <th class="visible dark">Date de Naissance</th>
+                                    <th class="visible dark">Date de Décès</th>
+                                </tr>
+                                {% for soldat in soldats['1943'] %}
+                                    <tr class='tr_soldat' onclick="parent.location='{{ path('soldat_ad', {'id': soldat.id,'data': 'liste'}) }}'">
+                                        {% if  soldat.image  != NULL %}
+                                            <td><img src="{{ app.request.basepath }}/images/soldat/{{soldat.image}}" class="img-circle img-responsive" alt="soldat" style="height: 50px; width: auto" ></td>
+                                        {% else %}
+                                            <td></td>
+                                        {% endif %}
+                                        <td>{{ soldat.nom }}</a></td>
+                                        <td>{{ soldat.prenom }}</td>
+                                        <td class="visible">{{ soldat.grade }}</td>
+                                        <td class="visible">{{ soldat.dateNaissance }}</td>
+                                        <td class="visible">{{ soldat.dateDeces }}</td>
+                                    </tr>
+                                {% endfor %}
+                            </table>
+                        </div>
+                        <div  role="tabpanel" class="tab-pane fade" id="1944">
+                            <table>
+                                <tr>
+                                    <th class="dark">Photo</th>
+                                    <th class="dark">Nom</th>
+                                    <th class="dark">Prénoms</th>
+                                    <th class="visible dark">Grade</th>
+                                    <th class="visible dark">Date de Naissance</th>
+                                    <th class="visible dark">Date de Décès</th>
+                                </tr>
+                                {% for soldat in soldats['1944'] %}
+                                    <tr class='tr_soldat' onclick="parent.location='{{ path('soldat_ad', {'id': soldat.id,'data': 'liste'}) }}'">
+                                        {% if  soldat.image  != NULL %}
+                                            <td><img src="{{ app.request.basepath }}/images/soldat/{{soldat.image}}" class="img-circle img-responsive" alt="soldat" style="height: 50px; width: auto" ></td>
+                                        {% else %}
+                                            <td></td>
+                                        {% endif %}
+                                        <td>{{ soldat.nom }}</a></td>
+                                        <td>{{ soldat.prenom }}</td>
+                                        <td class="visible">{{ soldat.grade }}</td>
+                                        <td class="visible">{{ soldat.dateNaissance }}</td>
+                                        <td class="visible">{{ soldat.dateDeces }}</td>
+                                    </tr>
+                                {% endfor %}
+                            </table>
+                        </div>
+                        <div  role="tabpanel" class="tab-pane fade" id="1945">
+                            <table>
+                                <tr>
+                                    <th class="dark">Photo</th>
+                                    <th class="dark">Nom</th>
+                                    <th class="dark">Prénoms</th>
+                                    <th class="visible dark">Grade</th>
+                                    <th class="visible dark">Date de Naissance</th>
+                                    <th class="visible dark">Date de Décès</th>
+                                </tr>
+                                {% for soldat in soldats['1945'] %}
+                                    <tr class='tr_soldat' onclick="parent.location='{{ path('soldat_ad', {'id': soldat.id,'data': 'liste'}) }}'">
+                                        {% if  soldat.image  != NULL %}
+                                            <td><img src="{{ app.request.basepath }}/images/soldat/{{soldat.image}}" class="img-circle img-responsive" alt="soldat" style="height: 50px; width: auto" ></td>
+                                        {% else %}
+                                            <td></td>
+                                        {% endif %}
+                                        <td>{{ soldat.nom }}</a></td>
+                                        <td>{{ soldat.prenom }}</td>
+                                        <td class="visible">{{ soldat.grade }}</td>
+                                        <td class="visible">{{ soldat.dateNaissance }}</td>
+                                        <td class="visible">{{ soldat.dateDeces }}</td>
+                                    </tr>
+                                {% endfor %}
+                            </table>
+                        </div>
+
+                        <div  role="tabpanel" class="tab-pane fade" id="1914-1918">
+                            <table>
+                                <tr>
+                                    <th class="dark">Photo</th>
+                                    <th class="dark">Nom</th>
+                                    <th class="dark">Prénoms</th>
+                                    <th class="visible dark">Grade</th>
+                                    <th class="visible dark">Date de Naissance</th>
+                                    <th class="visible dark">Date de Décès</th>
+                                </tr>
+                                {% for soldat in soldats['1914-1918'] %}
+                                    <tr class='tr_soldat' onclick="parent.location='{{ path('soldat_ad', {'id': soldat.id,'data': 'liste'}) }}'">
+                                        {% if  soldat.image  != NULL %}
+                                            <td><img src="{{ app.request.basepath }}/images/soldat/{{soldat.image}}" class="img-circle img-responsive" alt="soldat" style="height: 50px; width: auto" ></td>
+                                        {% else %}
+                                            <td></td>
+                                        {% endif %}
+                                        <td>{{ soldat.nom }}</a></td>
+                                        <td>{{ soldat.prenom }}</td>
+                                        <td class="visible">{{ soldat.grade }}</td>
+                                        <td class="visible">{{ soldat.dateNaissance }}</td>
+                                        <td class="visible">{{ soldat.dateDeces }}</td>
+                                    </tr>
+                                {% endfor %}
+                            </table>
+                        </div>
+
+                        <div  role="tabpanel" class="tab-pane fade" id="1919-1938">
+                            <table>
+                                <tr>
+                                    <th class="dark">Photo</th>
+                                    <th class="dark">Nom</th>
+                                    <th class="dark">Prénoms</th>
+                                    <th class="visible dark">Grade</th>
+                                    <th class="visible dark">Date de Naissance</th>
+                                    <th class="visible dark">Date de Décès</th>
+                                </tr>
+                                {% for soldat in soldats['1919-1938'] %}
+                                    <tr class='tr_soldat' onclick="parent.location='{{ path('soldat_ad', {'id': soldat.id,'data': 'liste'}) }}'">
+                                        {% if  soldat.image  != NULL %}
+                                            <td><img src="{{ app.request.basepath }}/images/soldat/{{soldat.image}}" class="img-circle img-responsive" alt="soldat" style="height: 50px; width: auto" ></td>
+                                        {% else %}
+                                            <td></td>
+                                        {% endif %}
+                                        <td>{{ soldat.nom }}</a></td>
+                                        <td>{{ soldat.prenom }}</td>
+                                        <td class="visible">{{ soldat.grade }}</td>
+                                        <td class="visible">{{ soldat.dateNaissance }}</td>
+                                        <td class="visible">{{ soldat.dateDeces }}</td>
+                                    </tr>
+                                {% endfor %}
+                            </table>
+                        </div>
+
+                        <div  role="tabpanel" class="tab-pane fade" id="1939-1945">
+                            <table>
+                                <tr>
+                                    <th class="dark">Photo</th>
+                                    <th class="dark">Nom</th>
+                                    <th class="dark">Prénoms</th>
+                                    <th class="visible dark">Grade</th>
+                                    <th class="visible dark">Date de Naissance</th>
+                                    <th class="visible dark">Date de Décès</th>
+                                </tr>
+                                {% for soldat in soldats['1939-1945'] %}
+                                    <tr class='tr_soldat' onclick="parent.location='{{ path('soldat_ad', {'id': soldat.id,'data': 'liste'}) }}'">
+                                        {% if  soldat.image  != NULL %}
+                                            <td><img src="{{ app.request.basepath }}/images/soldat/{{soldat.image}}" class="img-circle img-responsive" alt="soldat" style="height: 50px; width: auto" ></td>
+                                        {% else %}
+                                            <td></td>
+                                        {% endif %}
+                                        <td>{{ soldat.nom }}</a></td>
+                                        <td>{{ soldat.prenom }}</td>
+                                        <td class="visible">{{ soldat.grade }}</td>
+                                        <td class="visible">{{ soldat.dateNaissance }}</td>
+                                        <td class="visible">{{ soldat.dateDeces }}</td>
+                                    </tr>
+                                {% endfor %}
+                            </table>
+                        </div>
+                    </div>
+            </div>
+        </div>
+        {# création de la recherche#}
+        <div class=" col-md-4" id="recherche" style="z-index: 1">
+
+            {% if info["error"] == true %}
+                <div class="col-lg-12">
+                    <div class="alert alert-danger">
+                        <strong>Un des champs est mal rempli !</strong>
+                    </div>
+                </div>
+            {% endif %}
+
+            <h1>Rechercher une fiche</h1>
+            <p>Veuillez remplir au moins un des champs ci-dessous.</p>
+            {{ form_start(searchForm) }}
+            {{ form_widget(searchForm._token) }}
+
+
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+                <div class="col-xs-5 col-sm-6 col-md-4 col-lg-4">
+                    <label for="nom">Nom :</label>
+                </div>
+                <div class="col-xs-7 col-sm-6 col-md-8 col-lg-8">
+                    {{ form_widget(searchForm.Nom) }}
+                </div>
+
+            </div>
+
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+                <div class="col-xs-5 col-sm-6 col-md-4 col-lg-4">
+                    <label for="prenoms">Prénom :</label>
+                </div>
+                <div class="col-xs-7 col-sm-6 col-md-8 col-lg-8">
+                    {{ form_widget(searchForm.Prenoms) }}
+                </div>
+
+            </div>
+
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+                <div class="col-xs-5 col-sm-6 col-md-4 col-lg-4">
+                    <label for="guerre">Conflits :</label>
+                </div>
+                <div class="col-xs-7 col-sm-6 col-md-8 col-lg-8">
+                    {{ form_widget(searchForm.Guerre) }}
+                </div>
+
+            </div>
+
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+                <div class="col-xs-5 col-sm-6 col-md-4 col-lg-4">
+                    <label for="when">Date naissance :</label>
+                </div>
+                <div class="col-xs-7 col-sm-6 col-md-8 col-lg-8 ">
+                    {{ form_widget(searchForm.Day) }}
+                    {{ form_widget(searchForm.Month) }}
+                    {{ form_widget(searchForm.Year) }}
+                </div>
+
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <br><br><button type="submit" class="btn btn-default">Rechercher <span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+            </div>
+
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <h3 id="toggle"><a>Recherche avancée</a></h3>
+                <p></p>
+            </div>
+            <div class="avancee col-xs-12 col-sm-12 col-md-12 col-lg-12" style="display:none">
+
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="col-xs-5 col-sm-6 col-md-4 col-lg-4">
+                        <label for="grade">Grade :</label>
+                    </div>
+                    <div class="col-xs-7 col-sm-6 col-md-8 col-lg-8">
+                        {{ form_widget(searchForm.Grade) }}
+                    </div>
+                </div>
+
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="col-xs-5 col-sm-6 col-md-4 col-lg-4">
+                        <label for="corps">Unité :</label>
+                    </div>
+                    <div class="col-xs-7 col-sm-6 col-md-8 col-lg-8">
+                        {{ form_widget(searchForm.Corps) }}
+                    </div>
+                </div>
+
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="col-xs-5 col-sm-6 col-md-4 col-lg-4">
+                        <label for="depatement_deces">Departement de décès :</label>
+                    </div>
+                    <div class="col-xs-7 col-sm-6 col-md-8 col-lg-8">
+                        {{ form_widget(searchForm.DepartementDeces) }}
+                    </div>
+                </div>
+
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="col-xs-5 col-sm-6 col-md-4 col-lg-4">
+                        <label for="commune_deces">Commune de décès :</label>
+                    </div>
+                    <div class="col-xs-7 col-sm-6 col-md-8 col-lg-8">
+                        {{ form_widget(searchForm.CommuneDeces) }}
+                    </div>
+                </div>
+
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="col-xs-5 col-sm-6 col-md-4 col-lg-4">
+                        <label for="when">Date de décès :</label>
+                    </div>
+                    <div class="col-xs-7 col-sm-6 col-md-8 col-lg-8 ">
+                        {{ form_widget(searchForm.Dayd) }}
+                        {{ form_widget(searchForm.Monthd) }}
+                        {{ form_widget(searchForm.Yeard) }}
+                    </div>
+                </div><br>
+
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <button type="submit" class="btn btn-default">Rechercher <span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+{% endblock %}
