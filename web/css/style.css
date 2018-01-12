@@ -2463,7 +2463,7 @@ body.homepage.is-loading #header:after {
 	position: absolute;
 	top: 50%;
 	margin: -1.5em 0 0 0;
-	background: url("images/arrow.svg") no-repeat center center;
+	background: url("../../assets/css/images/arrow.svg") no-repeat center center;
 }
 
 .carousel .forward:hover:before, .carousel .backward:hover:before {
