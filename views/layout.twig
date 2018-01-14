@@ -7,25 +7,25 @@
     <!--[if lte IE 8]><script src="web/js/ie/html5shiv.js"></script><![endif]-->
     <link rel="stylesheet" href="web/css/style.css" />
     <link rel="stylesheet" href="assets/css/font-awesome.min.css" />
+
     <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+<!--
+    <link rel="stylesheet" href="web/css/main.css" />
+    <link rel="stylesheet" href="web/css/util.css" />
+    <link rel="stylesheet" type="text/css" href="web/vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="web/font/iconic/css/material-design-iconic-font.min.css">
+    <link rel="stylesheet" type="text/css" href="web/vendor/animate/animate.css">
+    <link rel="stylesheet" type="text/css" href="web/vendor/css-hamburgers/hamburgers.min.css">
+    <link rel="stylesheet" type="text/css" href="web/vendor/animsition/css/animsition.min.css">
+    <link rel="stylesheet" type="text/css" href="web/vendor/select2/select2.min.css">
+    <link rel="stylesheet" type="text/css" href="web/vendor/daterangepicker/daterangepicker.css">
+-->
 </head>
 <body class="homepage">
-<!-- Header -->
-<div id="header">
-
-    <!-- Inner -->
-    <div class="inner">
-        <header>
-            <h1><a href="{{ path('home') }}" id="logo">Segmi Solidaire</a></h1>
-            <hr />
-        </header>
-        <footer>
-            <a href="#banner" class="button circled scrolly">Commencer</a>
-        </footer>
-    </div>
-
+<div class="header">
     <!-- Nav -->
     <nav id="nav">
+        <img id="logo_upx" src="web/images/logo_upx.png">
         <ul>
             <li><a href="{{ path('home') }}">Accueil</a></li>
             <li>
@@ -149,12 +149,14 @@
                             <li><a href="#">Etiam dolore nisl</a></li></ul>
                     </li>
                 </ul>
-            <li><a href="{{ path('loginn') }}">Se connecter</a></li>
+            <li><a href="{{ path('login') }}">Se connecter</a></li>
         </ul>
-    </nav>
+        <img id="logo" style="height: 80px;" src="web/images/logo.png">
 
+    </nav>
 </div>
-{% block content %}{% endblock %}
+{% block content %}
+{% endblock %}
 </body>
 
 
@@ -165,9 +167,9 @@
 <script type="text/javascript"  src="{{ app.request.basepath }}/web/js/jquery.onvisible.min.js"></script>
 <script type="text/javascript"  src="{{ app.request.basepath }}/web/js/skel.min.js"></script>
 <script type="text/javascript"  src="{{ app.request.basepath }}/web/js/util.js"></script>
+
 <!--[if lte IE 8]>
 <script type="text/javascript"  src="{{ app.request.basepath }}/web/js/ie/respond.min.js"></script><![endif]-->
 <script type="text/javascript"  src="{{ app.request.basepath }}/web/js/main.js"></script>
-
 
 </html>

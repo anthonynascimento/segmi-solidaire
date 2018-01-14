@@ -16,7 +16,7 @@ $app->get('/', function () use ($app) {
 
 $app->get('login', function () use ($app) {
     return $app['twig']->render('login.twig');
-})->bind('loginn');
+})->bind('login');
 
 $app->get('cours', function () use ($app) {
     return $app['twig']->render('cours.twig');

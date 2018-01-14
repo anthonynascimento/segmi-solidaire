@@ -1595,10 +1595,12 @@ h1 strong, h2 strong, h3 strong, h4 strong, h5 strong, h6 strong {
 
 h2 {
 	font-size: 2.85em;
+	margin-top:25px;
 }
 
 h3 {
 	font-size: 1.25em;
+	text-align: center	;
 }
 
 h4 {
@@ -2157,6 +2159,15 @@ header .icon.circled {
 	border-bottom-color: rgba(192, 192, 192, 0.35);
 	box-shadow: inset 0 1px 0 0 rgba(192, 192, 192, 0.35);
 }
+#logo_upx{
+	width: 137px;
+	object-fit: contain;
+}
+
+#logo{
+	height: 20px;
+	object-fit: contain;
+}
 
 #header hr:before, #header hr:after {
 	background: rgba(192, 192, 192, 0.35);
@@ -2202,37 +2213,38 @@ body.homepage.is-loading #header:after {
 /* Nav */
 
 #nav {
-	position: absolute;
+	position: fixed;
 	top: 0;
 	left: 0;
-	width: 100%;
 	text-align: center;
 	padding: 1.5em 0 1.5em 0;
 	z-index: 1;
 	overflow: hidden;
+	color:#2F2E2E;
+	right: 0;
+	background-color: rgba(255, 255, 255, 1);
+	box-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
+	border-top: 0px solid rgba(255, 255, 255, 1);
+	border-bottom: 0px solid rgba(255, 255, 255, 1);
 }
 
+::-moz-selection { /* Code for Firefox */
+	color: red;
+}
+
+::selection {
+	color: red;
+}
 #nav > ul {
 	line-height: 0px;
 	position: relative;
 	display: inline-block;
 	margin: 0;
 	height: 21px;
-	border-left: solid 1px rgba(192, 192, 192, 0.35);
-	border-right: solid 1px rgba(192, 192, 192, 0.35);
+
 }
 
-#nav > ul:before, #nav > ul:after {
-	content: '';
-	display: block;
-	width: 300%;
-	position: absolute;
-	top: 50%;
-	margin-top: -2px;
-	height: 5px;
-	border-top: solid 1px rgba(192, 192, 192, 0.35);
-	border-bottom: solid 1px rgba(192, 192, 192, 0.35);
-}
+
 
 #nav > ul:before {
 	left: 100%;
@@ -3040,3 +3052,5 @@ body.homepage.is-loading #header:after {
 	}
 
 }
+
+/*login*/
