@@ -16,7 +16,7 @@
     <!-- Inner -->
     <div class="inner">
         <header>
-            <h1><a href="index.html" id="logo">Segmi Solidaire</a></h1>
+            <h1><a href="{{ path('home') }}" id="logo">Segmi Solidaire</a></h1>
             <hr />
         </header>
         <footer>
@@ -27,14 +27,16 @@
     <!-- Nav -->
     <nav id="nav">
         <ul>
-            <li><a href="index.html">Accueil</a></li>
+            <li><a href="{{ path('home') }}">Accueil</a></li>
             <li>
-                <a href="#">Cours</a>
+                <a href="{{ path('cours') }}">Cours</a>
                 <ul>
                     <li><a href="#">Cours L1</a></li>
                     <li><a href="#">Cours L2</a></li>
                     <li><a href="#">Cours L3</a></li>
-                    <li><a href="#">Cours Master</a></li>
+                    <li><a href="#">Cours M1</a></li>
+                    <li><a href="#">Cours M2</a></li>
+
                     <li>
                         <a href="#">And a submenu &hellip;</a>
                         <ul>
@@ -52,7 +54,9 @@
                     <li><a href="#">Cours L1</a></li>
                     <li><a href="#">Cours L2</a></li>
                     <li><a href="#">Cours L3</a></li>
-                    <li><a href="#">Cours Master</a></li>
+                    <li><a href="#">Cours M1</a></li>
+                    <li><a href="#">Cours M2</a></li>
+
                     <li>
                         <a href="#">And a submenu &hellip;</a>
                         <ul>
@@ -70,7 +74,9 @@
                     <li><a href="#">Cours L1</a></li>
                     <li><a href="#">Cours L2</a></li>
                     <li><a href="#">Cours L3</a></li>
-                    <li><a href="#">Cours Master</a></li>
+                    <li><a href="#">Cours M1</a></li>
+                    <li><a href="#">Cours M2</a></li>
+
                     <li>
                         <a href="#">And a submenu &hellip;</a>
                         <ul>
@@ -140,11 +146,10 @@
                             <li><a href="#">Lorem ipsum dolor</a></li>
                             <li><a href="#">Phasellus consequat</a></li>
                             <li><a href="#">Magna phasellus</a></li>
-                            <li><a href="#">Etiam dolore nisl</a></li>
-                        </ul>
+                            <li><a href="#">Etiam dolore nisl</a></li></ul>
                     </li>
                 </ul>
-            <li><a href="index.html">Se connecter</a></li>
+            <li><a href="{{ path('loginn') }}">Se connecter</a></li>
         </ul>
     </nav>
 
