@@ -10,16 +10,14 @@ use MicroCMS\Domain\Soldat;
 //  Appel des fonctions buildInsert et buildRequest
 require_once "function.php";
 
-
-/**
- * **************************************** PARTIE FRONTOFFICE *******************************************
- */
-
-/**
- * page d'accueil "memorial.nancy.fr"
- * home.twig
- */
 $app->get('/', function () use ($app) {
     return $app['twig']->render('home.twig');
 })->bind('home');
 
+$app->get('login', function () use ($app) {
+    return $app['twig']->render('login.twig');
+})->bind('loginn');
+
+$app->get('cours', function () use ($app) {
+    return $app['twig']->render('cours.twig');
+})->bind('cours');

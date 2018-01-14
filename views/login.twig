@@ -1,24 +1,9 @@
-{% extends 'layout.twig' %}
+{% extends "layout.twig" %}
 
 {% set menu_selected = 'login' %}
 
 {% block title %}User authentication{% endblock %}
 
 {% block content %}
-    <div class="container _main">
-    {% if is_granted('ROLE_ADMIN') %}
-        <p>Bienvenue {{ app.security.token.user.username }} !</p>
-        <p><a href="{{ path('deconnexion') }}">Déconnexion</a></p>
-        <p><a href="{{ path('ad') }}">Partie admin</a></p>
-    {% else %}
-        <form action="{{ path('connexion') }}" method="post">
-            <p><label for="username">Nom d'utilisateur : </label><input id="username" type="text" name="_username" value="{{ last_username }}"></p>
-            <p><label for="password">Mot de passe : </label><input id="password" type="password" name="_password"></p>
-            <p><input type="submit" value="Connexion"></p>
-            {% if error %}
-                <div class="error">{{ error }}</div>
-            {% endif %}
-        </form>
-    {% endif %}
-    </div>
+    <h1>Test</h1>
 {% endblock %}
