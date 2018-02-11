@@ -5,10 +5,10 @@ $app['db.options'] = array(
     'driver'   => 'pdo_mysql',
     'charset'  => 'utf8',
     'host'     => 'localhost',  //getenv("DB_1_PORT_3306_TCP_ADDR"),
-    'port'     => '8888',
-    'dbname'   => 'memorial-V3',
-    'user'     => 'dev',
-    'password' => 'test',
+    'port'     => '3306',
+    'dbname'   => 'segmiSolidaire',
+    'user'     => 'vijay',
+    'password' => 'vijay',
 );
 
 // enable the debug mode

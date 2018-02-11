@@ -8,7 +8,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Validator\Constraints\Blank;
-use MicroCMS\Domain\FindSoldat;
+use MicroCMS\Domain\Evenement;
 
 /**
  * Cette classe permet de mettre en place les menus déroulants pour les champs dans la recherche.

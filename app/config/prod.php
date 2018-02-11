@@ -13,9 +13,9 @@ $app['db.options'] = array(
     'charset'  => 'utf8',
     'host'     => 'localhost',  //getenv("DB_1_PORT_3306_TCP_ADDR"),
     'port'     => '3306',
-    'dbname'   => 'bd_segmisolidaire',
-    'user'     => 'root',
-    'password' => '',
+    'dbname'   => 'segmiSolidaire',
+    'user'     => 'vijay',
+    'password' => 'vijay',
 );
 
 // define log parameters
