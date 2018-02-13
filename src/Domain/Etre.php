@@ -2,14 +2,14 @@
 
 namespace MicroCMS\Domain;
 
-class Niveau
+class Etre
 {
     private $idNiveau;
-    private $nom;
+    private $numEtu;
 
     public function getIdNiveau() { return $this->idNiveau; }
-    public function getNomNiveau() { return $this->nom; }
+    public function getNumEtu() { return $this->numEtu; }
 
     public function setIdNiveau($id) { $this->idNiveau = $id; }
-    public function setNomNiveau($nom) { $this->nom = $nom; }
+    public function setNumEtu($num) { $this->numEtu = $num; }
 }

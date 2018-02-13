@@ -4,11 +4,12 @@ namespace MicroCMS\Domain;
 
 class Rubrique
 {
-    private $rub_id;
-    private $rub_nom;
+    private $idRubrique;
+    private $nom;
 
-    public function getRubriqueId() { return $this->rub_id; }
+    public function getRubriqueId() { return $this->idRubriqueom; }
     public function getNomRubrique() { return $this->rub_nom; }
 
-    public function setNomRubrique($nom) { $this->rub_nom = $nom; }
+    public function setIdRubrique($id) { $this->idRubrique = $id;}
+    public function setNomRubrique($nom) { $this->nom = $nom; }
 }
