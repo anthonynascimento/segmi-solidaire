@@ -21,10 +21,10 @@ $app->get('/listeEven', function () use ($app) {
 
 
 
-$app->get('login', function () use ($app) {
+$app->get('/login', function () use ($app) {
     return $app['twig']->render('login.twig');
 })->bind('login');
 
-$app->get('cours', function () use ($app) {
+$app->get('/cours', function () use ($app) {
     return $app['twig']->render('cours.twig');
 })->bind('cours');
