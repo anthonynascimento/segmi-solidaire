@@ -4,20 +4,21 @@ namespace MicroCMS\Domain;
 
 class Job
 {
-    private $job_id;
-    private $job_titre;
-    private $job_description;
-    private $rub_id;
-    private $etu_num;
+    private $idJob;
+    private $titre;
+    private $description;
+    private $idRubrique;
+    private $numEtu;
 
-    public function getJobId() { return $this->job_id; }
-    public function getJobTitre() { return $this->job_titre; }
-    public function getJobDesc() { return $this->job_description; }
-    public function getRubId() { return $this->rub_id; }
-    public function getEtuNom() { return $this->etu_num; }
+    public function getJobId() { return $this->idJob; }
+    public function getJobTitre() { return $this->titre; }
+    public function getJobDesc() { return $this->description; }
+    public function getRubId() { return $this->idRubrique; }
+    public function getEtuNom() { return $this->numEtu; }
 
-    public function setJobTitre($titre) { return $this->job_titre = $titre; }
-    public function setJobDesc($desc) { return $this->job_description = $desc; }
-    public function setRubId($rub) { return $this->rub_id = $rub; }
-    public function setEtuNom($etu) { return $this->etu_num = $etu; }
+    public function setJobId($id) { return $this->idJob = $id; }
+    public function setJobTitre($titre) { return $this->titre = $titre; }
+    public function setJobDesc($desc) { return $this->description = $desc; }
+    public function setRubId($rub) { return $this->idRubrique = $rub; }
+    public function setEtuNom($etu) { return $this->numEtu = $etu; }
 }

@@ -4,14 +4,15 @@ namespace MicroCMS\Domain;
 
 class Matiere
 {
-    private $mat_id;
-    private $mat_nom;
-    private $niv_id;
+    private $idMatiere;
+    private $nom;
+    private $idNiveau;
 
-    public function getIdMatiere() { return $this->mat_id; }
-    public function getNomMatiere() { return $this->mat_nom; }
-    public function getIdNiveau() { return $this->niv_id; }
+    public function getIdMatiere() { return $this->idMatiere; }
+    public function getNomMatiere() { return $this->nom; }
+    public function getIdNiveau() { return $this->idNiveau; }
 
-    public function setNomMatiere($mat) { $this->mat_nom = $mat; }
-    public function setIdNiveau($id) { $this->niv_id = $id; }
+    public function setIdMatiere($id) { $this->idMatiere = $id; }
+    public function setNomMatiere($mat) { $this->nom = $mat; }
+    public function setIdNiveau($id) { $this->idNiveau = $id; }
 }

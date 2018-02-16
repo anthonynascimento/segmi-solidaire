@@ -4,21 +4,24 @@ namespace MicroCMS\Domain;
 
 class Etudiant
 {
-    private $etu_num;
-    private $etu_nom;
-    private $etu_prenom;
-    private $etu_email;
-    private $etu_telephone;
-    private $etu_mdp;
+    private $numEtu;
+    private $nom;
+    private $prenom;
+    private $email;
+    private $tel;
+    private $mdp;
 
-    public function getNumEtudiant() { return $this->etu_num; }
-    public function getNomEtudiant() { return $this->etu_nom; }
-    public function getPrenomEtudiant() { return $this->etu_prenom; }
-    public function getEmailEtudiant() { return $this->etu_email; }
-    public function getTelEtudiant() { return $this->etu_telephone; }
-    public function getMdpEtudiant() { return $this->etu_mdp; }
+    public function getNumEtudiant() { return $this->numEtu; }
+    public function getNomEtudiant() { return $this->nom; }
+    public function getPrenomEtudiant() { return $this->prenom; }
+    public function getEmailEtudiant() { return $this->email; }
+    public function getTelEtudiant() { return $this->tel; }
+    public function getMdpEtudiant() { return $this->mdp; }
 
-    public function setEmail($email) { $this->etu_email = $email; }
-    public function setTel($tel) { $this->etu_telephone = $tel; }
-    public function setMdp($mdp) { $this->etu_mdp = $mdp; }
+    public function setNumEtudiant($num) { $this->numEtu = $num; }
+    public function setNomEtudiant($nom) { $this->nom = $nom; }
+    public function setPrenomEtudiant($prenom) { $this->prenom = $prenom; }
+    public function setEmailEtudiant($email) { $this->email = $email; }
+    public function setTelEtudiant($tel) { $this->tel = $tel; }
+    public function setMdpEtudiant($mdp) { $this->mdp = $mdp; }
 }
