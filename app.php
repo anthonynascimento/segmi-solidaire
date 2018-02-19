@@ -42,6 +42,9 @@ $app['dao.info'] = $app->share(function ($app) {
     return $commentDAO;
 });
 */
+$app['dao.evenement'] = $app->share(function ($app) {
+    return new MicroCMS\DAO\EvenementDAO($app['db']);
+});
 
 $app->register(new Silex\Provider\MonologServiceProvider(), array(
     'monolog.logfile' => __DIR__ . '/var/logs/microcms.log',

@@ -2,77 +2,42 @@
 
 {% set menu_selected = 'home' %}
 
-{% block title %}Liste des evenements{% endblock %}
+{% block title %}Evenement{% endblock %}
 
 {% block content %}
-    <div class="container">
-        <br><br>
-        <br><br>
-        <br><br>
-
-        <h1>IOJIOJIO</h1>
-        <div class="wrapper style1">
-
-            <section id="features" class="container special">
-                <header>
-                    <h2>Liste des evenements disponible</h2>
-                </header>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="portfolio-modal modal fade" id="evt" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-content">
+            <div class="container">
                 <div class="row">
+                    <div class="col-lg-10 col-lg-offset-1 centered">
+                        <div class="modal-body">
+                            <h2 style="text-align: center">{{ evenement.titre }}</h2>
+                            <br>
+                            <div class="carousel-inner" role="listbox">
+                                <div class="item active">
+                                    <img src="../web/images/{{ evenement.image }}" style="margin-left: 35%" alt="First slide">
+                                </div>
+                            </div>
+                            <div class="col-lg-5 col-lg-offset-1" style="text-align:justify;">
+                                <h4>Description</h4>
+                                <p>{{ evenement.description }}</p>
+                            </div>
 
-                    <article class="4u 12u(mobile) special">
-                        <a href="#" class="image featured"><img src="web/images/even2.jpg" alt=""/></a>
-                        <header>
-                            <h3><a href="#">Sed quis rhoncus placerat</a></h3>
-                        </header>
-                        <p>
-                            Amet nullam fringilla nibh nulla convallis tique ante proin sociis accumsan lobortis. Auctor
-                            etiam
-                            porttitor phasellus tempus cubilia ultrices tempor sagittis. Nisl fermentum consequat
-                            integer interdum.
-                        </p>
-                    </article>
-                    <article class="4u 12u(mobile) special">
-                        <a href="#" class="image featured"><img src="web/images/even3.jpg" alt=""/></a>
-                        <header>
-                            <h3><a href="#">Magna laoreet et aliquam</a></h3>
-                        </header>
-                        <p>
-                            Amet nullam fringilla nibh nulla convallis tique ante proin sociis accumsan lobortis. Auctor
-                            etiam
-                            porttitor phasellus tempus cubilia ultrices tempor sagittis. Nisl fermentum consequat
-                            integer interdum.
-                        </p>
-                    </article>
-                    <article class="4u 12u(mobile) special">
-                        <a href="#" class="image featured"><img src="web/images/even4.jpg" alt=""/></a>
-                        <header>
-                            <h3><a href="#">Magna laoreet et aliquam</a></h3>
-                        </header>
-                        <p>
-                            Amet nullam fringilla nibh nulla convallis tique ante proin sociis accumsan lobortis. Auctor
-                            etiam
-                            porttitor phasellus tempus cubilia ultrices tempor sagittis. Nisl fermentum consequat
-                            integer interdum.
-                        </p>
-                    </article>
-                    <article class="4u 12u(mobile) special">
-                        <a href="#" class="image featured"><img src="web/images/even5.jpg" alt=""/></a>
-                        <header>
-                            <h3><a href="#">Magna laoreet et aliquam</a></h3>
-                        </header>
-                        <p>
-                            Amet nullam fringilla nibh nulla convallis tique ante proin sociis accumsan lobortis. Auctor
-                            etiam
-                            porttitor phasellus tempus cubilia ultrices tempor sagittis. Nisl fermentum consequat
-                            integer interdum.
-                        </p>
-                    </article>
+                            <div class="col-lg-5 col-lg-offset-1" style="text-align:justify;">
+                                <div class="hline"></div>
+                                <p><b>Date de début :</b> {{ evenement.date_debut }}</p>
+                                <p><b>Date de fin :</b> {{ evenement.date_fin }}</p>
 
+                            </div>
+
+                        </div>
+                    </div>
                 </div>
-            </section>
+            </div>
         </div>
     </div>
-
-    <!-- /.row -->
-
 {% endblock %}

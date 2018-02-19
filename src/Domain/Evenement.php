@@ -4,7 +4,23 @@ namespace MicroCMS\Domain;
 
 class Evenement
 {
-    private $idEvenement, $titre, $description, $date_debut, $date_fin;
+    private $idEvenement, $titre, $description, $date_debut, $date_fin,$image;
+
+    /**
+     * @return mixed
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    /**
+     * @param mixed $image
+     */
+    public function setImage($image)
+    {
+        $this->image = $image;
+    }
 
     /**
      * @return mixed

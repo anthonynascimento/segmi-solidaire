@@ -1,0 +1,32 @@
+{% extends "layout.twig" %}
+
+{% set menu_selected = 'home' %}
+
+{% block title %}Liste des evenements de Soirée{% endblock %}
+
+{% block content %}
+    <br>
+    <div class="wrapper style1">
+
+        <section id="features" class="container special">
+            <header>
+                <h2>Liste des evenements de Soirée</h2>
+            </header>
+            <div class="row">
+                {% for evenementsSoiree in evenementsSoiree['tous'] %}
+                    <article onclick="parent.location='{{ path('evenement_detail', {'id': evenementsSoiree.idEvenement }) }}'" class="4u 12u(mobile) special">
+                        <a href="#" class="image featured"><img src="web/images/{{ evenementsSoiree.image }}" alt=""/></a>
+                        <header>
+                            <h3><a href="#">{{ evenementsSoiree.titre }}</a></h3>
+                        </header>
+                        <p>
+                            {{ evenementsSoiree.description }}
+                        </p>
+                    </article>
+                {% endfor %}
+            </div>
+        </section>
+
+    </div>
+
+{% endblock %}

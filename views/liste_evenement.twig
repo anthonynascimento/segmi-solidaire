@@ -1,0 +1,32 @@
+{% extends "layout.twig" %}
+
+{% set menu_selected = 'liste_evenement' %}
+
+{% block title %}Liste des evenements{% endblock %}
+
+{% block content %}
+   <br>
+    <div class="wrapper style1">
+
+        <section id="features" class="container special">
+            <header>
+                <h2>Liste des evenements</h2>
+            </header>
+            <div class="row">
+                {% for evenement in evenements['tous'] %}
+                    <article onclick="parent.location='{{ path('evenement_detail', {'id': evenement.idEvenement }) }}'"  class="4u 12u(mobile) special">
+                        <a  class="image featured"><img src="web/images/{{ evenement.image }}" alt=""/></a>
+                        <header>
+                            <h3><a>{{ evenement.titre }}</a></h3>
+                        </header>
+                        <p>
+                            {{ evenement.description }}
+                        </p>
+                    </article>
+                {% endfor %}
+            </div>
+        </section>
+
+    </div>
+
+{% endblock %}

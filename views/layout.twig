@@ -2,33 +2,25 @@
 <html>
 <head>
     <title>Segmi Solidaire</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <!--[if lte IE 8]><script src="web/js/ie/html5shiv.js"></script><![endif]-->
-    <link rel="stylesheet" href="web/css/style.css" />
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <!--[if lte IE 8]>
+    <script src="web/js/ie/html5shiv.js"></script><![endif]-->
+    <link rel="stylesheet" href="{{ app.request.basepath }}/web/css/style.css"/>
+    <link rel="stylesheet" href="{{ app.request.basepath }}/web/css/footer-distributed-with-address-and-phones.css"/>
 
 
+    <link rel="stylesheet" href="{{ app.request.basepath }}/assets/css/font-awesome.min.css"/>
 
-    <link rel="stylesheet" href="assets/css/font-awesome.min.css" />
+    <!--[if lte IE 8]>
+    <link rel="stylesheet" href="{{ app.request.basepath }}/assets/css/ie8.css"/><![endif]-->
 
-    <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
-<!--
-    <link rel="stylesheet" href="web/css/main.css" />
-    <link rel="stylesheet" href="web/css/util.css" />
-    <link rel="stylesheet" type="text/css" href="web/vendor/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="web/font/iconic/css/material-design-iconic-font.min.css">
-    <link rel="stylesheet" type="text/css" href="web/vendor/animate/animate.css">
-    <link rel="stylesheet" type="text/css" href="web/vendor/css-hamburgers/hamburgers.min.css">
-    <link rel="stylesheet" type="text/css" href="web/vendor/animsition/css/animsition.min.css">
-    <link rel="stylesheet" type="text/css" href="web/vendor/select2/select2.min.css">
-    <link rel="stylesheet" type="text/css" href="web/vendor/daterangepicker/daterangepicker.css">
--->
 </head>
 <body class="homepage">
 <div class="header">
     <!-- Nav -->
     <nav id="nav">
-        <img id="logo_upx" src="web/images/logo_upx.png">
+        <img id="logo_upx" src="{{ app.request.basepath }}/web/images/logo_upx.png">
         <ul>
             <li><a href="{{ path('home') }}">Accueil</a></li>
             <li>
@@ -120,18 +112,9 @@
             <li>
                 <a href="{{ path('evenement') }}">Évènement</a>
                 <ul>
-                    <li><a href="#">Sport</a></li>
-                    <li><a href="#">Soirée</a></li>
-                    <li><a href="#">Conférence</a></li>
-                    <li>
-                        <a href="#">And a submenu &hellip;</a>
-                        <ul>
-                            <li><a href="#">Lorem ipsum dolor</a></li>
-                            <li><a href="#">Phasellus consequat</a></li>
-                            <li><a href="#">Magna phasellus</a></li>
-                            <li><a href="#">Etiam dolore nisl</a></li>
-                        </ul>
-                    </li>
+                    <li><a href="{{ path('evenementSport') }}">Sport</a></li>
+                    <li><a href="{{ path('evenementSoiree') }}">Soirée</a></li>
+                    <li><a href="{{ path('evenementConf') }}">Conférence</a></li>
                 </ul>
             </li>
 
@@ -149,30 +132,85 @@
                             <li><a href="#">Lorem ipsum dolor</a></li>
                             <li><a href="#">Phasellus consequat</a></li>
                             <li><a href="#">Magna phasellus</a></li>
-                            <li><a href="#">Etiam dolore nisl</a></li></ul>
+                            <li><a href="#">Etiam dolore nisl</a></li>
+                        </ul>
                     </li>
                 </ul>
             <li><a href="{{ path('login') }}">Connexion</a></li>
         </ul>
-        <img id="logo" style="height: 80px;" src="web/images/logo.png">
+        <img id="logo" style="height: 80px;" src="{{ app.request.basepath }}/web/images/logo.png">
 
     </nav>
 </div>
 {% block content %}
 {% endblock %}
+<!-- Footer -->
+<footer class="footer-distributed">
+
+    <div class="footer-left">
+
+        <p class="footer-links" style="width: 75%">
+            <a href="#">Accueil</a>
+            ·
+            <a href="#">Cours</a>
+            ·
+            <a href="#">Annales</a>
+            ·
+            <a href="#">Livres</a>
+            ·
+            <a href="#">Mini Jobs</a>
+            ·
+            <a href="#">Évènement</a>
+            ·
+            <a href="#">Déposer une annonce</a>
+            ·
+            <a href="#">Connexion</a>
+        </p>
+        <br>
+        <p class="footer-company-name" style="color:white">Segmi Solidaire &copy; 2018</p>
+
+    </div>
+
+
+    <div class="footer-center">
+
+        <div>
+            <i class="fa fa-map-marker"></i>
+            <p><span>U.F.R SEGMI<br> 92000 Nanterre</span></p>
+        </div>
+
+        <div>
+            <i class="fa fa-phone"></i>
+            <p>+33 01.41.50.98.74</p>
+        </div>
+
+        <div>
+            <i class="fa fa-envelope"></i>
+            <p><a href="mailto:support@company.com">segmisolidaire@gmail.com</a></p>
+        </div>
+
+    </div>
+
+    <div class="footer-right">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2622.6294338459065!2d2.209085316077682!3d48.90339897929193!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xade365e28caa2d74!2sU.F.R.+Sciences+%C3%89conomiques%2C+Gestion%2C+Math%C3%A9matiques%2C+Informatique!5e0!3m2!1sfr!2sfr!4v1515768751975"
+                width="300" height="250" frameborder="0" style="border:0" allowfullscreen></iframe>
+
+    </div>
+
+</footer>
 </body>
 
 
 <!-- Scripts -->
-<script type="text/javascript"  src="{{ app.request.basepath }}/web/js/jquery.min.js"></script>
-<script type="text/javascript"  src="{{ app.request.basepath }}/web/js/jquery.dropotron.min.js"></script>
-<script type="text/javascript"  src="{{ app.request.basepath }}/web/js/jquery.scrolly.min.js"></script>
-<script type="text/javascript"  src="{{ app.request.basepath }}/web/js/jquery.onvisible.min.js"></script>
-<script type="text/javascript"  src="{{ app.request.basepath }}/web/js/skel.min.js"></script>
-<script type="text/javascript"  src="{{ app.request.basepath }}/web/js/util.js"></script>
+<script type="text/javascript" src="{{ app.request.basepath }}/web/js/jquery.min.js"></script>
+<script type="text/javascript" src="{{ app.request.basepath }}/web/js/jquery.dropotron.min.js"></script>
+<script type="text/javascript" src="{{ app.request.basepath }}/web/js/jquery.scrolly.min.js"></script>
+<script type="text/javascript" src="{{ app.request.basepath }}/web/js/jquery.onvisible.min.js"></script>
+<script type="text/javascript" src="{{ app.request.basepath }}/web/js/skel.min.js"></script>
+<script type="text/javascript" src="{{ app.request.basepath }}/web/js/util.js"></script>
 
 <!--[if lte IE 8]>
-<script type="text/javascript"  src="{{ app.request.basepath }}/web/js/ie/respond.min.js"></script><![endif]-->
-<script type="text/javascript"  src="{{ app.request.basepath }}/web/js/main.js"></script>
+<script type="text/javascript" src="{{ app.request.basepath }}/web/js/ie/respond.min.js"></script><![endif]-->
+<script type="text/javascript" src="{{ app.request.basepath }}/web/js/main.js"></script>
 
 </html>
