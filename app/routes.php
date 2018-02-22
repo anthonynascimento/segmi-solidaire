@@ -46,6 +46,12 @@ $app->get('/login', function () use ($app) {
     return $app['twig']->render('login.twig');
 })->bind('login');
 
-$app->get('/cours', function () use ($app) {
-    return $app['twig']->render('cours.twig');
+$app->get('/listeCours', function () use ($app) {
+    $cours['tous'] = $app['dao.cours']->findFirstAll();
+    return $app['twig']->render('liste_cours.twig',array('cours'=>$cours ));
 })->bind('cours');
+
+$app->get('/cours/{id}', function ($id) use ($app) {
+    $cours = $app['dao.cours']->find($id);
+    return $app['twig']->render('cours.twig', array('cours' => $cours));
+})->bind('cours_detail');

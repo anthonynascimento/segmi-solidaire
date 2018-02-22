@@ -1,9 +1,37 @@
 {% extends "layout.twig" %}
 
-{% set menu_selected = 'cours' %}
+{% set menu_selected = 'home' %}
 
 {% block title %}Cours{% endblock %}
 
 {% block content %}
-    <h1>Cours</h1>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="portfolio-modal modal fade" id="evt" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-10 col-lg-offset-1 centered">
+                        <div class="modal-body">
+                            <h2 style="text-align: center">{{ cours.nom }}</h2>
+                            <br>
+                            <div class="carousel-inner" role="listbox">
+                                <div class="item active">
+                                    <img src="../web/images/{{ cours.image }}" style="margin-left: 35%"
+                                         alt="First slide">
+                                </div>
+                            </div>
+                            <div class="col-lg-5 col-lg-offset-1" style="text-align:justify;">
+                                <h4>Description</h4>
+                                <p>{{ cours.description }}</p>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

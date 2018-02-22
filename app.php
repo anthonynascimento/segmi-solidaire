@@ -46,6 +46,11 @@ $app['dao.evenement'] = $app->share(function ($app) {
     return new MicroCMS\DAO\EvenementDAO($app['db']);
 });
 
+$app['dao.cours'] = $app->share(function ($app) {
+    return new MicroCMS\DAO\CoursDAO($app['db']);
+});
+
+
 $app->register(new Silex\Provider\MonologServiceProvider(), array(
     'monolog.logfile' => __DIR__ . '/var/logs/microcms.log',
     'monolog.name' => 'MicroCMS',
