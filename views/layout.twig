@@ -15,6 +15,12 @@
     <!--[if lte IE 8]>
     <link rel="stylesheet" href="{{ app.request.basepath }}/assets/css/ie8.css"/><![endif]-->
 
+    <!--pour tableau -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.css" rel="stylesheet"
+          type="text/css">
+    <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css">
+
+
 </head>
 <body class="homepage">
 <div class="header">
@@ -37,11 +43,11 @@
             <li>
                 <a href="#">Annales</a>
                 <ul>
-                    <li><a href="#">Cours L1</a></li>
-                    <li><a href="#">Cours L2</a></li>
-                    <li><a href="#">Cours L3</a></li>
-                    <li><a href="#">Cours M1</a></li>
-                    <li><a href="#">Cours M2</a></li>
+                    <li><a href="{{ path('annales_l1') }}">Niveau L1</a></li>
+                    <li><a href="#">Niveau L2</a></li>
+                    <li><a href="#">Niveau L3</a></li>
+                    <li><a href="#">Niveau M1</a></li>
+                    <li><a href="#">Niveau M2</a></li>
 
                     <li>
                         <a href="#">And a submenu &hellip;</a>
@@ -204,4 +210,14 @@
 <script type="text/javascript" src="{{ app.request.basepath }}/web/js/ie/respond.min.js"></script><![endif]-->
 <script type="text/javascript" src="{{ app.request.basepath }}/web/js/main.js"></script>
 
+<!--pour tableau -->
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('#example').DataTable();
+    });
+</script>
 </html>

@@ -36,10 +36,24 @@ class AnnaleDAO extends DAO
 
     public function ajouterAnnale(){
 
-        $sql = "insert into annale (nom,datePublication,idmatiere,fichier) values('" . $_POST['nom'] . "','" . $_POST['datePublication'] . "','" . $_POST['idMatiere'] . "','" . $_POST['fichier'] . "')";
+        $sql = "insert into annale (nom,datePublication,idmatiere,fichier,niveau) values('" . $_POST['nom'] . "','" . $_POST['datePublication'] . "','" . $_POST['idMatiere'] . "','" . $_POST['fichier'] . "','" . $_POST['niveau'] . "')";
         $result = $this->getDb()->query($sql);
         return $result;
     }
+
+    public function findAllAnnalesL1()
+    {
+        $sql = "SELECT * FROM annale where niveau='L1'";
+        $result = $this->getDb()->fetchAll($sql);
+
+        $annale = array();
+        foreach ($result as $row) {
+            $anaId = $row['idAnnale'];
+            $annale[$anaId] = $this->buildDomainObject($row);
+        }
+        return $annale;
+    }
+
 
 
     protected function buildDomainObject($row)
@@ -47,8 +61,10 @@ class AnnaleDAO extends DAO
         $annale = new Annale();
         $annale->setIdAnnale($row['idAnnale']);
         $annale->setNomAnnale($row['nom']);
-        $annale->setDateAnnale($row['date']);
+        $annale->setDateAnnale($row['datePublication']);
         $annale->setIdMatiere($row['idMatiere']);
+        /*$annale->setFicher($row['fichier']);*/
+        $annale->setNiveau($row['niveau']);
 
         return $annale;
     }

@@ -38,7 +38,7 @@ class JobDAO extends DAO
     public function ajouterMiniJob(){
 
         $numEtudiant=isset($_POST['numEtudiant']);
-        $sql = "insert into job (titre,description,numEtu) values('" . $_POST['titre'] . "','" . $_POST['description'] . "','" . $numEtudiant . "')";
+        $sql = "insert into job (titre,description,numEtu,categorie) values('" . $_POST['titre'] . "','" . $_POST['description'] . "','" . $numEtudiant . "','" . $_POST['categorie'] . "')";
         $result = $this->getDb()->query($sql);
         return $result;
     }

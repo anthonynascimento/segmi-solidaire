@@ -6,8 +6,10 @@ class Annale
 {
     private $idAnnale;
     private $nom;
-    private $date;
+    private $datePublication;
     private $idMatiere;
+    private $fichier;
+    private $niveau;
 
     public function getIdAnnale()
     {
@@ -21,10 +23,20 @@ class Annale
 
     public function getDateAnnale()
     {
-        return $this->date;
+        return $this->datePublication;
     }
 
     public function getIdMatiere()
+    {
+        return $this->idMatiere;
+    }
+
+    public function getFichier()
+    {
+        return $this->fichier;
+    }
+
+    public function getNiveau()
     {
         return $this->idMatiere;
     }
@@ -41,11 +53,21 @@ class Annale
 
     public function setDateAnnale($date)
     {
-        $this->date = $date;
+        $this->datePublication = $date;
     }
 
     public function setIdMatiere($id)
     {
         $this->idMatiere = $id;
+    }
+
+    public function setFichier($id)
+    {
+        $this->fichier = $id;
+    }
+
+    public function setNiveau($id)
+    {
+        $this->niveau = $id;
     }
 }

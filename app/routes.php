@@ -112,3 +112,14 @@ $app->post('/AjoutLivre/ajouter', function () use ($app) {
     $app['dao.livre']->ajouterLivre();
     return $app['twig']->render('home.twig');/*redirection vers le home une fois le bouton cliqué*/
 })->bind('ajout_livre');/*quand on clique sur le bouton d'ajout*/
+
+/*liste annales L1*/
+$app->get('/listeAnnalesL1', function () use ($app) {
+    $allAnnales['toutes'] = $app['dao.annale']->findAllAnnalesL1();
+    return $app['twig']->render('liste_annales_l1.twig', array('annales' => $allAnnales));
+})->bind('annales_l1');
+
+$app->get('/annale/{id}', function ($id) use ($app) {
+    $annale = $app['dao.annale']->find($id);
+    return $app['twig']->render('annale_L1.twig', array('annale' => $annale));
+})->bind('annaleL1');
