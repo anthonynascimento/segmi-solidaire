@@ -1,0 +1,40 @@
+{% extends "layout.twig" %}
+
+{% set menu_selected = 'home' %}
+
+{% block title %}accueil{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <h2>Ajouter votre mini-job</h2>
+            <form class="container" method="POST"  action="{{ path('ajout_job') }}">
+                <br><br>
+
+                <div class="col-xs-4"><h4>Le titre du mini-job que vous proposez</h4>
+                    <!-- Page Heading/Breadcrumbs -->
+                    <h1 class="mt-4 mb-3">
+                        <input type="text" placeholder="Intitulé du job" class="form-control"  name="titre" required>
+
+                    </h1>
+                    <br>
+
+                    <h4>Description du job</h4>
+                    <p>
+                        <textarea type="text" placeholder="Une description du mini-job que vous proposez" class="form-control" value="" name="description" required></textarea>
+                    </p>
+
+                    <br>
+
+                    <h4>Votre numéro étudiant : </h4>
+                    <p><input type="text"  value="37005063" class="form-control"  name="numEtudiant" readonly></p>
+
+                    <br>
+
+                    <button type="submit" class="btn btn-success" onclick="alert('Votre min-job a été ajouté avec succès ! Cliquez sur OK pour la redirection')";>Ajouter</button>
+                    <br><br>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

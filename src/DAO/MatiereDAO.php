@@ -34,7 +34,6 @@ class MatiereDAO extends DAO
             throw new \Exception("No article matching id " . $id);
     }
 
-
     protected function buildDomainObject($row)
     {
         $matiere = new Matiere();

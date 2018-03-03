@@ -34,6 +34,15 @@ class JobDAO extends DAO
             throw new \Exception("No article matching id " . $id);
     }
 
+    /*en parametre il faudra le num etudiant*/
+    public function ajouterMiniJob(){
+
+        $numEtudiant=isset($_POST['numEtudiant']);
+        $sql = "insert into job (titre,description,numEtu) values('" . $_POST['titre'] . "','" . $_POST['description'] . "','" . $numEtudiant . "')";
+        $result = $this->getDb()->query($sql);
+        return $result;
+    }
+
 
     protected function buildDomainObject($row)
     {
@@ -41,7 +50,6 @@ class JobDAO extends DAO
         $job->setJobId($row['idJob']);
         $job->setJobTitre($row['titre']);
         $job->setJobDesc($row['description']);
-        $job->setRubId($row['idRubrique']);
         $job->setEtuNom($row['numEtu']);
 
         return $job;

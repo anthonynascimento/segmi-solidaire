@@ -50,6 +50,18 @@ $app['dao.cours'] = $app->share(function ($app) {
     return new MicroCMS\DAO\CoursDAO($app['db']);
 });
 
+$app['dao.job'] = $app->share(function ($app) {
+    return new MicroCMS\DAO\JobDAO($app['db']);
+});
+
+$app['dao.annale'] = $app->share(function ($app) {
+    return new MicroCMS\DAO\AnnaleDAO($app['db']);
+});
+
+$app['dao.livre'] = $app->share(function ($app) {
+    return new MicroCMS\DAO\LivreDAO($app['db']);
+});
+
 
 $app->register(new Silex\Provider\MonologServiceProvider(), array(
     'monolog.logfile' => __DIR__ . '/var/logs/microcms.log',

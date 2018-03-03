@@ -49,6 +49,15 @@ class CoursDAO extends DAO
             throw new \Exception("No article matching id " . $id);
     }
 
+    /*en parametre il faudra le num etudiant*/
+    public function ajouterAideCours(){
+
+        $numEtudiant=isset($_POST['numEtudiant']);
+        $sql = "insert into cours (nom,description,idmatiere,numEtu) values('" . $_POST['nom'] . "','" . $_POST['description'] . "','" . $_POST['idMatiere'] . "','" . $numEtudiant . "')";
+        $result = $this->getDb()->query($sql);
+        return $result;
+    }
+
 
     protected function buildDomainObject($row)
     {
@@ -58,8 +67,6 @@ class CoursDAO extends DAO
         $cours->setDescription($row['description']);
         $cours->setIdMatiere($row['idMatiere']);
         $cours->setNumEtu($row['numEtu']);
-        $cours->setImage($row['image']);
-
         return $cours;
     }
 }

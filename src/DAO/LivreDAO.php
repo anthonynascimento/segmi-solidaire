@@ -5,7 +5,7 @@ namespace MicroCMS\DAO;
 use MicroCMS\Domain\Livre;
 
 
-class Livre extends DAO
+class LivreDAO extends DAO
 {
 
 
@@ -32,6 +32,14 @@ class Livre extends DAO
             return $this->buildDomainObject($row);
         else
             throw new \Exception("No article matching id " . $id);
+    }
+
+
+    public function ajouterLivre(){
+
+        $sql = "insert into livre (nom,auteur,prix,idMatiere,niveau) values('" . $_POST['nom'] . "','" . $_POST['auteur'] . "','" . $_POST['prix'] . "','" . $_POST['idMatiere'] . "','" . $_POST['niveau'] . "')";
+        $result = $this->getDb()->query($sql);
+        return $result;
     }
 
 

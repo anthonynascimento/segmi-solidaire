@@ -34,6 +34,13 @@ class AnnaleDAO extends DAO
             throw new \Exception("No article matching id " . $id);
     }
 
+    public function ajouterAnnale(){
+
+        $sql = "insert into annale (nom,datePublication,idmatiere,fichier) values('" . $_POST['nom'] . "','" . $_POST['datePublication'] . "','" . $_POST['idMatiere'] . "','" . $_POST['fichier'] . "')";
+        $result = $this->getDb()->query($sql);
+        return $result;
+    }
+
 
     protected function buildDomainObject($row)
     {

@@ -73,6 +73,21 @@ class EvenementDAO extends DAO
     }
 
 
+    /*on rajoutera en parametre de la fonction le numero etudiant qui correpsond a la personne qui poste levenement*/
+    public function ajouterEvenement(){
+
+        $titre=isset($_POST['titre']);
+        $description=isset($_POST['description']);
+        $idType=isset($_POST['idType']);
+        $image=isset($_POST['image']);
+        $dateDebut = implode('-', array_reverse(explode('/', isset($_POST['dateDebut']))));
+        $dateFin = implode('-', array_reverse(explode('/', isset($_POST['dateFin']))));
+        $sql = "insert into evenement (titre,description,date_debut,date_fin,idType,image) values('$titre','$description','$dateDebut','$dateFin','$idType','$image')";
+        $result = $this->getDb()->query($sql);
+       return $result;
+    }
+
+
     protected function buildDomainObject($row)
     {
         $evenement = new Evenement();

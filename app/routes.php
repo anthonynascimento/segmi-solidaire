@@ -55,3 +55,60 @@ $app->get('/cours/{id}', function ($id) use ($app) {
     $cours = $app['dao.cours']->find($id);
     return $app['twig']->render('cours.twig', array('cours' => $cours));
 })->bind('cours_detail');
+
+/***
+ *** LES FORMULAIRES D'AJOUT ***
+***/
+
+/*ajout d'un evenement*/
+$app->get('/AjoutEvenement', function () use ($app) {
+    return $app['twig']->render('ajout_evenement.twig');
+})->bind('ajouter_evenement');/*quand on clique sur ajouter un evenement*/
+
+$app->post('/AjoutEvenement/ajouter', function () use ($app) {
+    $app['dao.evenement']->ajouterEvenement();
+    return $app['twig']->render('home.twig');
+})->bind('ajout_evt');/*quand on clique sur le bouton d'ajout*/
+
+
+/*ajout d'une aide pour un cours d'une matière*/
+$app->get('/AjoutAideCours', function () use ($app) {
+    return $app['twig']->render('ajout_aide_cours.twig');
+})->bind('ajouter_aide');/*quand on clique sur ajouter une aide*/
+
+$app->post('/AjoutAideCours/ajouter', function () use ($app) {
+    $app['dao.cours']->ajouterAideCours();
+    return $app['twig']->render('home.twig');/*redirection vers le home une fois le bouton cliqué*/
+})->bind('ajout_aide');/*quand on clique sur le bouton d'ajout*/
+
+
+/*ajout d'un mini-job*/
+$app->get('/AjoutJob', function () use ($app) {
+    return $app['twig']->render('ajout_job.twig');
+})->bind('ajouter_job');/*quand on clique sur ajouter un mini-job*/
+
+$app->post('/AjoutJob/ajouter', function () use ($app) {
+    $app['dao.job']->ajouterMiniJob();
+    return $app['twig']->render('home.twig');/*redirection vers le home une fois le bouton cliqué*/
+})->bind('ajout_job');/*quand on clique sur le bouton d'ajout*/
+
+
+/*ajout d'une annale*/
+$app->get('/AjoutAnnale', function () use ($app) {
+    return $app['twig']->render('ajout_annale.twig');
+})->bind('ajouter_annale');/*quand on clique sur ajouter une annale*/
+
+$app->post('/AjoutAnnale/ajouter', function () use ($app) {
+    $app['dao.annale']->ajouterAnnale();
+    return $app['twig']->render('home.twig');/*redirection vers le home une fois le bouton cliqué*/
+})->bind('ajout_annale');/*quand on clique sur le bouton d'ajout*/
+
+/*ajout d'un livre à vendre*/
+$app->get('/AjoutLivre', function () use ($app) {
+    return $app['twig']->render('ajout_livre.twig');
+})->bind('ajouter_livre');/*quand on clique sur vendre des livres*/
+
+$app->post('/AjoutLivre/ajouter', function () use ($app) {
+    $app['dao.livre']->ajouterLivre();
+    return $app['twig']->render('home.twig');/*redirection vers le home une fois le bouton cliqué*/
+})->bind('ajout_livre');/*quand on clique sur le bouton d'ajout*/

@@ -1,0 +1,59 @@
+{% extends "layout.twig" %}
+
+{% set menu_selected = 'home' %}
+
+{% block title %}accueil{% endblock %}
+
+{% block content %}
+    <div class="container">
+    <div class="row">
+    <h2>Ajouter voter évènement</h2>
+    <form class="container" method="POST"  action="{{ path('ajout_evt') }}">
+        <br><br>
+
+        <div class="col-xs-4"><h4>Titre de l'évènement</h4>
+            <!-- Page Heading/Breadcrumbs -->
+            <h1 class="mt-4 mb-3">
+
+                <input type="text" placeholder="Titre de l'evenement" class="form-control" value="" name="titre" required>
+            </h1>
+            <br>
+            <h4>Desciption</h4>
+            <p>
+                <textarea type="text" placeholder="Une description de votre evenement" class="form-control" value="" name="description" required></textarea>
+            </p>
+
+
+            <br>
+
+
+            <h4>Date de début de votre évènement</h4>
+            <p><input type="date" class="form-control"  name="dateDebut" required></p>
+
+            <br>
+
+            <h4>Date de fin de votre évènement</h4>
+            <p><input type="date" class="form-control"  name="dateFin" required></p>
+
+            <br>
+
+            <h4>Type d'évènement</h4>
+            <p>Veuillez choisir le type d'évènement</p>
+                <select name="idType" class="selectpicker" data-style="btn-primary" multiple="multiple" required>
+                    <option value="1" selected>Soirée</option>
+                    <option value="2">Sport</option>
+                    <option value="3">Conférence</option>
+                </select>
+
+
+            <h4>Image illustant l'évènement</h4>
+            <input type="file" name="image" />
+            <p>
+
+            <button type="submit" class="btn btn-success" onclick="alert('Evènement a été ajouté avec succès')";>Ajouter</button>
+            <br><br>
+        </div>
+    </form>
+    </div>
+    </div>
+{% endblock %}

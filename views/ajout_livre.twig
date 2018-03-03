@@ -1,0 +1,69 @@
+{% extends "layout.twig" %}
+
+{% set menu_selected = 'home' %}
+
+{% block title %}accueil{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <h2>Ajouter votre mini-job</h2>
+            <form class="container" method="POST"  action="{{ path('ajout_livre') }}">
+                <br><br>
+
+                <div class="col-xs-4"><h4>Le nom du livre que vous voulez vendre</h4>
+                    <!-- Page Heading/Breadcrumbs -->
+                    <h1 class="mt-4 mb-3">
+                        <input type="text" placeholder="titre du livre" class="form-control"  name="nom" required>
+
+                    </h1>
+                    <br>
+
+                    <h4>Auteur du livre</h4>
+                    <p>
+                        <input type="text" placeholder="le nom de l'auteur du livre" class="form-control"  name="auteur" required>
+                    </p>
+
+                    <br>
+
+                    <h4>Votre prix</h4>
+
+                    <p><input type="number" placeholder="12.50" class="form-control"  name="prix" required></p>
+
+                    <br>
+
+                    <div class="col-xs-4"><h4>La matière correspondante du livre que vous vendez</h4>
+                        <!-- Page Heading/Breadcrumbs -->
+                        <h1 class="mt-4 mb-3">
+
+                            <p>Veuillez choisir la matière concernée</p>
+                            <select name="idMatiere" class="selectpicker" data-style="btn-primary" multiple="multiple" required>
+                                <option value="1" selected>BD</option>
+                                <option value="2">Java</option>
+                                <option value="3">C</option>
+                            </select>
+                        </h1>
+                        <br>
+
+                        <div class="col-xs-4"><h4>Le niveau concerné par ce livre</h4>
+                            <!-- Page Heading/Breadcrumbs -->
+                            <h1 class="mt-4 mb-3">
+
+                                <p>Veuillez choisir le niveau parmis :</p>
+                                <select name="niveau" class="selectpicker" data-style="btn-primary" multiple="multiple" required>
+                                    <option value="L1" selected>L1</option>
+                                    <option value="L2">L2</option>
+                                    <option value="L3">L3</option>
+                                    <option value="M1">M1</option>
+                                    <option value="M2">M2</option>
+                                </select>
+                            </h1>
+                            <br>
+
+                    <button type="submit" class="btn btn-success" onclick="alert('Votre livre à vendre a été ajouté avec succès ! Cliquez sur OK pour la redirection')";>Ajouter</button>
+                    <br><br>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

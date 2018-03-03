@@ -1,0 +1,53 @@
+{% extends "layout.twig" %}
+
+{% set menu_selected = 'home' %}
+
+{% block title %}accueil{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <h2>Ajouter voter aide pour une matière</h2>
+            <form class="container" method="POST"  action="{{ path('ajout_aide') }}">
+                <br><br>
+
+                <div class="col-xs-4"><h4>La matière dans laquelle vous proposez un soutien</h4>
+                    <!-- Page Heading/Breadcrumbs -->
+                    <h1 class="mt-4 mb-3">
+
+                        <p>Veuillez choisir la matière concernée</p>
+                        <select name="idMatiere" class="selectpicker" data-style="btn-primary" multiple="multiple" required>
+                            <option value="1" selected>BD</option>
+                            <option value="2">Java</option>
+                            <option value="3">C</option>
+                        </select>
+                    </h1>
+                    <br>
+
+                    <h4>Intitulé du cours</h4>
+                    <p>
+                        <input type="text" placeholder="Intitulé du cours" class="form-control" value="" name="nom" required>
+                    </p>
+
+
+                    <br>
+
+                    <h4>Intitulé du cours</h4>
+                    <p>
+                        <textarea type="text" placeholder="Une description de ce que vous proposez" class="form-control" value="" name="description" required></textarea>
+                    </p>
+
+                    <br>
+
+                    <h4>Votre numéro étudiant : </h4>
+                    <p><input type="text"  value="37005063" class="form-control"  name="numEtudiant" required></p>
+
+                    <br>
+
+                        <button type="submit" class="btn btn-success" onclick="alert('Votre aide a été ajoutée avec succès')";>Ajouter</button>
+                        <br><br>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}
