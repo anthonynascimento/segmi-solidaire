@@ -115,9 +115,14 @@ $app->post('/AjoutLivre/ajouter', function () use ($app) {
 
 /*liste annales L1*/
 $app->get('/listeAnnalesL1', function () use ($app) {
-    $allAnnales['toutes'] = $app['dao.annale']->findAllAnnalesL1();
-    return $app['twig']->render('liste_annales_l1.twig', array('annales' => $allAnnales));
+    $AnnalesL1['toutes'] = $app['dao.annale']->findAllAnnalesL1();
+    return $app['twig']->render('liste_annales_l1.twig', array('annales' => $allAnnalesL1));
 })->bind('annales_l1');
+
+$app->get('/listeAnnalesL2', function () use ($app) {
+    $AnnalesL2['toutes'] = $app['dao.annale']->findAllAnnalesL2();
+    return $app['twig']->render('liste_annales_l2.twig', array('annales' => $allAnnalesL2));
+})->bind('annales_l2');
 
 $app->get('/annale/{id}', function ($id) use ($app) {
     $annale = $app['dao.annale']->find($id);

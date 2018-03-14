@@ -43,7 +43,7 @@ class AnnaleDAO extends DAO
 
     public function findAllAnnalesL1()
     {
-        $sql = "SELECT * FROM annale where niveau='L1'";
+        $sql = "SELECT * FROM annale a, matiere m, niveau n where a.idMatiere=m.idMatiere and m.idNiveau=n.idNiveau and n.nom='L1'";
         $result = $this->getDb()->fetchAll($sql);
 
         $annale = array();
@@ -54,7 +54,57 @@ class AnnaleDAO extends DAO
         return $annale;
     }
 
+    public function findAllAnnalesL2()
+    {
+        $sql = "SELECT * FROM annale a, matiere m, niveau n where a.idMatiere=m.idMatiere and m.idNiveau=n.idNiveau and n.nom='L2'";
+        $result = $this->getDb()->fetchAll($sql);
 
+        $annale = array();
+        foreach ($result as $row) {
+            $anaId = $row['idAnnale'];
+            $annale[$anaId] = $this->buildDomainObject($row);
+        }
+        return $annale;
+    }
+
+    public function findAllAnnalesL3()
+    {
+        $sql = "SELECT * FROM annale a, matiere m, niveau n where a.idMatiere=m.idMatiere and m.idNiveau=n.idNiveau and n.nom='L3'";
+        $result = $this->getDb()->fetchAll($sql);
+
+        $annale = array();
+        foreach ($result as $row) {
+            $anaId = $row['idAnnale'];
+            $annale[$anaId] = $this->buildDomainObject($row);
+        }
+        return $annale;
+    }
+
+    public function findAllAnnalesM1()
+    {
+        $sql = "SELECT * FROM annale a, matiere m, niveau n where a.idMatiere=m.idMatiere and m.idNiveau=n.idNiveau and n.nom='M1'";
+        $result = $this->getDb()->fetchAll($sql);
+
+        $annale = array();
+        foreach ($result as $row) {
+            $anaId = $row['idAnnale'];
+            $annale[$anaId] = $this->buildDomainObject($row);
+        }
+        return $annale;
+    }
+
+    public function findAllAnnalesM2()
+    {
+        $sql = "SELECT * FROM annale a, matiere m, niveau n where a.idMatiere=m.idMatiere and m.idNiveau=n.idNiveau and n.nom='M2'";
+        $result = $this->getDb()->fetchAll($sql);
+
+        $annale = array();
+        foreach ($result as $row) {
+            $anaId = $row['idAnnale'];
+            $annale[$anaId] = $this->buildDomainObject($row);
+        }
+        return $annale;
+    }
 
     protected function buildDomainObject($row)
     {

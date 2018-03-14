@@ -1,0 +1,35 @@
+{% extends "layout.twig" %}
+
+{% set menu_selected = 'home' %}
+
+{% block title %}accueil{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <br><br>
+        <!-- Page Heading/Breadcrumbs -->
+        <h1 class="mt-4 mb-3">Liste des annales pour le niveau Licence 2
+        </h1><br>
+        <table id="example" class="table" cellspacing="0" width="100%">
+            <thead>
+            <tr>
+                <th>Nom de l'annale</th>
+                <th>Date de publication</th>
+                <th>Matière</th>
+                <th>Fichier</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for annale in annales['toutes'] %}
+                <tr onclick="parent.location='{{ path('annaleL2', {'id': annale.idAnnale }) }}'" style="height: 6em">
+                    <td style="cursor: pointer">{{ annale.nom }}</td>
+                    <td style="cursor: pointer">{{ annale.datePublication }}</td>
+                    <td>{{ annale.idMatiere }}</td>
+                    <td>{{ annale.fichier }}</td>
+                </tr>
+
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

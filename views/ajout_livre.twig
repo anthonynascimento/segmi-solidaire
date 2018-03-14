@@ -6,31 +6,31 @@
 
 {% block content %}
     <div class="container">
-        <div class="row">
-            <h2>Ajouter votre mini-job</h2>
-            <form class="container" method="POST"  action="{{ path('ajout_livre') }}">
-                <br><br>
+    <div class="row">
+    <h2>Ajouter un livre</h2>
+    <form class="container" method="POST"  action="{{ path('ajout_livre') }}">
+      <br><br>
 
-                <div class="col-xs-4"><h4>Le nom du livre que vous voulez vendre</h4>
-                    <!-- Page Heading/Breadcrumbs -->
-                    <h1 class="mt-4 mb-3">
-                        <input type="text" placeholder="titre du livre" class="form-control"  name="nom" required>
+          <div class="col-xs-4"><h4>Le nom du livre que vous voulez vendre</h4>
+          <!-- Page Heading/Breadcrumbs -->
+          <h1 class="mt-4 mb-3">
+            <input type="text" placeholder="titre du livre" class="form-control"  name="nom" required>
 
-                    </h1>
-                    <br>
+          </h1>
+          <br>
 
-                    <h4>Auteur du livre</h4>
-                    <p>
-                        <input type="text" placeholder="le nom de l'auteur du livre" class="form-control"  name="auteur" required>
-                    </p>
+          <h4>Auteur du livre</h4>
+          <p>
+            <input type="text" placeholder="le nom de l'auteur du livre" class="form-control"  name="auteur" required>
+          </p>
 
-                    <br>
+          <br>
 
-                    <h4>Votre prix</h4>
+          <h4>Votre prix</h4>
 
-                    <p><input type="number" placeholder="12.50" class="form-control"  name="prix" required></p>
+          <p><input type="number" placeholder="12.50" class="form-control"  name="prix" required></p>
 
-                    <br>
+          <br>
 
                     <div class="col-xs-4"><h4>La matière correspondante du livre que vous vendez</h4>
                         <!-- Page Heading/Breadcrumbs -->
@@ -64,6 +64,8 @@
                     <br><br>
                 </div>
             </form>
-        </div>
+    </div>
+    </div>
+    </div>
     </div>
 {% endblock %}

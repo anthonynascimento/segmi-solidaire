@@ -22,21 +22,18 @@ class CoursDAO extends DAO
         return $cours;
     }
 
-
-
-    public function findFirstAllConf()
+    public function findAllCoursL2()
     {
-        $sql = "SELECT * FROM evenement where idType=3";
+        $sql = "SELECT * FROM cours c, matiere m, niveau n where c.idMatiere=m.idMatiere and m.idNiveau=n.idNiveau and n.nom='L2'";
         $result = $this->getDb()->fetchAll($sql);
 
-        $evenement = array();
+        $cours = array();
         foreach ($result as $row) {
-            $evenementId = $row['idEvenement'];
-            $evenement[$evenementId] = $this->buildDomainObject($row);
+            $courId = $row['idCours'];
+            $cours[$courId] = $this->buildDomainObject($row);
         }
-        return $evenement;
+        return $cours;
     }
-
 
     public function find($id)
     {

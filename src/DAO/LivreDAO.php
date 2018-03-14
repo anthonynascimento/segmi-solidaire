@@ -42,6 +42,18 @@ class LivreDAO extends DAO
         return $result;
     }
 
+    public function findAllLivresL2()
+    {
+        $sql = "SELECT * FROM livre l, niveau n where  l.idNiveau=n.idNiveau and n.nom='L2'";
+        $result = $this->getDb()->fetchAll($sql);
+
+        $livre = array();
+        foreach ($result as $row) {
+            $livId = $row['idLivre'];
+            $livre[$livId] = $this->buildDomainObject($row);
+        }
+        return $livre;
+    }
 
     protected function buildDomainObject($row)
     {
