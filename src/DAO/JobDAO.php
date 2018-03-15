@@ -42,6 +42,19 @@ class JobDAO extends DAO
         return $result;
     }
 
+    public function findAllJobByCat($cat) //A FINIR CAR JE SAIS PAS OU DODO A MIS LES CATEGORIES
+    {
+        $sql = "SELECT * FROM cours c, matiere m, niveau n where c.idMatiere=m.idMatiere and m.idNiveau=n.idNiveau and n.nom='L2'";
+        $result = $this->getDb()->fetchAll($sql);
+
+        $cours = array();
+        foreach ($result as $row) {
+            $courId = $row['idCours'];
+            $cours[$courId] = $this->buildDomainObject($row);
+        }
+        return $cours;
+    }
+
 
     protected function buildDomainObject($row)
     {
