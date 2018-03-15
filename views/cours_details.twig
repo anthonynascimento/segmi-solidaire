@@ -1,0 +1,42 @@
+{% extends "layout.twig" %}
+
+{% set menu_selected = 'home' %}
+
+{% block title %}Cours{% endblock %}
+
+{% block content %}
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="portfolio-modal modal fade" id="evt" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-content">
+            <div class="container">
+                <div class="">
+                    <div class="col-lg-10 col-lg-offset-1 centered">
+                        <div class="">
+                            <h2 style="text-align: center">{{ cours.nomCours }}</h2>
+                            <br>
+                            <h4>Matière</h4>
+                            <p>{{ cours.matiere }}</p>
+                            <hr><br>
+                            <h4>Niveau</h4>
+                            <p>{{ cours.niveau }}</p>
+                            <hr><br>
+                            <div class="col-lg-5 col-lg-offset-1" style="text-align:justify;">
+                                <h4>Description</h4>
+                                <p>{{ cours.description|raw }}</p>
+                            </div>
+                            <hr><br>
+                            <div class="col-lg-5 col-lg-offset-1" style="text-align:justify;">
+                                <h4>Coordonnées de celui qui propose</h4>
+                                <p>On affiche ici les coordonnées nom, prenom, tel de la personne qui a posté l'aide à ce cours</p>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

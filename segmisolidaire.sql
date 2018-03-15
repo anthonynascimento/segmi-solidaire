@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  sam. 03 mars 2018 à 17:32
+-- Généré le :  jeu. 15 mars 2018 à 16:47
 -- Version du serveur :  5.7.19
 -- Version de PHP :  7.0.23
 
@@ -30,21 +30,22 @@ SET time_zone = "+00:00";
 
 DROP TABLE IF EXISTS `annale`;
 CREATE TABLE IF NOT EXISTS `annale` (
-  `idAnnale` int(11) NOT NULL AUTO_INCREMENT,
-  `nom` varchar(60) DEFAULT NULL,
-  `datePublication` varchar(4) DEFAULT NULL,
-  `idMatiere` varchar(4) NOT NULL,
-  `fichier` varchar(150) DEFAULT NULL,
+  `idAnnale` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `nom` text NOT NULL,
+  `datePublication` int(4) NOT NULL,
+  `niveau` varchar(2) NOT NULL,
+  `fichier` text NOT NULL,
+  `matiere` varchar(64) NOT NULL,
   PRIMARY KEY (`idAnnale`),
-  KEY `FK_Annale_idMatiere` (`idMatiere`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+  UNIQUE KEY `idAnnale` (`idAnnale`)
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `annale`
 --
 
-INSERT INTO `annale` (`idAnnale`, `nom`, `datePublication`, `idMatiere`, `fichier`) VALUES
-(1, 'bonjour', '1997', '2', 'Banlieu 93.jpg');
+INSERT INTO `annale` (`idAnnale`, `nom`, `datePublication`, `niveau`, `fichier`, `matiere`) VALUES
+(6, 'tchoin', 1987, 'L1', 'even1.jpg', 'C');
 
 -- --------------------------------------------------------
 
@@ -54,24 +55,23 @@ INSERT INTO `annale` (`idAnnale`, `nom`, `datePublication`, `idMatiere`, `fichie
 
 DROP TABLE IF EXISTS `cours`;
 CREATE TABLE IF NOT EXISTS `cours` (
-  `idCours` int(11) NOT NULL AUTO_INCREMENT,
-  `nom` varchar(60) DEFAULT NULL,
-  `description` text,
-  `idMatiere` varchar(4) NOT NULL,
-  `numEtu` varchar(8) DEFAULT NULL,
+  `idCours` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `nomCours` varchar(64) NOT NULL,
+  `description` text NOT NULL,
+  `niveau` varchar(2) NOT NULL,
+  `idEtudiant` int(11) DEFAULT NULL,
+  `matiere` varchar(64) NOT NULL,
   PRIMARY KEY (`idCours`),
-  KEY `FK_Cours_idMatiere` (`idMatiere`),
-  KEY `FK_Cours_numEtu` (`numEtu`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+  UNIQUE KEY `idCours` (`idCours`)
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `cours`
 --
 
-INSERT INTO `cours` (`idCours`, `nom`, `description`, `idMatiere`, `numEtu`) VALUES
-(1, 'BD', 'SQL,trigger,pl/sql', '1', '37005063'),
-(2, 'Java - Heritages', 'Polymorphisme', '3', '37005063'),
-(3, 'C - Les bases', 'depuis le debut du C', '2', '37005063');
+INSERT INTO `cours` (`idCours`, `nomCours`, `description`, `niveau`, `idEtudiant`, `matiere`) VALUES
+(1, 'Aide pour la BD', 'test test dhsjfhdjfhjsdfhsdjkfhjksdhfdjlfhjkfhsdklmhdksmghdfkgkdfjgmdfkljsdkjgksdfg', 'L1', NULL, 'BD'),
+(4, 'Bonjour', '<p>test</p>\r\n', 'L1', NULL, 'JAVA');
 
 -- --------------------------------------------------------
 
@@ -81,21 +81,15 @@ INSERT INTO `cours` (`idCours`, `nom`, `description`, `idMatiere`, `numEtu`) VAL
 
 DROP TABLE IF EXISTS `etudiant`;
 CREATE TABLE IF NOT EXISTS `etudiant` (
-  `numEtu` varchar(8) NOT NULL,
-  `nom` varchar(50) DEFAULT NULL,
-  `prenom` varchar(50) DEFAULT NULL,
-  `mdp` varchar(25) DEFAULT NULL,
-  `email` varchar(200) DEFAULT NULL,
-  `tel` varchar(10) DEFAULT NULL,
-  PRIMARY KEY (`numEtu`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Déchargement des données de la table `etudiant`
---
-
-INSERT INTO `etudiant` (`numEtu`, `nom`, `prenom`, `mdp`, `email`, `tel`) VALUES
-('37005063', 'Sankar', 'Vijay', 'vijay', 'vijay93700@gmail.com', '0141526352');
+  `idEtudiant` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `nom` varchar(64) NOT NULL,
+  `prenom` varchar(64) NOT NULL,
+  `email` text NOT NULL,
+  `telephone` int(10) NOT NULL,
+  `mdp` text NOT NULL,
+  PRIMARY KEY (`idEtudiant`),
+  UNIQUE KEY `idEtudiant` (`idEtudiant`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -105,27 +99,30 @@ INSERT INTO `etudiant` (`numEtu`, `nom`, `prenom`, `mdp`, `email`, `tel`) VALUES
 
 DROP TABLE IF EXISTS `evenement`;
 CREATE TABLE IF NOT EXISTS `evenement` (
-  `idEvenement` int(11) NOT NULL AUTO_INCREMENT,
-  `titre` varchar(50) DEFAULT NULL,
-  `description` text,
-  `date_debut` varchar(10) DEFAULT NULL,
-  `date_fin` varchar(10) DEFAULT NULL,
-  `idType` int(11) DEFAULT NULL,
-  `numEtu` varchar(8) DEFAULT NULL,
-  `image` varchar(100) NOT NULL,
+  `idEvenement` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `titre` varchar(100) NOT NULL,
+  `description` text NOT NULL,
+  `dateDebut` date NOT NULL,
+  `dateFin` date NOT NULL,
+  `type` varchar(64) NOT NULL,
+  `image` text NOT NULL,
+  `idEtudiant` int(11) DEFAULT NULL,
   PRIMARY KEY (`idEvenement`),
-  KEY `FK_Evenement_idType` (`idType`),
-  KEY `FK_Evenement_numEtu` (`numEtu`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
+  UNIQUE KEY `idEvenement` (`idEvenement`)
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `evenement`
 --
 
-INSERT INTO `evenement` (`idEvenement`, `titre`, `description`, `date_debut`, `date_fin`, `idType`, `numEtu`, `image`) VALUES
-(1, 'Safari dans le desert', 'Dubai Le safari dans le désert est une activité incontournable à Dubaï. Vous allez vivre une expérience palpitante dans les dunes de sable du désert d’Arabie. Profitez d’un excellent dîner-barbecue en admirant un spectacle de danse orientale dans un campement situé au cœur du désert, juste en dehors de la ville moderne de Dubaï.', '2018-02-13', '2018-02-14', 1, '37005063', 'even1.jpg'),
-(2, 'Match PSG-REAL', 'Le meilleur match attendu', '2018-02-28', '2018-02-28', 2, '37005063', 'foot.jpg'),
-(3, 'Conférence du PDG d\'Apple', 'Presentation de l\'iphone X', '2018-02-28', '2018-03-22', 3, '37005063', 'conf.jpg');
+INSERT INTO `evenement` (`idEvenement`, `titre`, `description`, `dateDebut`, `dateFin`, `type`, `image`, `idEtudiant`) VALUES
+(1, 'Safari dans le desert', 'Dubai Le safari dans le désert est une activité incontournable à Dubaï. Vous allez vivre une expérience palpitante dans les dunes de sable du désert d’Arabie. Profitez d’un excellent dîner-barbecue en admirant un spectacle de danse orientale dans un campement situé au cœur du désert, juste en dehors de la ville moderne de Dubaï.', '2018-02-13', '2018-02-14', 'soirée', 'even1.jpg', NULL),
+(2, 'Match PSG-REAL', 'Le meilleur match attendu', '2018-02-28', '2018-02-28', 'sport', 'foot.jpg', NULL),
+(3, 'Conférence du PDG d\'Apple', 'Presentation de l\'iphone X', '2018-02-28', '2018-03-22', 'conférence', 'conf.jpg', NULL),
+(6, 'Trump sa conférence ', 'Le président américain Donald Trump s\'est vanté d\'avoir affirmé au premier ministre canadien Justin Trudeau que Washington affichait un déficit commercial avec Ottawa alors qu\'il n\'en avait «aucune idée», a rapporté jeudi le Washington Post.\r\n\r\nS\'exprimant dans une soirée de collecte de fonds mercredi soir dans le Missouri, M. Trump a raconté cette anecdote, dont le journal dit avoir obtenu un enregistrement audio.\r\n\r\n«Trudeau est venu me voir. C\'est un bon gars, Justin. Il a dit \"non, non, nous n\'avons pas de déficit commercial avec vous, nous n\'en avons aucun\"», a raconté le président en imitant le premier ministre canadien, selon la retranscription du Washington Post.\r\n\r\n«J\'ai dit \"Faux, Justin, vous en avez un\". Je ne savais même pas... Je n\'en avais aucune idée. J\'ai simplement dit \"vous avez tort\"», a poursuivi M. Trump. «Vous savez pourquoi? Parce que nous sommes tellement stupides... Et je pensais qu\'ils étaient malins».\r\n\r\n«J\'ai dit \"eh bien dans ce cas, mon sentiment est différent (...) mais je n\'y crois pas\"», a ajouté le président, affirmant avoir alors «envoyé un de nos gars, son gars, mon gars, ils sont sortis et j\'ai dit \"vérifiez parce que je n\'arrive pas à y croire\"».\r\n\r\nIl est revenu sur le sujet jeudi matin en tweetant: «Nous avons bien un déficit commercial avec le Canada comme nous en avons avec presque tous les pays (certains sont énormes)».', '2018-03-28', '2018-03-30', 'conférence', 'even4.jpg', NULL),
+(5, 'Gros zbeul sa grand mere', 'On va tout niké tkt meme pas ', '2018-03-20', '2018-03-30', 'soirée', 'even1.jpg', NULL),
+(7, 'Soirée de fou malade', 'Et de poursuivre: «PM Justin Trudeau du Canada, un gars très bien, n\'aime pas dire que le Canada a un surplus face aux USA (en négociation), mais c\'est le cas... c\'est le cas pour presque tous... et c\'est comme ça que je sais!»\r\n\r\nD\'après les statistiques américaines, les États-Unis présentaient un excédent commercial (biens et services) avec le Canada de 12,5 milliards de dollars en 2016, pour 627,8 milliards de dollars d\'échanges. Dans le détail, ils affichaient un déficit de 12,1 milliards dans les biens et un excédent de 24,6 milliards dans les services.', '2018-03-22', '2018-03-31', 'soirée', 'even3.jpg', NULL),
+(8, 'Choc des héros L\'angleterre ', '«Le Canada et les États-Unis ont une relation commerciale équilibrée et mutuellement bénéfique», a-t-il insisté auprès de l\'AFP.\r\n\r\nDu reste, le cabinet de Justin Trudeau a refusé de commenter les propos que M. Trump auraient tenus mercredi soir.', '2018-03-16', '2018-04-20', 'sport', 'even5.jpg', NULL);
 
 -- --------------------------------------------------------
 
@@ -135,13 +132,24 @@ INSERT INTO `evenement` (`idEvenement`, `titre`, `description`, `date_debut`, `d
 
 DROP TABLE IF EXISTS `job`;
 CREATE TABLE IF NOT EXISTS `job` (
-  `idJob` int(11) NOT NULL AUTO_INCREMENT,
-  `titre` varchar(30) DEFAULT NULL,
-  `description` text,
-  `numEtu` varchar(8) DEFAULT NULL,
+  `idJob` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `titre` text NOT NULL,
+  `description` text NOT NULL,
+  `categorie` varchar(64) NOT NULL,
+  `idEtudiant` int(11) DEFAULT NULL,
   PRIMARY KEY (`idJob`),
-  KEY `FK_Job_numEtu` (`numEtu`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+  UNIQUE KEY `idJob` (`idJob`)
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `job`
+--
+
+INSERT INTO `job` (`idJob`, `titre`, `description`, `categorie`, `idEtudiant`) VALUES
+(1, 'Film X', '<ul>\r\n	<li><strong>comme never tu vas prendre cher</strong></li>\r\n</ul>\r\n', 'babysitting', NULL),
+(2, 'mlmlm', '<ul>\r\n	<li>lmlmll</li>\r\n</ul>\r\n', 'babysitting', NULL),
+(3, 'vbcbcvbv', '<p>vbbvbvb</p>\r\n', 'vendanges', NULL),
+(4, 'Aide aux devoirs', '<ul>\r\n	<li>test&nbsp;</li>\r\n	<li>test</li>\r\n	<li>test</li>\r\n	<li><em>okkkkkk</em></li>\r\n</ul>\r\n', 'services', NULL);
 
 -- --------------------------------------------------------
 
@@ -151,135 +159,24 @@ CREATE TABLE IF NOT EXISTS `job` (
 
 DROP TABLE IF EXISTS `livre`;
 CREATE TABLE IF NOT EXISTS `livre` (
-  `idLivre` int(11) NOT NULL AUTO_INCREMENT,
-  `nom` varchar(50) DEFAULT NULL,
-  `auteur` varchar(50) DEFAULT NULL,
-  `prix` float DEFAULT NULL,
-  `idMatiere` varchar(4) NOT NULL,
-  `niveau` varchar(2) DEFAULT NULL,
+  `idLivre` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `titre` varchar(100) NOT NULL,
+  `auteur` varchar(100) NOT NULL,
+  `matiere` varchar(100) NOT NULL,
+  `niveau` varchar(2) NOT NULL,
+  `prix` float NOT NULL,
+  `idEtudiant` int(11) DEFAULT NULL,
   PRIMARY KEY (`idLivre`),
-  KEY `FK_Livre_idMatiere` (`idMatiere`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+  UNIQUE KEY `idLivre` (`idLivre`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `livre`
 --
 
-INSERT INTO `livre` (`idLivre`, `nom`, `auteur`, `prix`, `idMatiere`, `niveau`) VALUES
-(1, 'gfgf', 'gfgfg', 6, '1', 'L1');
-
--- --------------------------------------------------------
-
---
--- Structure de la table `matiere`
---
-
-DROP TABLE IF EXISTS `matiere`;
-CREATE TABLE IF NOT EXISTS `matiere` (
-  `idMatiere` varchar(4) NOT NULL,
-  `nom` varchar(50) DEFAULT NULL,
-  `idNiveau` varchar(2) NOT NULL,
-  PRIMARY KEY (`idMatiere`),
-  KEY `FK_Matiere_idNiveau` (`idNiveau`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Déchargement des données de la table `matiere`
---
-
-INSERT INTO `matiere` (`idMatiere`, `nom`, `idNiveau`) VALUES
-('1', 'BD', '1'),
-('2', 'Java', '2'),
-('3', 'C', '3');
-
--- --------------------------------------------------------
-
---
--- Structure de la table `niveau`
---
-
-DROP TABLE IF EXISTS `niveau`;
-CREATE TABLE IF NOT EXISTS `niveau` (
-  `idNiveau` varchar(2) NOT NULL,
-  `nom` varchar(25) DEFAULT NULL,
-  PRIMARY KEY (`idNiveau`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Déchargement des données de la table `niveau`
---
-
-INSERT INTO `niveau` (`idNiveau`, `nom`) VALUES
-('', 'L3'),
-('1', 'L3'),
-('2', 'L2'),
-('3', 'L1'),
-('4', 'M1'),
-('5', 'M2');
-
--- --------------------------------------------------------
-
---
--- Structure de la table `typeevenement`
---
-
-DROP TABLE IF EXISTS `typeevenement`;
-CREATE TABLE IF NOT EXISTS `typeevenement` (
-  `idType` int(11) NOT NULL AUTO_INCREMENT,
-  `nom` varchar(30) DEFAULT NULL,
-  PRIMARY KEY (`idType`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
-
---
--- Déchargement des données de la table `typeevenement`
---
-
-INSERT INTO `typeevenement` (`idType`, `nom`) VALUES
-(1, 'Soiree'),
-(2, 'Sport'),
-(3, 'Conference');
-
---
--- Contraintes pour les tables déchargées
---
-
---
--- Contraintes pour la table `annale`
---
-ALTER TABLE `annale`
-  ADD CONSTRAINT `FK_Annale_idMatiere` FOREIGN KEY (`idMatiere`) REFERENCES `matiere` (`idMatiere`);
-
---
--- Contraintes pour la table `cours`
---
-ALTER TABLE `cours`
-  ADD CONSTRAINT `FK_Cours_idMatiere` FOREIGN KEY (`idMatiere`) REFERENCES `matiere` (`idMatiere`),
-  ADD CONSTRAINT `FK_Cours_numEtu` FOREIGN KEY (`numEtu`) REFERENCES `etudiant` (`numEtu`);
-
---
--- Contraintes pour la table `evenement`
---
-ALTER TABLE `evenement`
-  ADD CONSTRAINT `FK_Evenement_idType` FOREIGN KEY (`idType`) REFERENCES `typeevenement` (`idType`),
-  ADD CONSTRAINT `FK_Evenement_numEtu` FOREIGN KEY (`numEtu`) REFERENCES `etudiant` (`numEtu`);
-
---
--- Contraintes pour la table `job`
---
-ALTER TABLE `job`
-  ADD CONSTRAINT `FK_Job_numEtu` FOREIGN KEY (`numEtu`) REFERENCES `etudiant` (`numEtu`);
-
---
--- Contraintes pour la table `livre`
---
-ALTER TABLE `livre`
-  ADD CONSTRAINT `FK_Livre_idMatiere` FOREIGN KEY (`idMatiere`) REFERENCES `matiere` (`idMatiere`);
-
---
--- Contraintes pour la table `matiere`
---
-ALTER TABLE `matiere`
-  ADD CONSTRAINT `FK_Matiere_idNiveau` FOREIGN KEY (`idNiveau`) REFERENCES `niveau` (`idNiveau`);
+INSERT INTO `livre` (`idLivre`, `titre`, `auteur`, `matiere`, `niveau`, `prix`, `idEtudiant`) VALUES
+(1, 'ZEBI', 'Jules cesar', 'BD', 'M2', 12.2, NULL),
+(2, 'java et ses particularités en lousdé', 'Lom Hillat', 'JAVA', 'L3', 3.03, NULL);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

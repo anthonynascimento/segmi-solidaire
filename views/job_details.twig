@@ -1,0 +1,31 @@
+{% extends "layout.twig" %}
+
+{% set menu_selected = 'home' %}
+
+{% block title %}Jobs{% endblock %}
+
+{% block content %}
+    <div class="container" xmlns="http://www.w3.org/1999/html">
+        <br><br>
+        <br>
+        <br>
+        <br>
+        <!-- Page Heading/Breadcrumbs -->
+        <h2 style="text-align: center">{{ job.titre }}</h2>
+        <br>
+        <br>
+        <br>
+        <h4> Description des missions</h4>
+        <p>{{ job.description|raw }}</p>
+        <hr><br>
+
+        <h4>Categorie</h4>
+        <p>{{ job.categorie }}</p>
+        <hr><br>
+        <div class="col-lg-5 col-lg-offset-1" style="text-align:justify;">
+            <h4>Coordonnées de celui qui propose</h4>
+            <p>On affiche ici les coordonnées nom, prenom, tel de la personne qui a posté ce job</p>
+        </div>
+
+    </div>
+{% endblock %}

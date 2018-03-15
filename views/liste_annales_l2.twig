@@ -1,0 +1,41 @@
+{% extends "layout_liste.twig" %}
+
+{% set menu_selected = 'home' %}
+
+{% block title %}Annales{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <br>
+        <br>
+        <br>
+        <br>
+        <!-- Page Heading/Breadcrumbs -->
+        <h1 class="mt-4 mb-3">Liste des annales pour le niveau Licence 1
+        </h1><br>
+        <table id="example" class="row-border" cellspacing="0"  width="100%">
+            <thead>
+            <tr>
+                <th>Nom de l'annale</th>
+                <th>Date de publication</th>
+                <th>Matière</th>
+                <th>Fichier</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% if annales['toutes'] is not empty %}
+                {% for annales in annales['toutes'] %}
+                    <tr title="Visualiser le cours" style="cursor: pointer;" onmouseover="this.style.backgroundColor='#B0C4DE'" onmouseout="this.style.backgroundColor=''" onclick="parent.location='{{ path('annaleDetails', {'id': annales.idAnnale }) }}'" style="height: 6em">
+                        <td style="font-family: Impact, Charcoal, sans-serif; text-align: center">{{ annales.nom }}</td>
+                        <td style="overflow: auto; height: 5em">{{ annales.datePublication }}</td>
+                        <td style="text-align: center">{{ annales.matiere }}</td>
+                        <td style="text-align: center">{{ annales.fichier }}</td>
+                    </tr>
+                {% endfor %}
+            {% else %}
+                <strong style="color: red">Il n'y a acutuellement aucun cours disponible pour le niveau L2</strong>
+            {% endif %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

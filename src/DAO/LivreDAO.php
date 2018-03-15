@@ -37,7 +37,7 @@ class LivreDAO extends DAO
 
     public function ajouterLivre(){
 
-        $sql = "insert into livre (nom,auteur,prix,idMatiere,niveau) values('" . $_POST['nom'] . "','" . $_POST['auteur'] . "','" . $_POST['prix'] . "','" . $_POST['idMatiere'] . "','" . $_POST['niveau'] . "')";
+        $sql = "insert into livre (titre,auteur,matiere,niveau,prix) values('" . $_POST['titre'] . "','" . $_POST['auteur'] . "','" . $_POST['matiere'] . "','" . $_POST['niveau'] . "','" . $_POST['prix'] . "')";
         $result = $this->getDb()->query($sql);
         return $result;
     }
@@ -46,11 +46,12 @@ class LivreDAO extends DAO
     protected function buildDomainObject($row)
     {
         $livre = new Livre();
-        $livre->setLivreId($row['idLivre']);
-        $livre->setLivreNom($row['nom']);
-        $livre->setLivreAuteur($row['auteur']);
-        $livre->setLivrePrix($row['prix']);
-        $livre->setIdMatiere($row['idMatiere']);
+        $livre->setIdLivre($row['idLivre']);
+        $livre->setTitre($row['titre']);
+        $livre->setAuteur($row['auteur']);
+        $livre->setMatiere($row['matiere']);
+        $livre->setNiveau($row['niveau']);
+        $livre->setPrix($row['prix']);
 
         return $livre;
     }

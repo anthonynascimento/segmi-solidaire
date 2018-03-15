@@ -1,0 +1,42 @@
+{% extends "layout_liste.twig" %}
+
+{% set menu_selected = 'home' %}
+
+{% block title %}Livres{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <!-- Page Heading/Breadcrumbs -->
+        <h1 class="mt-4 mb-3">Liste de tous les livres disponible à la vente
+        </h1><br>
+        <table id="example" class="row-border" cellspacing="0"  width="100%">
+            <thead>
+            <tr>
+                <th>Titre</th>
+                <th>Auteur</th>
+                <th>Matière</th>
+                <th>Niveau</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% if livres['tous'] is not empty %}
+                {% for livres in livres['tous'] %}
+                    <tr title="Visualiser le livre" style="cursor: pointer;" onmouseover="this.style.backgroundColor='#B0C4DE'" onmouseout="this.style.backgroundColor=''" onclick="parent.location='{{ path('livreDetails', {'id': livres.idLivre }) }}'" style="height: 6em">
+                        <td style="font-family: Impact, Charcoal, sans-serif; text-align: center">{{ livres.titre }}</td>
+                        <td style="text-align: center; height:5em">{{ livres.auteur }}</td>
+                        <td style="text-align: center">{{ livres.matiere }}</td>
+                        <td style="text-align: center">{{ livres.niveau }}</td>
+                    </tr>
+                {% endfor %}
+            {% else %}
+                <strong style="color: red">Il n'y a actuellement aucun livre disponible à la vente</strong>
+            {% endif %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

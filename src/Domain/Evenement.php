@@ -4,7 +4,7 @@ namespace MicroCMS\Domain;
 
 class Evenement
 {
-    private $idEvenement, $titre, $description, $date_debut, $date_fin,$image;
+    private $idEvenement, $titre, $description, $date_debut, $date_fin,$image,$type;
 
     /**
      * @return mixed
@@ -100,6 +100,17 @@ class Evenement
     public function setIdEvenement($idEvenement)
     {
         $this->idEvenement = $idEvenement;
+    }
+
+    public function getType()
+    {
+        return $this->type;
+    }
+
+
+    public function setType($type)
+    {
+        $this->type = $type;
     }
 
 }

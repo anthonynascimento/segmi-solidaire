@@ -37,8 +37,7 @@ class JobDAO extends DAO
     /*en parametre il faudra le num etudiant*/
     public function ajouterMiniJob(){
 
-        $numEtudiant=isset($_POST['numEtudiant']);
-        $sql = "insert into job (titre,description,numEtu,categorie) values('" . $_POST['titre'] . "','" . $_POST['description'] . "','" . $numEtudiant . "','" . $_POST['categorie'] . "')";
+        $sql = "insert into job (titre,description,categorie) values('" . $_POST['titre'] . "','" . $_POST['description'] . "','" . $_POST['categorie'] . "')";
         $result = $this->getDb()->query($sql);
         return $result;
     }
@@ -47,10 +46,10 @@ class JobDAO extends DAO
     protected function buildDomainObject($row)
     {
         $job = new Job();
-        $job->setJobId($row['idJob']);
-        $job->setJobTitre($row['titre']);
-        $job->setJobDesc($row['description']);
-        $job->setEtuNom($row['numEtu']);
+        $job->setIdJob($row['idJob']);
+        $job->setTitre($row['titre']);
+        $job->setDescription($row['description']);
+        $job->setCategorie($row['categorie']);
 
         return $job;
     }

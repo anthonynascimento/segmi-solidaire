@@ -1,0 +1,41 @@
+{% extends "layout.twig" %}
+
+{% set menu_selected = 'home' %}
+
+{% block title %}Livre{% endblock %}
+
+{% block content %}
+    <div class="container" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+        <br><br>
+        <br>
+        <br>
+        <br>
+        <!-- Page Heading/Breadcrumbs -->
+        <h2 style="text-align: center">{{ livre.titre }}</h2>
+        <br>
+        <br>
+        <br>
+
+        <h4> Auteur</h4>
+        <p>{{ livre.auteur }}</p>
+        <hr><br>
+
+        <h4>Matiere correspondante</h4>
+        <p>{{ livre.matiere }}</p>
+        <hr><br>
+
+        <h4>A partir du niveau</h4>
+        <p>{{ livre.niveau }}</p>
+        <hr><br>
+
+        <h4>A partir du niveau</h4>
+        <strong{{ livre.prix }}</strong>
+        <hr><br>
+
+        <div class="col-lg-5 col-lg-offset-1" style="text-align:justify;">
+            <h4>Coordonnées de celui qui propose</h4>
+            <p>On affiche ici les coordonnées tel,email de la personne qui vend ce livre</p>
+        </div>
+
+    </div>
+{% endblock %}

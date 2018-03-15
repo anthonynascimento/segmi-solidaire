@@ -1,0 +1,40 @@
+{% extends "layout_liste.twig" %}
+
+{% set menu_selected = 'home' %}
+
+{% block title %}Jobs{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <!-- Page Heading/Breadcrumbs -->
+        <h1 class="mt-4 mb-3">Liste de tous les jobs disponible
+        </h1><br>
+        <table id="example" class="row-border" cellspacing="0"  width="100%">
+            <thead>
+            <tr>
+                <th>Titre</th>
+                <th>Description</th>
+                <th>Categorie</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% if jobs['tous'] is not empty %}
+            {% for jobs in jobs['tous'] %}
+                <tr title="Visualiser le job" style="cursor: pointer;" onmouseover="this.style.backgroundColor='#B0C4DE'" onmouseout="this.style.backgroundColor=''" onclick="parent.location='{{ path('jobDetails', {'id': jobs.idJob }) }}'" style="height: 6em">
+                    <td style="font-family: Impact, Charcoal, sans-serif; text-align: center">{{ jobs.titre }}</td>
+                    <td style="overflow: auto; height: 6em">{{ jobs.description|raw }}</td>
+                    <td style="text-align: center">{{ jobs.categorie }}</td>
+                </tr>
+            {% endfor %}
+            {% else %}
+                <strong style="color: red">Il n'y a acutuellement aucun job disponible</strong>
+            {% endif %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

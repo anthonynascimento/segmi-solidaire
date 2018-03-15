@@ -5,11 +5,10 @@ namespace MicroCMS\Domain;
 class Cours
 {
     private $idCours;
-    private $nom;
+    private $nomCours;
     private $description;
-    private $idMatiere;
-    private $numEtu;
-    private $image;
+    private $matiere;
+    private $niveau;
 
 
     /**
@@ -31,17 +30,17 @@ class Cours
     /**
      * @return mixed
      */
-    public function getNom()
+    public function getNomCours()
     {
-        return $this->nom;
+        return $this->nomCours;
     }
 
     /**
      * @param mixed $nom
      */
-    public function setNom($nom)
+    public function setNomCours($nomCours)
     {
-        $this->nom = $nom;
+        $this->nomCours = $nomCours;
     }
 
     /**
@@ -63,50 +62,35 @@ class Cours
     /**
      * @return mixed
      */
-    public function getIdMatiere()
+    public function getMatiere()
     {
-        return $this->idMatiere;
+        return $this->matiere;
     }
 
     /**
      * @param mixed $idMatiere
      */
-    public function setIdMatiere($idMatiere)
+    public function setMatiere($matiere)
     {
-        $this->idMatiere = $idMatiere;
+        $this->matiere= $matiere;
     }
 
     /**
      * @return mixed
      */
-    public function getNumEtu()
+    public function getNiveau()
     {
-        return $this->numEtu;
+        return $this->niveau;
     }
 
     /**
      * @param mixed $numEtu
      */
-    public function setNumEtu($numEtu)
+    public function setNiveau($niveau)
     {
-        $this->numEtu = $numEtu;
+        $this->niveau = $niveau;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getImage()
-    {
-        return $this->image;
-    }
-
-    /**
-     * @param mixed $image
-     */
-    public function setImage($image)
-    {
-        $this->image = $image;
-    }
 
 
 }

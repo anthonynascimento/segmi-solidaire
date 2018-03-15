@@ -5,20 +5,23 @@ namespace MicroCMS\Domain;
 class Livre
 {
     private $idLivre;
-    private $nom;
+    private $titre;
     private $auteur;
+    private $matiere;
     private $prix;
-    private $idMatiere;
+    private $niveau;
 
-    public function getLivreId() { return $this->idLivre; }
-    public function getLivreNom() { return $this->nom; }
-    public function getLivreAuteur() { return $this->auteur; }
-    public function getLivrePrix() { return $this->prix; }
-    public function getIdMatiere() { return $this->idMatiere; }
+    public function getIdLivre() { return $this->idLivre; }
+    public function getTitre() { return $this->titre; }
+    public function getAuteur() { return $this->auteur; }
+    public function getPrix() { return $this->prix; }
+    public function getMatiere() { return $this->matiere; }
+    public function getNiveau() { return $this->niveau; }
 
-    public function setLivreId($id) { $this->idLivre = $id; }
-    public function setLivreNom($nom) { $this->nom = $nom; }
-    public function setLivreAuteur($auteur) { $this->auteur = $auteur; }
-    public function setLivrePrix($prix) { $this->prix = $prix; }
-    public function setIdMatiere($id) { $this->idMatiere = $id; }
+    public function setIdLivre($id) { $this->idLivre = $id; }
+    public function setTitre($titre) { $this->titre = $titre; }
+    public function setAuteur($auteur) { $this->auteur = $auteur; }
+    public function setPrix($prix) { $this->prix = $prix; }
+    public function setMatiere($matiere) { $this->matiere = $matiere; }
+    public function setNiveau($niveau) { $this->niveau = $niveau; }
 }

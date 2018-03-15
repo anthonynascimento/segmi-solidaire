@@ -19,10 +19,24 @@
                     </h1>
                     <br>
 
-                    <h4>Description du job</h4>
-                    <p>
-                        <textarea type="text" placeholder="Une description du mini-job que vous proposez" class="form-control" value="" name="description" required></textarea>
-                    </p>
+                    <h4>Description de ce que vous proposez</h4>
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div class="form-group row">
+                                <script type="text/javascript" src="{{ app.request.basepath }}/web/ckeditor/ckeditor.js"></script>
+                                <div class="col-sm-12">
+                                    <textarea id="editorDesc" class="form-control" name="description" placeholder="Descrivez ici les missions" rows="6" required></textarea>
+                                </div>
+                                <script type="text/javascript">
+                                    CKEDITOR.config.justifyClasses = [ 'AlignLeft', 'AlignCenter', 'AlignRight', 'AlignJustify' ];
+                                    CKEDITOR.extraPlugins='justify';
+
+                                    CKEDITOR.replace( 'editorDesc' );
+                                </script>
+                            </div>
+                        </div>
+                    </div>
+
 
                     <br>
 
@@ -31,16 +45,16 @@
                         <select name="categorie" class="form-control form-control-lg" required>
                             <option value="babysitting">Babysitting</option>
                             <option value="animation">Animation</option>
-                            <option value="Telemarketing ">Télémarketing </option>
+                            <option value="telemarketing ">Télémarketing </option>
                             <option value="secretariat">Secrétariat</option>
                             <option value="vente">Vente</option>
                             <option value="manutention">Manutention</option>
                             <option value="cueillette">Cueillette</option>
-                            <option value="Vendanges">Vendanges</option>
-                            <option value="Restauration">Restauration</option>
-                            <option value="Hotessariat">Hôtessariat</option>
+                            <option value="vendanges">Vendanges</option>
+                            <option value="restauration">Restauration</option>
+                            <option value="hotessariat">Hôtessariat</option>
                             <option value="hotellerie">Hôtellerie</option>
-                            <option value="Informatique">Informatique</option>
+                            <option value="informatique">Informatique</option>
                             <option value="services">Services</option>
                             <option value="autre">Autre</option>
                         </select>
@@ -48,10 +62,6 @@
 
                     <br>
 
-                    <h4>Votre numéro étudiant : </h4>
-                    <p><input type="text"  value="37005063" class="form-control"  name="numEtudiant" readonly></p>
-
-                    <br>
 
                     <button type="submit" class="btn btn-success" onclick="alert('Votre min-job a été ajouté avec succès ! Cliquez sur OK pour la redirection')";>Ajouter</button>
                     <br><br>

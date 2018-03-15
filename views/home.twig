@@ -17,12 +17,26 @@
         </section>
 
         <!-- Carousel -->
-        <h3> Évènement à venir</h3>
+        <h3> Évènements à venir</h3>
 
         <section class="carousel">
 
             <div class="reel" style="overflow: visible; transform: translate(-628px, 0px);">
 
+            {% if evenements['tous'] is not empty %}
+                {% for evenements in evenements['tous'] %}
+                    <article style="cursor: pointer;"onclick="parent.location='{{ path('evenement_detail', {'id': evenements.idEvenement }) }}'"  class="4u 12u(mobile) special">
+                        <a  class="image featured"><img src="web/images/{{ evenements.image }}" alt=""/></a>
+                        <header>
+                            <h3><a>{{ evenements.titre }}</a></h3>
+                        </header>
+                        <p style="overflow: auto; max-height: 6em;">
+                            {{ evenements.description }}
+                        </p>
+                </article>
+                {% endfor %}
+
+            {% else %}
                 <article>
                     <a href="#" class="image featured"><img src="web/images/even1.jpg" alt="image"/></a>
                     <header>
@@ -102,6 +116,9 @@
                     </header>
                     <p>Commodo id natoque malesuada sollicitudin elit suscipit magna.</p>
                 </article>
+            {% endif %}
+
+
 
             </div>
         </section>

@@ -1,0 +1,34 @@
+{% extends "layout.twig" %}
+
+{% set menu_selected = 'home' %}
+
+{% block title %}accueil{% endblock %}
+
+{% block content %}
+    <div class="container" xmlns="http://www.w3.org/1999/html">
+        <br><br>
+        <br>
+        <br>
+        <br>
+        <!-- Page Heading/Breadcrumbs -->
+        <h2 style="text-align: center">{{ annale.nom }}</h2>
+        <br>
+        <br>
+        <br>
+        <h4> Date de publication</h4>
+        <p>{{ annale.datePublication }}</p>
+        <hr><br>
+
+        <h4>Matière</h4>
+        <p>{{ annale.matiere }}</p>
+        <hr><br>
+
+        <h4> Fichier à télécharger</h4>
+        <p>{{ annale.fichier }}</p>
+        <hr><br>
+
+        <h4>Niveau</h4>
+        <p>{{ annale.niveau }}</p>
+
+    </div>
+{% endblock %}

@@ -16,10 +16,10 @@
                     <h1 class="mt-4 mb-3">
 
                         <p>Veuillez choisir la matière concernée</p>
-                        <select name="idMatiere" class="selectpicker" data-style="btn-primary" multiple="multiple" required>
-                            <option value="1" selected>BD</option>
-                            <option value="2">Java</option>
-                            <option value="3">C</option>
+                        <select name="matiere" class="selectpicker" data-style="btn-primary" multiple="multiple" required>
+                            <option value="BD" selected>BD</option>
+                            <option value="JAVA">Java</option>
+                            <option value="C">C</option>
                         </select>
                     </h1>
                     <br>
@@ -55,7 +55,7 @@
                         <br>
 
                     <h4>L'annale en .pdf ou .odt ou .doc</h4>
-                    <input type="file" name="fichier" />
+                    <input type="file" name="fichier">
                     <p>
 
                     <button type="submit" class="btn btn-success" onclick="alert('Votre annale a été ajoutée avec succès')";>Ajouter</button>

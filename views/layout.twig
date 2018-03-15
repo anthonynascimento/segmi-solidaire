@@ -16,8 +16,6 @@
     <link rel="stylesheet" href="{{ app.request.basepath }}/assets/css/ie8.css"/><![endif]-->
 
     <!--pour tableau -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.css" rel="stylesheet"
-          type="text/css">
     <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css">
 
 
@@ -30,9 +28,9 @@
         <ul>
             <li><a href="{{ path('home') }}">Accueil</a></li>
             <li>
-                <a href="{{ path('cours') }}">Cours</a>
+                <a href="">Cours</a>
                 <ul>
-                    <li><a href="#">Cours L1</a></li>
+                    <li><a href="{{ path('cours_l1') }}">Cours L1</a></li>
                     <li><a href="#">Cours L2</a></li>
                     <li><a href="#">Cours L3</a></li>
                     <li><a href="#">Cours M1</a></li>
@@ -44,7 +42,7 @@
                 <a href="#">Annales</a>
                 <ul>
                     <li><a href="{{ path('annales_l1') }}">Niveau L1</a></li>
-                    <li><a href="#">Niveau L2</a></li>
+                    <li><a href="{{ path('annales_l2') }}">Niveau L2</a></li>
                     <li><a href="#">Niveau L3</a></li>
                     <li><a href="#">Niveau M1</a></li>
                     <li><a href="#">Niveau M2</a></li>
@@ -63,12 +61,7 @@
             <li>
                 <a href="#">Livres</a>
                 <ul>
-                    <li><a href="#">Cours L1</a></li>
-                    <li><a href="#">Cours L2</a></li>
-                    <li><a href="#">Cours L3</a></li>
-                    <li><a href="#">Cours M1</a></li>
-                    <li><a href="#">Cours M2</a></li>
-
+                    <li><a href="{{ path('livres_all') }}">Tous les livres à vendre</a></li>
                     <li>
                         <a href="#">And a submenu &hellip;</a>
                         <ul>
@@ -84,17 +77,7 @@
             <li>
                 <a href="#">Mini Jobs</a>
                 <ul>
-                    <li><a href="#">Babysitting</a></li>
-                    <li><a href="#">Animation</a></li>
-                    <li><a href="#">Télémarketing</a></li>
-                    <li><a href="#">Secrétariat</a></li>
-                    <li><a href="#">Vente</a></li>
-                    <li><a href="#">Manutention</a></li>
-                    <li><a href="#">Cueillette</a></li>
-                    <li><a href="#">Vendanges</a></li>
-                    <li><a href="#">Restauration</a></li>
-                    <li><a href="#">Hôtessariat</a></li>
-                    <li><a href="#">Hôtellerie</a></li>
+                    <li><a href="{{ path('jobs_all') }}">Tous les jobs</a></li>
                     <li>
                         <a href="#">And a submenu &hellip;</a>
                         <ul>
@@ -215,9 +198,4 @@
 <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
 
-<script>
-    $(document).ready(function () {
-        $('#example').DataTable();
-    });
-</script>
 </html>

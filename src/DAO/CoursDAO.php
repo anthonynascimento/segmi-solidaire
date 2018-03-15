@@ -23,20 +23,18 @@ class CoursDAO extends DAO
     }
 
 
-
-    public function findFirstAllConf()
+    public function findAllCoursL1()
     {
-        $sql = "SELECT * FROM evenement where idType=3";
+        $sql = "SELECT * FROM cours where niveau='L1'";
         $result = $this->getDb()->fetchAll($sql);
 
-        $evenement = array();
+        $cours = array();
         foreach ($result as $row) {
-            $evenementId = $row['idEvenement'];
-            $evenement[$evenementId] = $this->buildDomainObject($row);
+            $coursId = $row['idCours'];
+            $cours[$coursId] = $this->buildDomainObject($row);
         }
-        return $evenement;
+        return $cours;
     }
-
 
     public function find($id)
     {
@@ -52,8 +50,7 @@ class CoursDAO extends DAO
     /*en parametre il faudra le num etudiant*/
     public function ajouterAideCours(){
 
-        $numEtudiant=isset($_POST['numEtudiant']);
-        $sql = "insert into cours (nom,description,idmatiere,numEtu) values('" . $_POST['nom'] . "','" . $_POST['description'] . "','" . $_POST['idMatiere'] . "','" . $numEtudiant . "')";
+        $sql = "insert into cours (nomCours,description,niveau,matiere) values('" . $_POST['nomCours'] . "','" . $_POST['description'] . "','" . $_POST['niveau'] . "','" . $_POST['matiere'] . "')";
         $result = $this->getDb()->query($sql);
         return $result;
     }
@@ -63,10 +60,11 @@ class CoursDAO extends DAO
     {
         $cours = new Cours();
         $cours->setIdCours($row['idCours']);
-        $cours->setNom($row['nom']);
+        $cours->setNomCours($row['nomCours']);
         $cours->setDescription($row['description']);
-        $cours->setIdMatiere($row['idMatiere']);
-        $cours->setNumEtu($row['numEtu']);
+        $cours->setMatiere($row['matiere']);
+        $cours->setNiveau($row['niveau']);
+
         return $cours;
     }
 }
