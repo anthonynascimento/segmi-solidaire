@@ -14,10 +14,9 @@ $app['db.options'] = array(
     'host'     => 'localhost',  //getenv("DB_1_PORT_3306_TCP_ADDR"),
     'port'     => '3306',
     'dbname'   => 'segmiSolidaire',
-    'user'     => 'dorian',
-    'password' => 'dodo',
+    'user'     => 'root',
+    'password' => '',
 );
 
 // define log parameters
 $app['monolog.level'] = 'WARNING';
-
