@@ -21,12 +21,27 @@
             <div class="wrap-login100">
                 <form class="login100-form validate-form">
 						<span class="login100-form-title p-b-26">
-							Se connecter
+							S'inscrire
 						</span>
                      <div class="wrap-input100 validate-input" data-validate = "">
                         <input class="input100" type="text" name="numetu" maxlength="8">
                         <span class="focus-input100" data-placeholder="Numéro étudiant" ></span>
                     </div>
+
+                    <div class="wrap-input100 validate-input" data-validate = "">
+                       <input class="input100" type="text" name="nometu">
+                       <span class="focus-input100" data-placeholder="Nom de l'étudiant" ></span>
+                   </div>
+
+                   <div class="wrap-input100 validate-input" data-validate = "">
+                      <input class="input100" type="text" name="prenometu">
+                      <span class="focus-input100" data-placeholder="Prénom de l'étudiant" ></span>
+                  </div>
+
+                  <div class="wrap-input100 validate-input" data-validate = "">
+                     <input class="input100" type="text" name="emailetu">
+                     <span class="focus-input100" data-placeholder="Email de l'étudiant" ></span>
+                 </div>
 
                     <div class="wrap-input100 validate-input" data-validate="Mot de passe">
 							<span class="btn-show-pass">
@@ -40,19 +55,9 @@
                         <div class="wrap-login100-form-btn">
                             <div class="login100-form-bgbtn"></div>
                             <button class="login100-form-btn">
-                                Connexion
+                                S'inscrire
                             </button>
                         </div>
-                    </div>
-
-                    <div class="text-center p-t-115">
-							<span class="txt1">
-								Pas encore inscrit ?
-							</span>
-
-                        <a class="txt2" href="{{ path('inscription') }}">
-                            Inscris toi ici !
-                        </a>
                     </div>
                 </form>
             </div>

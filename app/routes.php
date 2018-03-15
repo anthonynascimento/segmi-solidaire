@@ -19,6 +19,10 @@ $app->get('/login', function () use ($app) {
     return $app['twig']->render('login.twig');
 })->bind('login');
 
+$app->get('/inscription', function () use ($app) {
+    return $app['twig']->render('inscription.twig');
+})->bind('inscription');
+
 /***
  *** LES FORMULAIRES D'AJOUT ***
 ***/
@@ -78,6 +82,10 @@ $app->post('/AjoutLivre/ajouter', function () use ($app) {
 })->bind('ajout_livre');/*quand on clique sur le bouton d'ajout*/
 
 ///////////////////////////////ANNALES//////////////////////////////////////////
+$app->get('/listeAnnales', function () use ($app) {
+    $allAnnales['toutes'] = $app['dao.annale']->findFirstAll();
+    return $app['twig']->render('liste_annales_l1.twig', array('annales' => $allAnnales));
+})->bind('annales');
 /*liste annales L1*/
 $app->get('/listeAnnalesL1', function () use ($app) {
     $allAnnalesL1['toutes'] = $app['dao.annale']->findAllAnnalesL1();
@@ -90,6 +98,21 @@ $app->get('/listeAnnalesL2', function () use ($app) {
     return $app['twig']->render('liste_annales_l2.twig', array('annales' => $allAnnalesL2));
 })->bind('annales_l2');
 
+$app->get('/listeAnnalesL3', function () use ($app) {
+    $allAnnalesL3['toutes'] = $app['dao.annale']->findAllAnnalesL3();
+    return $app['twig']->render('liste_annales_l3.twig', array('annales' => $allAnnalesL3));
+})->bind('annales_l3');
+
+$app->get('/listeAnnalesM1', function () use ($app) {
+    $allAnnalesM1['toutes'] = $app['dao.annale']->findAllAnnalesM1();
+    return $app['twig']->render('liste_annales_m1.twig', array('annales' => $allAnnalesM1));
+})->bind('annales_m1');
+
+$app->get('/listeAnnalesM2', function () use ($app) {
+    $allAnnalesM2['toutes'] = $app['dao.annale']->findAllAnnalesM2();
+    return $app['twig']->render('liste_annales_m2.twig', array('annales' => $allAnnalesM2));
+})->bind('annales_m2');
+
 
 /*vue de l'annale choisie*/
 $app->get('/annale/{id}', function ($id) use ($app) {
@@ -100,9 +123,29 @@ $app->get('/annale/{id}', function ($id) use ($app) {
 ///////////////////////////////COURS//////////////////////////////////////////
 /*liste cours L1*/
 $app->get('/listeCours', function () use ($app) {
-    $cours['tous'] = $app['dao.cours']->findAllCoursL1();
-    return $app['twig']->render('liste_cours_l1.twig',array('cours' => $cours));
+    $cours['tous'] = $app['dao.cours']->findFirstAll();
+    return $app['twig']->render('liste_cours.twig',array('cours' => $cours));
+})->bind('cours');
+$app->get('/listeCoursL1', function () use ($app) {
+    $coursL1['tous'] = $app['dao.cours']->findAllCoursL1();
+    return $app['twig']->render('liste_cours_l1.twig',array('cours' => $coursL1));
 })->bind('cours_l1');
+$app->get('/listeCoursL2', function () use ($app) {
+    $coursL2['tous'] = $app['dao.cours']->findAllCoursL2();
+    return $app['twig']->render('liste_cours_l2.twig',array('cours' => $coursL2));
+})->bind('cours_l2');
+$app->get('/listeCoursL3', function () use ($app) {
+    $coursL3['tous'] = $app['dao.cours']->findAllCoursL3();
+    return $app['twig']->render('liste_cours_l3.twig',array('cours' => $coursL3));
+})->bind('cours_l3');
+$app->get('/listeCoursM1', function () use ($app) {
+    $coursM1['tous'] = $app['dao.cours']->findAllCoursM1();
+    return $app['twig']->render('liste_cours_m1.twig',array('cours' => $coursM1));
+})->bind('cours_m1');
+$app->get('/listeCoursM2', function () use ($app) {
+    $coursM2['tous'] = $app['dao.cours']->findAllCoursM2();
+    return $app['twig']->render('liste_cours_m2.twig',array('cours' => $coursM2));
+})->bind('cours_m2');
 
 $app->get('/cours/{id}', function ($id) use ($app) {
     $cours = $app['dao.cours']->find($id);

@@ -36,6 +36,58 @@ class CoursDAO extends DAO
         return $cours;
     }
 
+    public function findAllCoursL2()
+    {
+        $sql = "SELECT * FROM cours where niveau='L2'";
+        $result = $this->getDb()->fetchAll($sql);
+
+        $cours = array();
+        foreach ($result as $row) {
+            $coursId = $row['idCours'];
+            $cours[$coursId] = $this->buildDomainObject($row);
+        }
+        return $cours;
+    }
+
+    public function findAllCoursL3()
+    {
+        $sql = "SELECT * FROM cours where niveau='L3'";
+        $result = $this->getDb()->fetchAll($sql);
+
+        $cours = array();
+        foreach ($result as $row) {
+            $coursId = $row['idCours'];
+            $cours[$coursId] = $this->buildDomainObject($row);
+        }
+        return $cours;
+    }
+
+    public function findAllCoursM1()
+    {
+        $sql = "SELECT * FROM cours where niveau='M1'";
+        $result = $this->getDb()->fetchAll($sql);
+
+        $cours = array();
+        foreach ($result as $row) {
+            $coursId = $row['idCours'];
+            $cours[$coursId] = $this->buildDomainObject($row);
+        }
+        return $cours;
+    }
+
+    public function findAllCoursM2()
+    {
+        $sql = "SELECT * FROM cours where niveau='M2'";
+        $result = $this->getDb()->fetchAll($sql);
+
+        $cours = array();
+        foreach ($result as $row) {
+            $coursId = $row['idCours'];
+            $cours[$coursId] = $this->buildDomainObject($row);
+        }
+        return $cours;
+    }
+
     public function find($id)
     {
         $sql = "select * from cours where idCours=?";

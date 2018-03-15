@@ -82,7 +82,7 @@ class AnnaleDAO extends DAO
 
     public function findAllAnnalesM1()
     {
-        $sql = "SELECT * FROM annale where niveau='L1'";
+        $sql = "SELECT * FROM annale where niveau='M1'";
         $result = $this->getDb()->fetchAll($sql);
 
         $annale = array();
@@ -93,9 +93,9 @@ class AnnaleDAO extends DAO
         return $annale;
     }
 
-    public function findAllAnnalesM3()
+    public function findAllAnnalesM2()
     {
-        $sql = "SELECT * FROM annale where niveau='L1'";
+        $sql = "SELECT * FROM annale where niveau='M2'";
         $result = $this->getDb()->fetchAll($sql);
 
         $annale = array();

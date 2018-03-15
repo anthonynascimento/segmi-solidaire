@@ -30,24 +30,24 @@
         <ul>
             <li><a href="{{ path('home') }}">Accueil</a></li>
             <li>
-                <a href="">Cours</a>
-                <ul>
-                    <li><a href="{{ path('cours_l1') }}">Cours L1</a></li>
-                    <li><a href="#">Cours L2</a></li>
-                    <li><a href="#">Cours L3</a></li>
-                    <li><a href="#">Cours M1</a></li>
-                    <li><a href="#">Cours M2</a></li>
+              <a href="{{ path('cours') }}">Cours</a>
+              <ul>
+                  <li><a href="{{ path('cours_l1') }}">Cours L1</a></li>
+                  <li><a href="{{ path('cours_l2') }}">Cours L2</a></li>
+                  <li><a href="{{ path('cours_l3') }}">Cours L3</a></li>
+                  <li><a href="{{ path('cours_m1') }}">Cours M1</a></li>
+                  <li><a href="{{ path('cours_m2') }}">Cours M2</a></li>
 
-                </ul>
+              </ul>
             </li>
             <li>
-                <a href="#">Annales</a>
-                <ul>
-                    <li><a href="{{ path('annales_l1') }}">Niveau L1</a></li>
-                    <li><a href="{{ path('annales_l2') }}">Niveau L2</a></li>
-                    <li><a href="#">Niveau L3</a></li>
-                    <li><a href="#">Niveau M1</a></li>
-                    <li><a href="#">Niveau M2</a></li>
+              <a href="{{ path('annales') }}">Annales</a>
+              <ul>
+                  <li><a href="{{ path('annales_l1') }}">Niveau L1</a></li>
+                  <li><a href="{{ path('annales_l2') }}">Niveau L2</a></li>
+                  <li><a href="{{ path('annales_l3') }}">Niveau L3</a></li>
+                  <li><a href="{{ path('annales_m1') }}">Niveau M1</a></li>
+                  <li><a href="{{ path('annales_m2') }}">Niveau M2</a></li>
 
                     <li>
                         <a href="#">And a submenu &hellip;</a>
@@ -132,21 +132,21 @@
     <div class="footer-left">
 
         <p class="footer-links" style="width: 75%">
-            <a href="#">Accueil</a>
-            ·
-            <a href="#">Cours</a>
-            ·
-            <a href="#">Annales</a>
-            ·
-            <a href="#">Livres</a>
-            ·
-            <a href="#">Mini Jobs</a>
-            ·
-            <a href="#">Évènement</a>
-            ·
-            <a href="#">Déposer une annonce</a>
-            ·
-            <a href="#">Connexion</a>
+          <a href="{{ path('home') }}">Accueil</a>
+          ·
+          <a href="{{ path('cours') }}">Cours</a>
+          ·
+          <a href="{{ path('annales') }}">Annales</a>
+          ·
+          <a href="{{ path('livres_all') }}">Livres</a>
+          ·
+          <a href="{{ path('jobs_all') }}">Mini Jobs</a>
+          ·
+          <a href="{{ path('evenement') }}">Évènement</a>
+          ·
+          <a href="#">Déposer une annonce</a>
+          ·
+          <a href="{{ path('login') }}">Connexion</a>
         </p>
         <br>
         <p class="footer-company-name" style="color:white">Segmi Solidaire &copy; 2018</p>
