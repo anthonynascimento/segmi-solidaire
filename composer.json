@@ -13,6 +13,8 @@
 		"symfony/config": "2.8.*",
 		"sensio/framework-extra-bundle": "2.*",
 		"silex/web-profiler": "1.*",
+		"phpmailer/phpmailer": "^6.0",
+		"google/recaptcha": "~1.1",
 		"phpoffice/phpexcel": "1.8.1"
     },
     "require-dev": {

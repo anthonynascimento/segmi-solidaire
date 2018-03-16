@@ -15,17 +15,25 @@ $app->get('/', function () use ($app) {
     return $app['twig']->render('home.twig', array('evenements' => $evenements));
 })->bind('home');
 
-$app->get('/login', function () use ($app) {
-    return $app['twig']->render('login.twig');
-})->bind('login');
-
 $app->get('/inscription', function () use ($app) {
     return $app['twig']->render('inscription.twig');
 })->bind('inscription');
 
+$app->post('/ajouter', function () use ($app) {
+    $mdp = $app['security.encoder.digest']->encodePassword($_POST['mdp'], '');
+    $app['dao.inscription']->verifCompte($mdp);
+    return $app['twig']->render('login.twig');
+})->bind('ajout');
+
+
+$app->get('/login', function (Request $request) use ($app) {
+    return $app['twig']->render('login.twig', array(
+        'error' => $app['security.last_error']($request),/*dans app.php si la connexion échoue*/
+    ));
+})->bind('login');
 /***
  *** LES FORMULAIRES D'AJOUT ***
-***/
+ ***/
 
 /*ajout d'un evenement*/
 $app->get('/AjoutEvenement', function () use ($app) {
@@ -124,27 +132,27 @@ $app->get('/annale/{id}', function ($id) use ($app) {
 /*liste cours L1*/
 $app->get('/listeCours', function () use ($app) {
     $cours['tous'] = $app['dao.cours']->findFirstAll();
-    return $app['twig']->render('liste_cours.twig',array('cours' => $cours));
+    return $app['twig']->render('liste_cours.twig', array('cours' => $cours));
 })->bind('cours');
 $app->get('/listeCoursL1', function () use ($app) {
     $coursL1['tous'] = $app['dao.cours']->findAllCoursL1();
-    return $app['twig']->render('liste_cours_l1.twig',array('cours' => $coursL1));
+    return $app['twig']->render('liste_cours_l1.twig', array('cours' => $coursL1));
 })->bind('cours_l1');
 $app->get('/listeCoursL2', function () use ($app) {
     $coursL2['tous'] = $app['dao.cours']->findAllCoursL2();
-    return $app['twig']->render('liste_cours_l2.twig',array('cours' => $coursL2));
+    return $app['twig']->render('liste_cours_l2.twig', array('cours' => $coursL2));
 })->bind('cours_l2');
 $app->get('/listeCoursL3', function () use ($app) {
     $coursL3['tous'] = $app['dao.cours']->findAllCoursL3();
-    return $app['twig']->render('liste_cours_l3.twig',array('cours' => $coursL3));
+    return $app['twig']->render('liste_cours_l3.twig', array('cours' => $coursL3));
 })->bind('cours_l3');
 $app->get('/listeCoursM1', function () use ($app) {
     $coursM1['tous'] = $app['dao.cours']->findAllCoursM1();
-    return $app['twig']->render('liste_cours_m1.twig',array('cours' => $coursM1));
+    return $app['twig']->render('liste_cours_m1.twig', array('cours' => $coursM1));
 })->bind('cours_m1');
 $app->get('/listeCoursM2', function () use ($app) {
     $coursM2['tous'] = $app['dao.cours']->findAllCoursM2();
-    return $app['twig']->render('liste_cours_m2.twig',array('cours' => $coursM2));
+    return $app['twig']->render('liste_cours_m2.twig', array('cours' => $coursM2));
 })->bind('cours_m2');
 
 $app->get('/cours/{id}', function ($id) use ($app) {
@@ -155,7 +163,7 @@ $app->get('/cours/{id}', function ($id) use ($app) {
 ///////////////////////////////MINI-JOB//////////////////////////////////////////
 $app->get('/jobs_all', function () use ($app) {
     $jobs['tous'] = $app['dao.job']->findFirstAll();
-    return $app['twig']->render('liste_jobs_all.twig',array('jobs' => $jobs));
+    return $app['twig']->render('liste_jobs_all.twig', array('jobs' => $jobs));
 })->bind('jobs_all');
 
 $app->get('/job/{id}', function ($id) use ($app) {
@@ -166,22 +174,22 @@ $app->get('/job/{id}', function ($id) use ($app) {
 ///////////////////////////////EVENEMENTS//////////////////////////////////////////
 $app->get('/listeEven', function () use ($app) {
     $evenements['tous'] = $app['dao.evenement']->findFirstAll();
-    return $app['twig']->render('liste_evenement.twig',array('evenements'=>$evenements ));
+    return $app['twig']->render('liste_evenement.twig', array('evenements' => $evenements));
 })->bind('evenement');
 
 $app->get('/listeSport', function () use ($app) {
     $evenementsSport['tous'] = $app['dao.evenement']->findFirstAllSport();
-    return $app['twig']->render('liste_evenementSport.twig',array('evenementsSport'=>$evenementsSport ));
+    return $app['twig']->render('liste_evenementSport.twig', array('evenementsSport' => $evenementsSport));
 })->bind('evenementSport');
 
 $app->get('/listeSoiree', function () use ($app) {
     $evenementsSoiree['tous'] = $app['dao.evenement']->findFirstAllSoiree();
-    return $app['twig']->render('liste_evenementSoiree.twig',array('evenementsSoiree'=>$evenementsSoiree ));
+    return $app['twig']->render('liste_evenementSoiree.twig', array('evenementsSoiree' => $evenementsSoiree));
 })->bind('evenementSoiree');
 
 $app->get('/listeConference', function () use ($app) {
     $evenementsConf['tous'] = $app['dao.evenement']->findFirstAllConf();
-    return $app['twig']->render('liste_evenementConference.twig',array('evenementsConf'=>$evenementsConf ));
+    return $app['twig']->render('liste_evenementConference.twig', array('evenementsConf' => $evenementsConf));
 })->bind('evenementConf');
 
 
@@ -193,7 +201,7 @@ $app->get('/evenement/{id}', function ($id) use ($app) {
 ///////////////////////////////LIVRES//////////////////////////////////////////
 $app->get('/livres_all', function () use ($app) {
     $livres['tous'] = $app['dao.livre']->findFirstAll();
-    return $app['twig']->render('liste_livres_all.twig',array('livres' => $livres));
+    return $app['twig']->render('liste_livres_all.twig', array('livres' => $livres));
 })->bind('livres_all');
 
 $app->get('/livre/{id}', function ($id) use ($app) {

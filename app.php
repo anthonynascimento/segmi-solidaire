@@ -26,6 +26,10 @@ $app->register(new Silex\Provider\SecurityServiceProvider(), array(
             'anonymous' => true, // Indispensable car la zone de login se trouve dans la zone sécurisée (tout le front-office)
             'form' => array('login_path' => '/login', 'check_path' => 'connexion'),
             'logout' => array('logout_path' => '/deconnexion'), // url à appeler pour se déconnecter
+            'users' => $app->share(function() use ($app) {
+                // La classe App\User\UserProvider est spécifique à notre application et est décrite plus bas
+                return new MicroCMS\DAO\UtilisateurDAO($app['db']);
+            }),
         ),
     ),
     'security.access_rules' => array(
@@ -45,6 +49,9 @@ $app['dao.info'] = $app->share(function ($app) {
 $app['dao.evenement'] = $app->share(function ($app) {
     return new MicroCMS\DAO\EvenementDAO($app['db']);
 });
+$app['dao.utilisateur'] = $app->share(function ($app) {
+    return new MicroCMS\DAO\UtilisateurDAO($app['db']);
+});
 
 $app['dao.cours'] = $app->share(function ($app) {
     return new MicroCMS\DAO\CoursDAO($app['db']);
@@ -62,6 +69,9 @@ $app['dao.livre'] = $app->share(function ($app) {
     return new MicroCMS\DAO\LivreDAO($app['db']);
 });
 
+$app['dao.inscription'] = $app->share(function ($app) {
+    return new MicroCMS\DAO\InscriptionDAO($app['db']);
+});
 
 $app->register(new Silex\Provider\MonologServiceProvider(), array(
     'monolog.logfile' => __DIR__ . '/var/logs/microcms.log',

@@ -6,8 +6,8 @@
 
 {% block content %}
 
-    <link rel="stylesheet" href="web/css/main.css" />
-    <link rel="stylesheet" href="web/css/util.css" />
+    <link rel="stylesheet" href="web/css/main.css"/>
+    <link rel="stylesheet" href="web/css/util.css"/>
     <link rel="stylesheet" type="text/css" href="web/vendor/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="web/font/iconic/css/material-design-iconic-font.min.css">
     <link rel="stylesheet" type="text/css" href="web/vendor/animate/animate.css">
@@ -15,42 +15,71 @@
     <link rel="stylesheet" type="text/css" href="web/vendor/animsition/css/animsition.min.css">
     <link rel="stylesheet" type="text/css" href="web/vendor/select2/select2.min.css">
     <link rel="stylesheet" type="text/css" href="web/vendor/daterangepicker/daterangepicker.css">
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <br>
+    <br>
 
     <div class="limiter">
         <div class="container-login100">
             <div class="wrap-login100">
-                <form class="login100-form validate-form">
+                <form class="login100-form validate-form" method="POST" action="{{ path('ajout') }}">
 						<span class="login100-form-title p-b-26">
 							S'inscrire
 						</span>
-                     <div class="wrap-input100 validate-input" data-validate = "">
-                        <input class="input100" type="text" name="numetu" maxlength="8">
-                        <span class="focus-input100" data-placeholder="Numéro étudiant" ></span>
+
+                    <div class="wrap-input100 validate-input" data-validate="Entrez votre nom">
+                        <input  id="nom"  class="input100" type="text" name="nom">
+                        <span class="focus-input100" data-placeholder="Nom de l'étudiant"></span>
+                        <span style="color:red" id="nom_err"></span>
+
                     </div>
 
-                    <div class="wrap-input100 validate-input" data-validate = "">
-                       <input class="input100" type="text" name="nometu">
-                       <span class="focus-input100" data-placeholder="Nom de l'étudiant" ></span>
-                   </div>
+                    <div class="wrap-input100 validate-input" data-validate="Entrez votre prénom">
+                        <input  id="prenom"  class="input100" type="text" name="prenom">
+                        <span class="focus-input100" data-placeholder="Prénom de l'étudiant"></span>
+                        <span style="color:red" id="prenom_err"></span>
 
-                   <div class="wrap-input100 validate-input" data-validate = "">
-                      <input class="input100" type="text" name="prenometu">
-                      <span class="focus-input100" data-placeholder="Prénom de l'étudiant" ></span>
-                  </div>
+                    </div>
 
-                  <div class="wrap-input100 validate-input" data-validate = "">
-                     <input class="input100" type="text" name="emailetu">
-                     <span class="focus-input100" data-placeholder="Email de l'étudiant" ></span>
-                 </div>
+                    <div class="wrap-input100 validate-input" data-validate="Entrez votre adresse email">
+                        <input class="input100" type="text" name="email">
+                        <span class="focus-input100" data-placeholder="Email de l'étudiant"></span>
+                        <span style="color:red" id="email_err"></span>
+
+                    </div>
+
+                    <div class="wrap-input100 validate-input" data-validate="Entrez votre numéro de téléphone">
+                        <input  id="tel" class="input100" type="text" name="tel">
+                        <span class="focus-input100" data-placeholder="Téléphone"></span>
+                        <span style="color:red" id="tel_err"></span>
+
+                    </div>
 
                     <div class="wrap-input100 validate-input" data-validate="Mot de passe">
 							<span class="btn-show-pass">
-								<i class="zmdi zmdi-eye"></i>
-							</span>
-                        <input class="input100" type="password" name="pass">
+							<i class="zmdi zmdi-eye"></i>
+						</span>
+                        <input  id="mdp" class="input100" type="password" name="mdp">
                         <span class="focus-input100" data-placeholder="Mot de passe"></span>
+                        <span style="color:red" id="mdp_err"></span>
+
+                    </div>
+                    <div class="wrap-input100 validate-input" data-validate="Confirmez le mot de passe">
+							<span class="btn-show-pass">
+							<i class="zmdi zmdi-eye"></i>
+						</span>
+                        <input id="conf_mdp" class="input100" type="password">
+                        <span class="focus-input100" data-placeholder="Confirmez le mot de passe"></span>
+                        <span style="color:red" id="conf_mdp_err"></span>
+
                     </div>
 
+                    <div class="wrap-input100 validate-input">
+                        <div class="g-recaptcha" data-sitekey="6Lem9UwUAAAAAIqcTFNcOWhL6JvcJfEtZdH2QO7R"></div>
+                        <br>
+                    </div>
+                    <br>
                     <div class="container-login100-form-btn">
                         <div class="wrap-login100-form-btn">
                             <div class="login100-form-bgbtn"></div>
@@ -59,6 +88,7 @@
                             </button>
                         </div>
                     </div>
+
                 </form>
             </div>
         </div>
@@ -66,14 +96,19 @@
 
 
     <div id="dropDownSelect1"></div>
-
-    <script type="text/javascript"  src="{{ app.request.basepath }}/web/vendor/animsition/js/animsition.min.js"></script>
-    <script type="text/javascript"  src="{{ app.request.basepath }}/web/vendor/bootstrap/js/popper.js"></script>
-    <script type="text/javascript"  src="{{ app.request.basepath }}/web/vendor/bootstrap/js/bootstrap.min.js"></script>
-    <script type="text/javascript"  src="{{ app.request.basepath }}/web/vendor/select2/select2.min.js"></script>
-    <script type="text/javascript"  src="{{ app.request.basepath }}/web/vendor/daterangepicker/moment.min.js"></script>
-    <script type="text/javascript"  src="{{ app.request.basepath }}/web/vendor/daterangepicker/daterangepicker.js"></script>
-    <script type="text/javascript"  src="{{ app.request.basepath }}/web/vendor/countdowntime/countdowntime.js"></script>
-    <script type="text/javascript"  src="{{ app.request.basepath }}/web/js/login.js"></script>
+    <script type="text/javascript"
+            src="{{ app.request.basepath }}/web/vendor/animsition/js/animsition.min.js"></script>
+    <script type="text/javascript"
+            src="{{ app.request.basepath }}/web/vendor/bootstrap/js/popper.min.js"></script>
+    <script type="text/javascript"
+            src="{{ app.request.basepath }}/web/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript"
+            src="{{ app.request.basepath }}/web/vendor/select2.min.js"></script>
+    <script type="text/javascript"
+            src="{{ app.request.basepath }}/web/vendor/daterangepicker/moment.min.js"></script>
+    <script type="text/javascript"
+            src="{{ app.request.basepath }}/web/vendor/daterangepicker/daterangepicker.js"></script>
+    <script type="text/javascript" src="{{ app.request.basepath }}/web/vendor/countdowntime/countdowntime.js"></script>
+    <script type="text/javascript" src="{{ app.request.basepath }}/web/js/login.js"></script>
 
 {% endblock %}

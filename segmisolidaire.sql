@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  jeu. 15 mars 2018 à 16:47
+-- Généré le :  jeu. 15 mars 2018 à 23:57
 -- Version du serveur :  5.7.19
--- Version de PHP :  7.0.23
+-- Version de PHP :  5.6.31
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -85,11 +85,21 @@ CREATE TABLE IF NOT EXISTS `etudiant` (
   `nom` varchar(64) NOT NULL,
   `prenom` varchar(64) NOT NULL,
   `email` text NOT NULL,
-  `telephone` int(10) NOT NULL,
+  `telephone` varchar(10) NOT NULL,
   `mdp` text NOT NULL,
   PRIMARY KEY (`idEtudiant`),
   UNIQUE KEY `idEtudiant` (`idEtudiant`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `etudiant`
+--
+
+INSERT INTO `etudiant` (`idEtudiant`, `nom`, `prenom`, `email`, `telephone`, `mdp`) VALUES
+(1, 'Sankar', 'Vijay', 'vijay93700@gmail.com', '141523658', 'RekySr+8T6mGR1axcvqlL2EN0i7lCz2OfjGJknUU7bo+Jgsa1gIQJhlsZByTbV+V8u0lK33ICtqZOiw4jQxaow=='),
+(7, 'azazaz', 'zazaza', 'zazaza@gmail.com', '145255354', 'RekySr+8T6mGR1axcvqlL2EN0i7lCz2OfjGJknUU7bo+Jgsa1gIQJhlsZByTbV+V8u0lK33ICtqZOiw4jQxaow=='),
+(6, 'JAck', 'toto', 'toto@gmail.com', '781452636', 'ytmtQlj5dUnKnPkhHrYBWk9O3dhVq+H2hXnrpSbYz1WpJjBqVFOhlRwPrQJdlqSpeL3qz3E3bq/S8qaAh6FWTg=='),
+(8, 'Sankar', 'Vijay', 'sankar.vijay@hotmail.com', '0145854745', 'RekySr+8T6mGR1axcvqlL2EN0i7lCz2OfjGJknUU7bo+Jgsa1gIQJhlsZByTbV+V8u0lK33ICtqZOiw4jQxaow==');
 
 -- --------------------------------------------------------
 

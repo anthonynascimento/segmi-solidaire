@@ -19,6 +19,23 @@ class User implements UserInterface
      * @var string
      */
     private $username;
+    private $prenom;
+
+    /**
+     * @return mixed
+     */
+    public function getPrenom()
+    {
+        return $this->prenom;
+    }
+
+    /**
+     * @param mixed $prenom
+     */
+    public function setPrenom($prenom)
+    {
+        $this->prenom = $prenom;
+    }
 
     /**
      * User password.
@@ -26,6 +43,43 @@ class User implements UserInterface
      * @var string
      */
     private $password;
+
+    private $email;
+
+    private $telephone;
+
+    /**
+     * @return mixed
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    /**
+     * @param mixed $email
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTelephone()
+    {
+        return $this->telephone;
+    }
+
+    /**
+     * @param mixed $telephone
+     */
+    public function setTelephone($telephone)
+    {
+        $this->telephone = $telephone;
+    }
+
 
     /**
      * Salt that was originally used to encode the password.
@@ -42,33 +96,39 @@ class User implements UserInterface
      */
     private $role;
 
-    public function getId() {
+    public function getId()
+    {
         return $this->id;
     }
 
-    public function setId($id) {
+    public function setId($id)
+    {
         $this->id = $id;
     }
 
     /**
      * @inheritDoc
      */
-    public function getUsername() {
+    public function getUsername()
+    {
         return $this->username;
     }
 
-    public function setUsername($username) {
+    public function setNom($username)
+    {
         $this->username = $username;
     }
 
     /**
      * @inheritDoc
      */
-    public function getPassword() {
+    public function getPassword()
+    {
         return $this->password;
     }
 
-    public function setPassword($password) {
+    public function setPassword($password)
+    {
         $this->password = $password;
     }
 
@@ -90,7 +150,8 @@ class User implements UserInterface
         return $this->role;
     }
 
-    public function setRole($role) {
+    public function setRole($role)
+    {
         $this->role = $role;
     }
 
@@ -105,7 +166,8 @@ class User implements UserInterface
     /**
      * @inheritDoc
      */
-    public function eraseCredentials() {
+    public function eraseCredentials()
+    {
         // Nothing to do here
     }
 }
