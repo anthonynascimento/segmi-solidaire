@@ -114,8 +114,10 @@ class CoursDAO extends DAO
         $cours->setIdCours($row['idCours']);
         $cours->setNomCours($row['nomCours']);
         $cours->setDescription($row['description']);
-        $cours->setMatiere($row['matiere']);
         $cours->setNiveau($row['niveau']);
+        $cours->setSpecialite($row['specialite']);
+        $cours->setMatiere($row['matiere']);
+        $cours->setIdEtudiant($row['idEtudiant']);
 
         return $cours;
     }

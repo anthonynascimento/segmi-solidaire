@@ -61,9 +61,11 @@ class LivreDAO extends DAO
         $livre->setIdLivre($row['idLivre']);
         $livre->setTitre($row['titre']);
         $livre->setAuteur($row['auteur']);
-        $livre->setMatiere($row['matiere']);
-        $livre->setNiveau($row['niveau']);
         $livre->setPrix($row['prix']);
+        $livre->setNiveau($row['niveau']);
+        $livre->setSpecialite($row['specialite']);
+        $livre->setMatiere($row['matiere']);
+        $livre->setIdEtudiant($row['idEtudiant']);
 
         return $livre;
     }
