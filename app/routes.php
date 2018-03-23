@@ -31,6 +31,7 @@ $app->get('/login', function (Request $request) use ($app) {
         'error' => $app['security.last_error']($request),/*dans app.php si la connexion échoue*/
     ));
 })->bind('login');
+
 /***
  *** LES FORMULAIRES D'AJOUT ***
  ***/
@@ -42,6 +43,8 @@ $app->get('/AjoutEvenement', function () use ($app) {
 
 $app->post('/AjoutEvenement/ajouter', function () use ($app) {
     $app['dao.evenement']->ajouterEvenement();
+    $delai = 0;
+    header("Refresh: $delai;url=http://localhost/segmi-solidaire/");
     return $app['twig']->render('home.twig');
 })->bind('ajout_evt');/*quand on clique sur le bouton d'ajout*/
 
@@ -53,7 +56,8 @@ $app->get('/AjoutAideCours', function () use ($app) {
 
 $app->post('/AjoutAideCours/ajouter', function () use ($app) {
     $app['dao.cours']->ajouterAideCours();
-    return $app['twig']->render('home.twig');/*redirection vers le home une fois le bouton cliqué*/
+    $cours['tous'] = $app['dao.cours']->findFirstAll();
+    return $app['twig']->render('liste_cours.twig', array('cours' => $cours));
 })->bind('ajout_aide');/*quand on clique sur le bouton d'ajout*/
 
 
@@ -64,7 +68,8 @@ $app->get('/AjoutJob', function () use ($app) {
 
 $app->post('/AjoutJob/ajouter', function () use ($app) {
     $app['dao.job']->ajouterMiniJob();
-    return $app['twig']->render('home.twig');/*redirection vers le home une fois le bouton cliqué*/
+    $jobs['tous'] = $app['dao.job']->findFirstAll();
+    return $app['twig']->render('liste_jobs_all.twig', array('jobs' => $jobs));
 })->bind('ajout_job');/*quand on clique sur le bouton d'ajout*/
 
 
@@ -75,7 +80,8 @@ $app->get('/AjoutAnnale', function () use ($app) {
 
 $app->post('/AjoutAnnale/ajouter', function () use ($app) {
     $app['dao.annale']->ajouterAnnale();
-    return $app['twig']->render('home.twig');/*redirection vers le home une fois le bouton cliqué*/
+    $allAnnales['toutes'] = $app['dao.annale']->findFirstAll();
+    return $app['twig']->render('liste_annales.twig', array('annales' => $allAnnales));
 })->bind('ajout_annale');/*quand on clique sur le bouton d'ajout*/
 
 
@@ -86,14 +92,18 @@ $app->get('/AjoutLivre', function () use ($app) {
 
 $app->post('/AjoutLivre/ajouter', function () use ($app) {
     $app['dao.livre']->ajouterLivre();
-    return $app['twig']->render('home.twig');/*redirection vers le home une fois le bouton cliqué*/
+    $livres['tous'] = $app['dao.livre']->findFirstAll();
+    return $app['twig']->render('liste_livres_all.twig', array('livres' => $livres));/*redirection*/
 })->bind('ajout_livre');/*quand on clique sur le bouton d'ajout*/
 
 ///////////////////////////////ANNALES//////////////////////////////////////////
+
+/*liste de toutes les annales*/
 $app->get('/listeAnnales', function () use ($app) {
     $allAnnales['toutes'] = $app['dao.annale']->findFirstAll();
-    return $app['twig']->render('liste_annales_l1.twig', array('annales' => $allAnnales));
+    return $app['twig']->render('liste_annales.twig', array('annales' => $allAnnales));
 })->bind('annales');
+
 /*liste annales L1*/
 $app->get('/listeAnnalesL1', function () use ($app) {
     $allAnnalesL1['toutes'] = $app['dao.annale']->findAllAnnalesL1();
@@ -129,32 +139,44 @@ $app->get('/annale/{id}', function ($id) use ($app) {
 })->bind('annaleDetails');
 
 ///////////////////////////////COURS//////////////////////////////////////////
-/*liste cours L1*/
+
+/*liste de tous les cours*/
 $app->get('/listeCours', function () use ($app) {
     $cours['tous'] = $app['dao.cours']->findFirstAll();
     return $app['twig']->render('liste_cours.twig', array('cours' => $cours));
 })->bind('cours');
+
+/*liste cours L1*/
 $app->get('/listeCoursL1', function () use ($app) {
     $coursL1['tous'] = $app['dao.cours']->findAllCoursL1();
     return $app['twig']->render('liste_cours_l1.twig', array('cours' => $coursL1));
 })->bind('cours_l1');
+
+/*liste cours L2*/
 $app->get('/listeCoursL2', function () use ($app) {
     $coursL2['tous'] = $app['dao.cours']->findAllCoursL2();
     return $app['twig']->render('liste_cours_l2.twig', array('cours' => $coursL2));
 })->bind('cours_l2');
+
+/*liste cours L3*/
 $app->get('/listeCoursL3', function () use ($app) {
     $coursL3['tous'] = $app['dao.cours']->findAllCoursL3();
     return $app['twig']->render('liste_cours_l3.twig', array('cours' => $coursL3));
 })->bind('cours_l3');
+
+/*liste cours M1*/
 $app->get('/listeCoursM1', function () use ($app) {
     $coursM1['tous'] = $app['dao.cours']->findAllCoursM1();
     return $app['twig']->render('liste_cours_m1.twig', array('cours' => $coursM1));
 })->bind('cours_m1');
+
+/*liste cours M2*/
 $app->get('/listeCoursM2', function () use ($app) {
     $coursM2['tous'] = $app['dao.cours']->findAllCoursM2();
     return $app['twig']->render('liste_cours_m2.twig', array('cours' => $coursM2));
 })->bind('cours_m2');
 
+/*vue du cours choisi*/
 $app->get('/cours/{id}', function ($id) use ($app) {
     $cours = $app['dao.cours']->find($id);
     return $app['twig']->render('cours_details.twig', array('cours' => $cours));
@@ -195,7 +217,7 @@ $app->get('/listeConference', function () use ($app) {
 
 $app->get('/evenement/{id}', function ($id) use ($app) {
     $evenement = $app['dao.evenement']->find($id);
-    return $app['twig']->render('evenement.twig', array('evenement' => $evenement));
+    return $app['twig']->render('evenement_details.twig', array('evenement' => $evenement));
 })->bind('evenement_detail');
 
 ///////////////////////////////LIVRES//////////////////////////////////////////

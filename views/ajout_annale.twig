@@ -8,7 +8,7 @@
     <div class="container">
         <div class="row">
             <h2>Ajouter voter aide pour une matière</h2>
-            <form class="container" method="POST"  action="{{ path('ajout_annale') }}">
+            <form class="container" enctype="multipart/form-data" method="POST"  action="{{ path('ajout_annale') }}">
                 <br><br>
 
                 <div class="col-xs-4"><h4>La matière dans laquelle vous proposez l'annale</h4>
@@ -53,16 +53,15 @@
                             </select>
                         </h1>
                         <br>
-
-                    <h4>L'annale en .pdf ou .odt ou .doc</h4>
+                    </div>
+                    <h4>L'annale en .pdf/.odt/.doc/xls/image</h4>
                     <input type="file" name="fichier">
                     <p>
 
-                    <button type="submit" class="btn btn-success" onclick="alert('Votre annale a été ajoutée avec succès')";>Ajouter</button>
+                    <button type="submit" class="btn btn-success" onclick="alert('Votre annale a été ajoutée avec succès! Cliquez sur OK pour être redirigé vers les annales disponibles')";>Ajouter</button>
                     <br><br>
                 </div>
             </form>
-        </div>
     </div>
     </div>
 {% endblock %}

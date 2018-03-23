@@ -86,15 +86,17 @@ class EvenementDAO extends DAO
             throw new \Exception("No article matching id " . $id);
     }
 
-
     /*on rajoutera en parametre de la fonction le numero etudiant qui correpsond a la personne qui poste levenement*/
     public function ajouterEvenement(){
-
-        $dateDebut = implode('-', array_reverse(explode('/', isset($_POST['dateDebut']))));
-        $dateFin = implode('-', array_reverse(explode('/', isset($_POST['dateFin']))));
-        $sql = "insert into evenement (titre,description,dateDebut,dateFin,type,image) values('" . $_POST['titre'] . "','" . $_POST['description'] . "','" . $dateDebut . "','" . $dateFin . "','" . $_POST['type'] . "','" . $_POST['image'] . "')";
-        $result = $this->getDb()->query($sql);
-       return $result;
+        if (is_uploaded_file($_FILES['image']['tmp_name']) && $_FILES['image']['error']==0) {/*nom stocker sur le serveur*/
+            $path = 'web/images/' . $_FILES['image']['name'];/*chemin pour stocker l'image avec son nom d'origine depuis la machine du client*/
+            $image=$_FILES['image']['name'];/*recupere le nom de l'image depuis l'upload du client*/
+            if (!file_exists($path)) {
+                $sql = "insert into evenement (titre,description,lieu,dateDebut,dateFin,type,image) values('" . $_POST['titre'] . "','" . $_POST['description'] . "','" . $_POST['lieu'] . "','" . $_POST['dateDebut'] . "','" . $_POST['dateFin'] . "','" . $_POST['type'] . "','" . $image . "')";
+                $this->getDb()->query($sql);
+                move_uploaded_file($_FILES['image']['tmp_name'], $path);
+            }
+        }
     }
 
 

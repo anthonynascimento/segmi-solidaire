@@ -8,21 +8,21 @@
    <br>
     <div class="wrapper style1">
 
-        <section id="features" class="container special">
+        <section id="features" class="container special ">
             <header>
                 <h2>Liste des evenements</h2>
             </header>
-            <div class="row">
+            <div class="row" >
                 {% if evenements['tous'] is not empty %}
 
                     {% for evenement in evenements['tous'] %}
-                    <article style="cursor: pointer;" onclick="parent.location='{{ path('evenement_detail', {'id': evenement.idEvenement }) }}'"  class="4u 12u(mobile) special">
-                        <a  class="image featured"><img src="web/images/{{ evenement.image }}" alt=""/></a>
+                    <article style="cursor: pointer; height:800px" onclick="parent.location='{{ path('evenement_detail', {'id': evenement.idEvenement }) }}'"  class="4u 12u(mobile) special">
+                        <a  class="image featured"><img style="height: 350px;" src="web/images/{{ evenement.image }}" alt=""/></a>
                         <header>
                             <h3><a>{{ evenement.titre }}</a></h3>
                         </header>
-                        <p>
-                            {{ evenement.description }}
+                        <p style="overflow: auto; max-height: 15em;">
+                            {{ evenement.description|raw }}
                         </p>
                     </article>
                 {% endfor %}

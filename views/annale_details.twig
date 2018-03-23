@@ -24,7 +24,7 @@
         <hr><br>
 
         <h4> Fichier à télécharger</h4>
-        <p>{{ annale.fichier }}</p>
+        <a href="{{ app.request.basepath }}/web/fichiers/{{annale.fichier}}" download="{{ annale.fichier }}">{{ annale.fichier }}</a>
         <hr><br>
 
         <h4>Niveau</h4>

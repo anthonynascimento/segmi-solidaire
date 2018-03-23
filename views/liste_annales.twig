@@ -10,16 +10,17 @@
         <br>
         <br>
         <br>
+        <br>
         <!-- Page Heading/Breadcrumbs -->
-        <h1 class="mt-4 mb-3">Liste des annales pour tous les niveaux
+        <h1 class="mt-4 mb-3">Liste des toutes les annales pour tous les niveaux
         </h1><br>
         <table id="example" class="row-border" cellspacing="0"  width="100%">
             <thead>
             <tr>
                 <th>Nom de l'annale</th>
-                <th>Date de publication</th>
+                <th>Année de publication</th>
                 <th>Matière</th>
-                <th>Fichier</th>
+                <th>niveau</th>
             </tr>
             </thead>
             <tbody>
@@ -29,7 +30,7 @@
                         <td style="font-family: Impact, Charcoal, sans-serif; text-align: center">{{ annales.nom }}</td>
                         <td style="overflow: auto; height: 5em">{{ annales.datePublication }}</td>
                         <td style="text-align: center">{{ annales.matiere }}</td>
-                        <td style="text-align: center">{{ annales.fichier }}</td>
+                        <td style="text-align: center">{{ annales.niveau }}</td>
                     </tr>
                 {% endfor %}
             {% else %}

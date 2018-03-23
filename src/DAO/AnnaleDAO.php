@@ -34,12 +34,23 @@ class AnnaleDAO extends DAO
             throw new \Exception("No article matching id " . $id);
     }
 
-    public function ajouterAnnale(){
 
-        $sql = "insert into annale (nom,datePublication,niveau,fichier,matiere) values('" . $_POST['nom'] . "','" . $_POST['datePublication'] . "','" . $_POST['niveau'] . "','" . $_POST['fichier'] . "','" . $_POST['matiere'] . "')";
-        $result = $this->getDb()->query($sql);
-        return $result;
+    public function ajouterAnnale(){
+        if (is_uploaded_file($_FILES['fichier']['tmp_name']) && $_FILES['fichier']['error']==0) {
+            $path = 'web/fichiers/' . $_FILES['fichier']['name'];
+            $fichier=$_FILES['fichier']['name'];
+            if (!file_exists($path)) {
+                $sql = "insert into annale (nom,datePublication,niveau,fichier,matiere) values('" . $_POST['nom'] . "','" . $_POST['datePublication'] . "','" . $_POST['niveau'] . "','" . $fichier . "','" . $_POST['matiere'] . "')";
+                $this->getDb()->query($sql);
+                move_uploaded_file($_FILES['fichier']['tmp_name'], $path);
+
+            }
+        }
     }
+
+
+
+
 
     public function findAllAnnalesL1()
     {
