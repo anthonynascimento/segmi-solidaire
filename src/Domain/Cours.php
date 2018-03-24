@@ -13,7 +13,7 @@ class Cours
     private $idEtudiant;
 
     public function getIdCours() { return $this->idCours; }
-    public function getNom() { return $this->nom; }
+    public function getNomCours() { return $this->nom; }
     public function getDescription() { return $this->description; }
     public function getNiveau() { return $this->niveau; }
     public function getSpecialite() { return $this->specialite; }
@@ -21,7 +21,7 @@ class Cours
     public function getIdEtudiant() { return $this->idEtudiant; }
 
     public function setIdCours($id) { $this->idCours = $id; }
-    public function setNom($nom) { $this->nomCours = $nom; }
+    public function setNomCours($nom) { $this->nomCours = $nom; }
     public function setDescription($description) { $this->description = $description; }
     public function setNiveau($id) { $this->niveau = $id; }
     public function setSpecialite($spe) { $this->specialite = $spe; }

@@ -24,15 +24,15 @@
             </tr>
             </thead>
             <tbody>
-         {% if cours['tous'] is not empty %}
-            {% for cours in cours['tous'] %}
-                <tr title="Visualiser le cours" style="cursor: pointer;" onmouseover="this.style.backgroundColor='#B0C4DE'" onmouseout="this.style.backgroundColor=''" onclick="parent.location='{{ path('coursDetails', {'id': cours.idCours }) }}'" style="height: 6em">
-                    <td style="font-family: Impact, Charcoal, sans-serif; text-align: center">{{ cours.nomCours }}</td>
-                    <td style="overflow: auto; height: 6em">{{ cours.description|raw }}</td>
-                    <td style="text-align: center">{{ cours.matiere }}</td>
-                    <td style="text-align: center">{{ cours.niveau }}</td>
-                </tr>
-            {% endfor %}
+            {% if cours['tous'] is not empty %}
+               {% for cours in cours['tous'] %}
+                   <tr title="Visualiser le cours" style="cursor: pointer;" onmouseover="this.style.backgroundColor='#B0C4DE'" onmouseout="this.style.backgroundColor=''" onclick="parent.location='{{ path('coursDetails', {'id': cours.idCours }) }}'" style="height: 6em">
+                       <td style="font-family: Impact, Charcoal, sans-serif; text-align: center">{{ cours.nomCours }}</td>
+                       <td style="overflow: auto; height: 6em">{{ cours.description|raw }}</td>
+                       <td style="text-align: center">{{ cours.matiere }}</td>
+                       <td style="text-align: center">{{ cours.niveau }}</td>
+                   </tr>
+               {% endfor %}
             {% else %}
                 <strong style="color: red">Il n'y a acutuellement aucun cours disponible pour tous les niveaux</strong>
             {% endif %}

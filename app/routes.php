@@ -142,8 +142,8 @@ $app->get('/annale/{id}', function ($id) use ($app) {
 
 /*liste de tous les cours*/
 $app->get('/listeCours', function () use ($app) {
-    $cours['tous'] = $app['dao.cours']->findFirstAll();
-    return $app['twig']->render('liste_cours.twig', array('cours' => $cours));
+    $coursAll['tous'] = $app['dao.cours']->findFirstAll();
+    return $app['twig']->render('liste_cours.twig', array('cours' => $coursAll));
 })->bind('cours');
 
 /*liste cours L1*/
