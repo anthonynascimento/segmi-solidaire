@@ -13,7 +13,7 @@ class Cours
     private $idEtudiant;
 
     public function getIdCours() { return $this->idCours; }
-    public function getNomCours() { return $this->nom; }
+    public function getNomCours() { return $this->nomCours; }
     public function getDescription() { return $this->description; }
     public function getNiveau() { return $this->niveau; }
     public function getSpecialite() { return $this->specialite; }

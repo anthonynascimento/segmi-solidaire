@@ -20,7 +20,7 @@
                 <th>Nom de l'annale</th>
                 <th>Année de publication</th>
                 <th>Matière</th>
-                <th>niveau</th>
+                <th>Niveau</th>
             </tr>
             </thead>
             <tbody>
@@ -29,8 +29,8 @@
                     <tr title="Visualiser le cours" style="cursor: pointer;" onmouseover="this.style.backgroundColor='#B0C4DE'" onmouseout="this.style.backgroundColor=''" onclick="parent.location='{{ path('annaleDetails', {'id': annales.idAnnale }) }}'" style="height: 6em">
                         <td style="font-family: Impact, Charcoal, sans-serif; text-align: center">{{ annales.nom }}</td>
                         <td style="overflow: auto; height: 5em">{{ annales.datePublication }}</td>
-                        <td style="text-align: center">{{ annales.matiere }}</td>
                         <td style="text-align: center">{{ annales.niveau }}</td>
+                        <td style="text-align: center">{{ annales.matiere }}</td>
                     </tr>
                 {% endfor %}
             {% else %}
