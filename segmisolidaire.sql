@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  ven. 23 mars 2018 à 22:14
+-- Généré le :  sam. 24 mars 2018 à 16:29
 -- Version du serveur :  5.7.19
 -- Version de PHP :  5.6.31
 
@@ -35,7 +35,6 @@ CREATE TABLE IF NOT EXISTS `annale` (
   `datePublication` int(4) NOT NULL,
   `fichier` text NOT NULL,
   `niveau` varchar(2) NOT NULL,
-  `specialite` varchar(100) NOT NULL,
   `matiere` varchar(64) NOT NULL,
   `idEtudiant` int(11) NOT NULL,
   PRIMARY KEY (`idAnnale`),
@@ -46,13 +45,13 @@ CREATE TABLE IF NOT EXISTS `annale` (
 -- Déchargement des données de la table `annale`
 --
 
-INSERT INTO `annale` (`idAnnale`, `nom`, `datePublication`, `fichier`, `niveau`, `specialite`, `matiere`, `idEtudiant`) VALUES
-(7, 'Le c et ces particularités', 2018, '', 'M1', '', 'C', 0),
-(6, 'tchoin', 1987, 'even1.jpg', 'L1', '', 'C', 0),
-(8, 'Le zgeg', 2017, '', 'M1', '', 'C', 0),
-(9, 'java en ballllle', 2017, '', 'L3', '', 'JAVA', 0),
-(10, 'encore un test', 2016, '', 'L2', '', 'JAVA', 0),
-(17, 'Le java et ses particularités avancées', 2015, 'CCMars2014-POOMIAGEL3.pdf', 'L3', '', 'JAVA', 0);
+INSERT INTO `annale` (`idAnnale`, `nom`, `datePublication`, `fichier`, `niveau`, `matiere`, `idEtudiant`) VALUES
+(7, 'Le c et ces particularités', 2018, '', 'M1', 'C', 0),
+(6, 'tchoin', 1987, 'even1.jpg', 'L1', 'C', 0),
+(8, 'Le zgeg', 2017, '', 'M1', 'C', 0),
+(9, 'java en ballllle', 2017, '', 'L3', 'JAVA', 0),
+(10, 'encore un test', 2016, '', 'L2', 'JAVA', 0),
+(17, 'Le java et ses particularités avancées', 2015, 'CCMars2014-POOMIAGEL3.pdf', 'L3', 'JAVA', 0);
 
 -- --------------------------------------------------------
 
@@ -78,7 +77,7 @@ CREATE TABLE IF NOT EXISTS `cours` (
 --
 
 INSERT INTO `cours` (`idCours`, `nomCours`, `description`, `niveau`, `specialite`, `matiere`, `idEtudiant`) VALUES
-(1, 'Aide pour la BD', 'test test dhsjfhdjfhjsdfhsdjkfhjksdhfdjlfhjkfhsdklmhdksmghdfkgkdfjgmdfkljsdkjgksdfg', 'L1', '', 'BD', NULL),
+(1, 'Aide pour la BD', 'test test dhsjfhdjfhjsdfhsdjkfhjksdhfdjlfhjkfhsdklmhdksmghdfkgkdfjgmdfkljsdkjgksdfg', 'L1', 'MIASHS', 'BD', 37002238),
 (5, 'aide en java pour les pros', '<p>on va t&#39;aider en lousd&eacute;</p>\r\n', 'M1', '', 'JAVA', NULL),
 (4, 'Bonjour', '<p>test</p>\r\n', 'L1', '', 'JAVA', NULL),
 (6, 'test', '<p>fdfdfd</p>\r\n', 'M1', '', 'C', NULL),
@@ -92,15 +91,22 @@ INSERT INTO `cours` (`idCours`, `nomCours`, `description`, `niveau`, `specialite
 
 DROP TABLE IF EXISTS `etudiant`;
 CREATE TABLE IF NOT EXISTS `etudiant` (
-  `idEtudiant` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `idEtudiant` bigint(20) UNSIGNED NOT NULL,
   `nom` varchar(64) NOT NULL,
   `prenom` varchar(64) NOT NULL,
   `email` text NOT NULL,
-  `telephone` int(10) NOT NULL,
+  `telephone` varchar(10) NOT NULL,
   `mdp` text NOT NULL,
   PRIMARY KEY (`idEtudiant`),
   UNIQUE KEY `idEtudiant` (`idEtudiant`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=37002239 DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `etudiant`
+--
+
+INSERT INTO `etudiant` (`idEtudiant`, `nom`, `prenom`, `email`, `telephone`, `mdp`) VALUES
+(37002238, 'NASCIMENTO', 'Anthony', 'nascimento.anthony21@gmail.com', '0650481742', 'anthony');
 
 -- --------------------------------------------------------
 
