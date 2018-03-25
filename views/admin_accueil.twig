@@ -27,6 +27,7 @@
                             <table width="100%" class="table table-striped table-bordered table-hover" id="example">
                                 <thead>
                                 <tr>
+                                    <th>Pseudo</th>
                                     <th>Nom de l'utilisateur</th>
                                     <th>Prénom de l'utilisateur</th>
                                     <th style="width: 30%">Email</th>
@@ -37,21 +38,17 @@
                                 {% if etudiants['tous'] is not empty %}
                                     {% for etudiants in etudiants['tous'] %}
                                         <tr style="" onclick="parent.location=''" style="height: 6em">
+                                            <td style="">{{ etudiants.username }}</td>
                                             <td style="">{{ etudiants.nom }}</td>
                                             <td style="">{{ etudiants.prenom }}</td>
                                             <td ><div style="overflow: auto; height: 6em">{{ etudiants.email }}</div></td>
                                             <td>0{{ etudiants.telephone }}</td>
                                             <th class="">
-
-                                                <a title="Visualiser l'etudiant" class="btn btn-success" href="#">
-                                                    <i class="glyphicon glyphicon-zoom-in icon-white"></i>
-                                                    View
-                                                </a>
-                                                <a title="Modifier l'etudiant" class="btn btn-info" href="#">
+                                                <a style="width: 90px" title="Modifier infos étudiant" class="btn btn-info" href="{{ path('modifierEtudiant', {'id': etudiants.idEtudiant }) }}">
                                                     <i class="glyphicon glyphicon-edit icon-white"></i>
                                                     Edit
                                                 </a>
-                                                <a title="Supprimer l'etudiant" class="btn btn-danger" href="{{ path('supprimerEtudiant', {'id': etudiants.idEtudiant }) }}">
+                                                <a style="width: 90px" title="Supprimer l'étudiant" class="btn btn-danger" href="{{ path('supprimerEtudiant', {'id': etudiants.idEtudiant }) }}">
                                                     <i class="glyphicon glyphicon-trash icon-white"></i>
                                                     Delete
                                                 </a>

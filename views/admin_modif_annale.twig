@@ -2,13 +2,13 @@
 
 {% set menu_selected = 'home' %}
 
-{% block title %}accueil{% endblock %}
+{% block title %}administrateur{% endblock %}
 
 {% block content %}
     <div class="container">
         <div class="row">
-            <h2>Ajouter d'une annale</h2>
-            <form class="container" enctype="multipart/form-data" method="POST"  action="{{ path('ajout_annale') }}">
+            <h2>Modifier l'annale</h2>
+            <form class="container" enctype="multipart/form-data" method="POST"  action="{{ path('modif_Annale', {'id': annale.idAnnale}) }}">
                 <br><br>
 
                 <div class="col-xs-4"><h4>La matière dans laquelle vous proposez l'annale</h4>
@@ -16,7 +16,7 @@
 
                     <h4>Nom de l'annale</h4>
                     <p>
-                        <input type="text" placeholder="Nom de l'annale ex: titre" class="form-control" value="" name="nom" required>
+                        <input type="text" placeholder="Nom de l'annale ex: titre" class="form-control" value="{{ annale.nom }}" name="nom" required>
                     </p>
 
 
@@ -24,7 +24,7 @@
 
                     <h4>Année de publication</h4>
                     <p>
-                        <input type="text" placeholder="YYYY" maxlength="4" class="form-control" value="" name="datePublication" required>
+                        <input type="text" placeholder="YYYY" maxlength="4" class="form-control" value="{{ annale.datePublication }}" name="datePublication" required>
                     </p>
 
                     <br>
@@ -42,6 +42,7 @@
                                 <option value="M1">M1</option>
                                 <option value="M2">M2</option>
                             </select>
+                            <p>Niveau initial: {{ annale.niveau }}</p>
                         </h1>
                         <br>
                     </div>
@@ -94,18 +95,20 @@
                             </optgroup>
 
                         </select>
+                        <p>Matière initiale: {{ annale.matiere }}</p>
                     </h1>
                     <br>
 
                     <h4>L'annale en .pdf/.odt/.doc/xls/image</h4>
                     <input type="file" name="fichier">
+                    <p>Fichier initial: {{ annale.fichier }}</p>
                     <p>
 
-                    <button type="submit" class="btn btn-success" onclick="alert('Votre annale a été ajoutée avec succès! Cliquez sur OK pour être redirigé vers les annales disponibles')";>Ajouter</button>
-                    <br><br>
+                        <button type="submit" class="btn btn-success" onclick="alert('Annale modifée avec succès !')";>Ajouter</button>
+                        <br><br>
                 </div>
             </form>
-    </div>
+        </div>
     </div>
 
     <script type="text/javascript">

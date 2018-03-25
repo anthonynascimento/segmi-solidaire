@@ -35,6 +35,19 @@ class EvenementDAO extends DAO
         }
     }
 
+    public function modifierEvenement($id)
+    {
+        if (is_uploaded_file($_FILES['image']['tmp_name']) && $_FILES['image']['error']==0) {/*nom stocker sur le serveur*/
+            $path = 'web/images/' . $_FILES['image']['name'];/*chemin pour stocker l'image avec son nom d'origine depuis la machine du client*/
+            $image = $_FILES['image']['name'];/*recupere le nom de l'image depuis l'upload du client*/
+            if (!file_exists($path)) {
+                $sql = "UPDATE evenement SET titre='" . addslashes($_POST['titre']) . "', description='" . addslashes($_POST['description']) . "',lieu='" . addslashes($_POST['lieu']) . "',dateDebut='" . addslashes($_POST['dateDebut']) . "', dateFin='" . addslashes($_POST['dateFin']) . "',type='" . addslashes($_POST['type']) . "',image='" . $image . "' where idEvenement='" . $id . "'";
+                $this->getDb()->query($sql);
+                move_uploaded_file($_FILES['image']['tmp_name'], $path);
+            }
+        }
+    }
+
     public function findFirstAllSport()
     {
         $sql = "SELECT * FROM evenement where type='sport'";

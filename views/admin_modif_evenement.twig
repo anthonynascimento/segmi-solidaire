@@ -1,0 +1,90 @@
+{% extends "layout.twig" %}
+
+{% set menu_selected = 'home' %}
+
+{% block title %}administrateur{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <h2>Modifier l''évènement</h2>
+            <form class="container" enctype="multipart/form-data" method="POST"  action="{{ path('modif_Evenement', {'id': evenement.idEvenement}) }}">
+                <br><br>
+
+                <div class="col-xs-4"><h4>Titre de l'évènement</h4>
+                    <!-- Page Heading/Breadcrumbs -->
+                    <h1 class="mt-4 mb-3">
+
+                        <input type="text" placeholder="Titre de l'evenement" class="form-control" value="{{ evenement.titre }}" name="titre" required>
+                    </h1>
+                    <br>
+
+                    <h4>Description de ce que vous proposez</h4>
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div class="form-group row">
+                                <script type="text/javascript" src="{{ app.request.basepath }}/web/ckeditor/ckeditor.js"></script>
+                                <div class="col-sm-12">
+                                    <textarea id="editorDesc" class="form-control"  name="description" placeholder="Descrivez ici" rows="6" required>{{ evenement.description|raw }}</textarea>
+                                </div>
+                                <script type="text/javascript">
+                                    CKEDITOR.config.justifyClasses = [ 'AlignLeft', 'AlignCenter', 'AlignRight', 'AlignJustify' ];
+                                    CKEDITOR.extraPlugins='justify';
+
+                                    CKEDITOR.replace( 'editorDesc' );
+                                </script>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <br>
+
+                    <h4>Lieu</h4>
+                    <p>
+                        <input id="pac-input" type="text"  class="form-control" type="text" name="lieu"
+                               placeholder="Entrez l'adresse de l'evenement" value="{{ evenement.lieu }} "required>
+                    <div id="map"></div>
+                    </p>
+
+                    <br>
+
+
+                    <h4>Date de début de votre évènement</h4>
+                    <p><input type="date" class="form-control" value="{{ evenement.dateDebut }}"  name="dateDebut" required></p>
+                    <p>Date de début initial: {{ evenement.dateDebut }}</p>
+
+                    <br>
+
+                    <h4>Date de fin de votre évènement</h4>
+                    <p><input type="date" class="form-control" value="{{ evenement.dateFin }}" name="dateFin" required></p>
+                    <p>Date de fin initial: {{ evenement.dateFin }}</p>
+
+                    <br>
+
+                    <h4>Type d'évènement</h4>
+                    <p>Veuillez choisir le type d'évènement</p>
+                    <select name="type" value="" class="selectpicker" data-style="btn-primary"  required>
+                        <option value="soirée" selected>Soirée</option>
+                        <option value="sport">Sport</option>
+                        <option value="conférence">Conférence</option>
+                    </select>
+                    <p>Type initial: {{ evenement.type }}</p>
+
+                    <br>
+
+
+
+                    <h4>Image illustant l'évènement</h4>
+                    <input type="file" name="image" />
+                    <p>
+                    Type initial: {{ evenement.image }}
+                    </p>
+
+                        <button type="submit" class="btn btn-success" onclick="alert('Evenement modifié avec succès !')";>Modifier</button>
+                        <br><br>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

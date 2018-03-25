@@ -25,7 +25,7 @@ class EtudiantDAO extends DAO
 
     public function find($id)
     {
-        $sql = "select * from etudiant where numEtu=?";
+        $sql = "select * from etudiant where idEtudiant=?";
         $row = $this->getDb()->fetchAssoc($sql, array($id));
 
         if ($row)
@@ -48,6 +48,11 @@ class EtudiantDAO extends DAO
         }
     }
 
+    public function modifierEtudiant($id)
+    {
+        $sql = "UPDATE etudiant SET username='" . addslashes($_POST['username']) . "', nom='" . addslashes($_POST['nom']) . "',prenom='" . addslashes($_POST['prenom']) . "',email='" . addslashes($_POST['email']) . "',telephone='" . addslashes($_POST['telephone']) . "' where idEtudiant='" . $id . "'";
+        $this->getDb()->query($sql);
+    }
 
     protected function buildDomainObject($row)
     {

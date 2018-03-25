@@ -119,6 +119,9 @@
             <li><a href="{{ path('login') }}">Connexion</a></li>
             <li><a href="{{ path('inscription') }}">Inscription</a></li>
 
+            <!--si admin connecté -->
+            <li><a href="{{ path('gestion_admin_accueil') }}">Gestion</a></li>
+
         </ul>
         <img id="logo" style="height: 80px;" src="{{ app.request.basepath }}/web/images/logo.png">
 

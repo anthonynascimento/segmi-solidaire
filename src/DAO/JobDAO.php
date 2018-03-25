@@ -55,6 +55,12 @@ class JobDAO extends DAO
         }
     }
 
+    public function modifierJob($id)
+    {
+        $sql = "UPDATE job SET titre='" . addslashes($_POST['titre']) . "', description='" . addslashes($_POST['description']) . "',categorie='" . addslashes($_POST['categorie']) . "' where idJob='" . $id . "'";
+        $this->getDb()->query($sql);
+    }
+
     protected function buildDomainObject($row)
     {
         $job = new Job();

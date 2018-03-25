@@ -122,6 +122,11 @@ class CoursDAO extends DAO
         }
     }
 
+    public function modifierCours($id)
+    {
+        $sql = "UPDATE cours SET nomCours='" . addslashes($_POST['nomCours']) . "', description='" . addslashes($_POST['description']) . "',niveau='" . addslashes($_POST['niveau']) . "',matiere='" . addslashes($_POST['matiere']) . "' where idCours='" . $id . "'";
+        $this->getDb()->query($sql);
+    }
 
     protected function buildDomainObject($row)
     {

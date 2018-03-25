@@ -48,6 +48,19 @@ class AnnaleDAO extends DAO
         }
     }
 
+    public function modifierAnnale($id){
+        if (is_uploaded_file($_FILES['fichier']['tmp_name']) && $_FILES['fichier']['error']==0) {
+            $path = 'web/fichiers/' . $_FILES['fichier']['name'];
+            $fichier=$_FILES['fichier']['name'];
+            if (!file_exists($path)) {
+                $sql = "UPDATE annale SET nom='" . addslashes($_POST['nom']) . "', datePublication='" . addslashes($_POST['datePublication']) . "',fichier='" . $fichier . "',niveau='" . addslashes($_POST['niveau']) . "', matiere='" . addslashes($_POST['matiere']) . "' where idAnnale='" . $id . "'";
+                $this->getDb()->query($sql);
+                move_uploaded_file($_FILES['fichier']['tmp_name'], $path);
+
+            }
+        }
+    }
+
 
 
 

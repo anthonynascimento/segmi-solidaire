@@ -55,6 +55,12 @@ class LivreDAO extends DAO
         }
     }
 
+    public function modifierLivre($id)
+    {
+        $sql = "UPDATE livre SET titre='" . addslashes($_POST['titre']) . "', auteur='" . addslashes($_POST['auteur']) . "',prix='" . addslashes($_POST['prix']) . "',niveau='" . addslashes($_POST['niveau']) . "',matiere='" . addslashes($_POST['matiere']) . "' where idLivre='" . $id . "'";
+        $this->getDb()->query($sql);
+    }
+
 
     protected function buildDomainObject($row)
     {
