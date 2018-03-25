@@ -20,7 +20,7 @@
                 <th>Nom du cours</th>
                 <th>Description</th>
                 <th>Matière</th>
-                <th>Niveau</th>
+                <th>Formation</th>
             </tr>
             </thead>
             <tbody>
@@ -30,7 +30,7 @@
                     <td style="font-family: Impact, Charcoal, sans-serif; text-align: center">{{ cours.nomCours }}</td>
                     <td style="overflow: auto; height: 6em">{{ cours.description|raw }}</td>
                     <td style="text-align: center">{{ cours.matiere }}</td>
-                    <td style="text-align: center">{{ cours.niveau }}</td>
+                    <td style="text-align: center">{{ cours.specialite }}</td>
                 </tr>
             {% endfor %}
             {% else %}

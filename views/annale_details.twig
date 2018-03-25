@@ -17,18 +17,18 @@
         <br>
         <h4> Date de publication</h4>
         <p>{{ annale.datePublication }}</p>
-        <hr><br>
+        <br>
 
         <h4>Matière</h4>
         <p>{{ annale.matiere }}</p>
-        <hr><br>
-
-        <h4> Fichier à télécharger</h4>
-        <a href="{{ app.request.basepath }}/web/fichiers/{{annale.fichier}}" download="{{ annale.fichier }}">{{ annale.fichier }}</a>
-        <hr><br>
-
+        <br>
         <h4>Niveau</h4>
         <p>{{ annale.niveau }}</p>
+        <hr><br>
+        <h4> Fichier à télécharger</h4>
+        <a href="{{ app.request.basepath }}/web/fichiers/{{annale.fichier}}" download="{{ annale.fichier }}">{{ annale.fichier }}</a>
+        <br>
+
 
     </div>
 {% endblock %}

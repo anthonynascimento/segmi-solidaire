@@ -5,7 +5,6 @@ use MicroCMS\Form\RechercheType;
 use MicroCMS\Form\AddType;
 use MicroCMS\Form\ContactType;
 use MicroCMS\Domain\Evenement;
-use MicroCMS\Domain\Soldat;
 
 //  Appel des fonctions buildInsert et buildRequest
 require_once "function.php";
