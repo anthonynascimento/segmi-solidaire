@@ -99,10 +99,11 @@ class CoursDAO extends DAO
             throw new \Exception("No article matching id " . $id);
     }
 
+
     /*en parametre il faudra le num etudiant*/
     public function ajouterAideCours(){
-
-        $sql = "insert into cours (nomCours,description,niveau,matiere) values('" . $_POST['nomCours'] . "','" . $_POST['description'] . "','" . $_POST['niveau'] . "','" . $_POST['matiere'] . "')";
+        $matiere=$_POST['matiere'];
+        $sql = "insert into cours (nomCours,description,niveau,matiere) values('" . $_POST['nomCours'] . "','" . $_POST['description'] . "','" . $_POST['niveau'] . "','" . $matiere . "')";
         $result = $this->getDb()->query($sql);
         return $result;
     }
@@ -114,10 +115,8 @@ class CoursDAO extends DAO
         $cours->setIdCours($row['idCours']);
         $cours->setNomCours($row['nomCours']);
         $cours->setDescription($row['description']);
-        $cours->setNiveau($row['niveau']);
-        $cours->setSpecialite($row['specialite']);
         $cours->setMatiere($row['matiere']);
-        $cours->setIdEtudiant($row['idEtudiant']);
+        $cours->setNiveau($row['niveau']);
 
         return $cours;
     }

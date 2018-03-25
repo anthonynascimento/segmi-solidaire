@@ -26,7 +26,7 @@
             <tbody>
             {% if livres['tous'] is not empty %}
                 {% for livres in livres['tous'] %}
-                    <tr title="Visualiser le livre" style="cursor: pointer;" onmouseover="this.style.backgroundColor='#B0C4DE'" onmouseout="this.style.backgroundColor=''" onclick="parent.location='{{ path('livreDetails', {'id': livres.idLivre }) }}'" style="height: 6em">
+                    <tr title="Visualiser le livre" style="cursor: pointer;" onmouseover="this.style.backgroundColor='#EAE7DC'" onmouseout="this.style.backgroundColor=''" onclick="parent.location='{{ path('livreDetails', {'id': livres.idLivre }) }}'" style="height: 6em">
                         <td style="font-family: Impact, Charcoal, sans-serif; text-align: center">{{ livres.titre }}</td>
                         <td style="text-align: center; height:5em">{{ livres.auteur }}</td>
                         <td style="text-align: center">{{ livres.matiere }}</td>

@@ -9,7 +9,6 @@ class Livre
     private $auteur;
     private $prix;
     private $niveau;
-    private $specialite;
     private $matiere;
     private $idEtudiant;
 
@@ -18,7 +17,6 @@ class Livre
     public function getAuteur() { return $this->auteur; }
     public function getPrix() { return $this->prix; }
     public function getNiveau() { return $this->niveau; }
-    public function getSpecialite() { return $this->specialite; }
     public function getMatiere() { return $this->matiere; }
     public function getIdEtudiant() { return $this->idEtudiant; }
 
@@ -27,7 +25,6 @@ class Livre
     public function setAuteur($auteur) { $this->auteur = $auteur; }
     public function setPrix($prix) { $this->prix = $prix; }
     public function setNiveau($niveau) { $this->niveau = $niveau; }
-    public function setSpecialite($spe) { $this->specialite = $spe; }
     public function setMatiere($matiere) { $this->matiere = $matiere; }
     public function setIdEtudiant($etudiant) { $this->idEtudiant = $etudiant; }
 

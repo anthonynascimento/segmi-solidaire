@@ -127,7 +127,6 @@ class AnnaleDAO extends DAO
         $annale->setDatePublication($row['datePublication']);
         $annale->setFichier($row['fichier']);
         $annale->setNiveau($row['niveau']);
-        $annale->setSpecialite($row['specialite']);
         $annale->setMatiere($row['matiere']);
         $annale->setIdEtudiant($row['idEtudiant']);
 

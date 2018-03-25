@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  ven. 23 mars 2018 à 22:14
+-- Généré le :  Dim 25 mars 2018 à 00:20
 -- Version du serveur :  5.7.19
--- Version de PHP :  5.6.31
+-- Version de PHP :  7.0.23
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -35,24 +35,25 @@ CREATE TABLE IF NOT EXISTS `annale` (
   `datePublication` int(4) NOT NULL,
   `fichier` text NOT NULL,
   `niveau` varchar(2) NOT NULL,
-  `specialite` varchar(100) NOT NULL,
   `matiere` varchar(64) NOT NULL,
-  `idEtudiant` int(11) NOT NULL,
+  `idEtudiant` int(11) DEFAULT NULL,
   PRIMARY KEY (`idAnnale`),
   UNIQUE KEY `idAnnale` (`idAnnale`)
-) ENGINE=MyISAM AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `annale`
 --
 
-INSERT INTO `annale` (`idAnnale`, `nom`, `datePublication`, `fichier`, `niveau`, `specialite`, `matiere`, `idEtudiant`) VALUES
-(7, 'Le c et ces particularités', 2018, '', 'M1', '', 'C', 0),
-(6, 'tchoin', 1987, 'even1.jpg', 'L1', '', 'C', 0),
-(8, 'Le zgeg', 2017, '', 'M1', '', 'C', 0),
-(9, 'java en ballllle', 2017, '', 'L3', '', 'JAVA', 0),
-(10, 'encore un test', 2016, '', 'L2', '', 'JAVA', 0),
-(17, 'Le java et ses particularités avancées', 2015, 'CCMars2014-POOMIAGEL3.pdf', 'L3', '', 'JAVA', 0);
+INSERT INTO `annale` (`idAnnale`, `nom`, `datePublication`, `fichier`, `niveau`, `matiere`, `idEtudiant`) VALUES
+(7, 'Le c et ces particularités', 2018, '', 'M1', 'C', 0),
+(6, 'tchoin', 1987, 'even1.jpg', 'L1', 'C', 0),
+(8, 'Le zgeg', 2017, '', 'M1', 'C', 0),
+(9, 'java en ballllle', 2017, '', 'L3', 'JAVA', 0),
+(10, 'encore un test', 2016, '', 'L2', 'JAVA', 0),
+(17, 'Le java et ses particularités avancées', 2015, 'CCMars2014-POOMIAGEL3.pdf', 'L3', 'JAVA', 0),
+(18, 'BD et les triggers ', 2011, 'CTDec2014-POOMIAGEL3-COR.pdf', 'M2', 'BD', NULL),
+(19, 'QQQQQQQQQQQQQQ', 2015, 'logo.png', 'M1', 'M1: MBFA', NULL);
 
 -- --------------------------------------------------------
 
@@ -66,23 +67,31 @@ CREATE TABLE IF NOT EXISTS `cours` (
   `nomCours` varchar(64) NOT NULL,
   `description` text NOT NULL,
   `niveau` varchar(2) NOT NULL,
-  `specialite` varchar(100) NOT NULL,
-  `matiere` varchar(64) NOT NULL,
+  `matiere` varchar(100) NOT NULL,
   `idEtudiant` int(11) DEFAULT NULL,
   PRIMARY KEY (`idCours`),
   UNIQUE KEY `idCours` (`idCours`)
-) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `cours`
 --
 
-INSERT INTO `cours` (`idCours`, `nomCours`, `description`, `niveau`, `specialite`, `matiere`, `idEtudiant`) VALUES
-(1, 'Aide pour la BD', 'test test dhsjfhdjfhjsdfhsdjkfhjksdhfdjlfhjkfhsdklmhdksmghdfkgkdfjgmdfkljsdkjgksdfg', 'L1', '', 'BD', NULL),
-(5, 'aide en java pour les pros', '<p>on va t&#39;aider en lousd&eacute;</p>\r\n', 'M1', '', 'JAVA', NULL),
-(4, 'Bonjour', '<p>test</p>\r\n', 'L1', '', 'JAVA', NULL),
-(6, 'test', '<p>fdfdfd</p>\r\n', 'M1', '', 'C', NULL),
-(7, 'testets', '<p>fdfdfsdfd</p>\r\n', 'L1', '', 'JAVA', NULL);
+INSERT INTO `cours` (`idCours`, `nomCours`, `description`, `niveau`, `matiere`, `idEtudiant`) VALUES
+(1, 'Aide pour la BD', 'test test dhsjfhdjfhjsdfhsdjkfhjksdhfdjlfhjkfhsdklmhdksmghdfkgkdfjgmdfkljsdkjgksdfg', 'L1', 'BD', NULL),
+(5, 'aide en java pour les pros', '<p>on va t&#39;aider en lousd&eacute;</p>\r\n', 'M1', 'JAVA', NULL),
+(4, 'Bonjour', '<p>test</p>\r\n', 'L1', 'JAVA', NULL),
+(6, 'test', '<p>fdfdfd</p>\r\n', 'M1', 'C', NULL),
+(7, 'testets', '<p>fdfdfsdfd</p>\r\n', 'L1', 'JAVA', NULL),
+(8, 'specialite test', '<p>dfhgdfgdfgj!kgjmdfklgjdfklgjdfklgj gi sdg</p>\r\n\r\n<p>gksdigsdfigujpsdfgosdfg</p>\r\n\r\n<p>$qsgopsdfjpgosdfg</p>\r\n', 'L2', 'JAVA', NULL),
+(9, 'CECI EST UN TEST', '<p>go&ugrave;fjkgjdfklgjfklgdfg</p>\r\n', 'L2', '', NULL),
+(10, 'lmmmmmmmmmmmmm', '<p>gfffffffffffffffffffff</p>\r\n', 'L1', '1', NULL),
+(11, 'mpppppppppppppp', '<p>khhhhhhhhhhhhhhhhhh</p>\r\n', 'L1', '1', NULL),
+(12, 'hjhhhhhhhhhhhhhh', '<p>hhhhhhhhhhhhhhhhhhhh</p>\r\n', 'L1', '1', NULL),
+(13, 'fffffffffffffffffffff', '<p>fffffffffffffffffffffff</p>\r\n', 'L1', '1', NULL),
+(14, 'xxxxxxxxxxxxxxxx', '<p>xxxxxxxxxxxxxxxxxxx</p>\r\n', 'L2', '1', NULL),
+(15, 'qqqqqqqqqqqqqqqqq', '<p>qqqqqqqqqqq</p>\r\n', 'L1', 'L1 UP1: App/ réussite', NULL),
+(16, 'gfggggggg', '<p>bbbbbbbbbbbbbbbbbb</p>\r\n', 'M2', 'M2: OSPS', NULL);
 
 -- --------------------------------------------------------
 
@@ -100,7 +109,14 @@ CREATE TABLE IF NOT EXISTS `etudiant` (
   `mdp` text NOT NULL,
   PRIMARY KEY (`idEtudiant`),
   UNIQUE KEY `idEtudiant` (`idEtudiant`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `etudiant`
+--
+
+INSERT INTO `etudiant` (`idEtudiant`, `nom`, `prenom`, `email`, `telephone`, `mdp`) VALUES
+(1, 'dorian', 'vieira', 'dodo@gmail.com', 677845112, 'Dy/NUsQOhCZsDtA7eQtil2rybCXrRi72G680Gh2wVbtdj0c0qtE9zXIOFwdp7yAGjigeJBnOUT5nA+wBpeFBXA==');
 
 -- --------------------------------------------------------
 
@@ -180,23 +196,25 @@ CREATE TABLE IF NOT EXISTS `livre` (
   `idLivre` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
   `titre` varchar(100) NOT NULL,
   `auteur` varchar(100) NOT NULL,
-  `prix` float NOT NULL,
+  `prix` decimal(10,2) NOT NULL,
   `niveau` varchar(2) NOT NULL,
-  `specialite` varchar(100) NOT NULL,
   `matiere` varchar(100) NOT NULL,
   `idEtudiant` int(11) DEFAULT NULL,
   PRIMARY KEY (`idLivre`),
   UNIQUE KEY `idLivre` (`idLivre`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `livre`
 --
 
-INSERT INTO `livre` (`idLivre`, `titre`, `auteur`, `prix`, `niveau`, `specialite`, `matiere`, `idEtudiant`) VALUES
-(1, 'ZEBI', 'Jules cesar', 12.2, 'M2', '', 'BD', NULL),
-(2, 'java et ses particularités en lousdé', 'Lom Hillat', 3.03, 'L3', '', 'JAVA', NULL),
-(3, 'ceci est un test', 'Zebi Ducand', 12.5, 'L3', '', 'JAVA', NULL);
+INSERT INTO `livre` (`idLivre`, `titre`, `auteur`, `prix`, `niveau`, `matiere`, `idEtudiant`) VALUES
+(1, 'ZEBI', 'Jules cesar', '12.00', 'M2', 'BD', NULL),
+(2, 'java et ses particularités en lousdé', 'Lom Hillat', '3.00', 'L3', 'JAVA', NULL),
+(3, 'ceci est un test', 'Zebi Ducand', '13.00', 'L3', 'JAVA', NULL),
+(4, 'BOnjour', 'test50', '4.00', 'L1', 'BD', NULL),
+(5, 'dfhhfghgh', 'ghfghfghfghf', '2.50', 'L1', 'BD', NULL),
+(6, 'tttttttttttttttt', 'ttttttttttttttttttt', '1.50', 'L1', 'BD', NULL);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
