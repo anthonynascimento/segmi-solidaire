@@ -10,7 +10,7 @@ class Annale
     private $fichier;
     private $niveau;
     private $matiere;
-    private $idEtudiant;
+    private $username;
 
     public function getIdAnnale() { return $this->idAnnale; }
     public function getNom() { return $this->nom; }
@@ -18,7 +18,7 @@ class Annale
     public function getFichier() { return $this->fichier; }
     public function getNiveau() { return $this->niveau; }
     public function getMatiere() { return $this->matiere; }
-    public function getIdEtudiant() { return $this->idEtudiant; }
+    public function getUsername() { return $this->username; }
 
     public function setIdAnnale($id) { $this->idAnnale = $id; }
     public function setNom($nom) { $this->nom = $nom; }
@@ -26,6 +26,6 @@ class Annale
     public function setFichier($fichier) { $this->fichier = $fichier; }
     public function setNiveau($id) { $this->niveau = $id; }
     public function setMatiere($matiere) { $this->matiere = $matiere; }
-    public function setIdEtudiant($etudiant) { $this->idEtudiant = $etudiant; }
+    public function setUsername($username) { $this->username = $username; }
 
 }

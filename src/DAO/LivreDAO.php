@@ -65,7 +65,7 @@ class LivreDAO extends DAO
         $livre->setPrix($row['prix']);
         $livre->setNiveau($row['niveau']);
         $livre->setMatiere($row['matiere']);
-        $livre->setIdEtudiant($row['idEtudiant']);
+        $livre->setUsername($row['username']);
 
         return $livre;
     }

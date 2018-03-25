@@ -10,7 +10,7 @@ class Livre
     private $prix;
     private $niveau;
     private $matiere;
-    private $idEtudiant;
+    private $username;
 
     public function getIdLivre() { return $this->idLivre; }
     public function getTitre() { return $this->titre; }
@@ -18,7 +18,7 @@ class Livre
     public function getPrix() { return $this->prix; }
     public function getNiveau() { return $this->niveau; }
     public function getMatiere() { return $this->matiere; }
-    public function getIdEtudiant() { return $this->idEtudiant; }
+    public function getUsername() { return $this->username; }
 
     public function setIdLivre($id) { $this->idLivre = $id; }
     public function setTitre($titre) { $this->titre = $titre; }
@@ -26,6 +26,6 @@ class Livre
     public function setPrix($prix) { $this->prix = $prix; }
     public function setNiveau($niveau) { $this->niveau = $niveau; }
     public function setMatiere($matiere) { $this->matiere = $matiere; }
-    public function setIdEtudiant($etudiant) { $this->idEtudiant = $etudiant; }
+    public function setUsername($username) { $this->username = $username; }
 
 }

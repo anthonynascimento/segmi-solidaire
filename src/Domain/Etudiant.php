@@ -14,7 +14,6 @@ class Etudiant
 
     public function getIdEtudiant() { return $this->idEtudiant; }
     public function getUsername() { return $this->username; }
-
     public function getNom() { return $this->nom; }
     public function getPrenom() { return $this->prenom; }
     public function getEmail() { return $this->email; }
@@ -23,7 +22,6 @@ class Etudiant
 
     public function setIdEtudiant($id) { $this->idEtudiant = $id; }
     public function setUsername($username) { $this->username = $username; }
-
     public function setNom($nom) { $this->nom = $nom; }
     public function setPrenom($prenom) { $this->prenom = $prenom; }
     public function setEmail($email) { $this->email = $email; }

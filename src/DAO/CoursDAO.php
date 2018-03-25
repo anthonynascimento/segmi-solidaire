@@ -90,7 +90,7 @@ class CoursDAO extends DAO
 
     public function find($id)
     {
-        $sql = "SELECT * from cours c left join etudiant e on c.idEtudiant=e.idEtudiant where idCours=?";
+        $sql = "SELECT * from cours where idCours=?";
         $row = $this->getDb()->fetchAssoc($sql, array($id));
 
         if ($row)
