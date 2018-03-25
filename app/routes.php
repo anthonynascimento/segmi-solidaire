@@ -31,6 +31,105 @@ $app->get('/login', function (Request $request) use ($app) {
     ));
 })->bind('login');
 
+/********
+ ****ADMIN******
+ ********/
+/*accueil admin*/
+$app->get('/admin', function () use ($app) {
+    $etudiants['tous'] = $app['dao.etudiant']->findFirstAll();
+    return $app['twig']->render('admin_accueil.twig', array('etudiants' => $etudiants));
+})->bind('gestion_admin_accueil');/*placer se bouton dans l'acceuil avec if admin is granted*/
+
+/*suppression etudiant*/
+$app->get('/admin/supprimerEtudiant/{id}', function ($id) use ($app) {
+    $etudiants['tous'] = $app['dao.etudiant']->findFirstAll();
+    $app['dao.etudiant']->supprimerEtudiant($id);
+    $delai = 2;
+    header("Refresh: $delai;url=http://localhost/segmi-solidaire/admin");
+    return $app['twig']->render('admin_accueil.twig', array('etudiants' => $etudiants));
+})->bind('supprimerEtudiant');
+
+/****Evenement*****/
+/*liste evenements admin*/
+$app->get('/admin/evenements', function () use ($app) {
+    $evenements['tous'] = $app['dao.evenement']->findFirstAll();
+    return $app['twig']->render('admin_evenements.twig', array('evenements' => $evenements));
+})->bind('gestion_admin_evenements');
+
+/*suppression evenement*/
+$app->get('/admin/supprimerEvenement/{id}', function ($id) use ($app) {
+    $evenements['tous'] = $app['dao.evenement']->findFirstAll();
+    $app['dao.evenement']->supprimerEvenement($id);
+    $delai = 2;
+    header("Refresh: $delai;url=http://localhost/segmi-solidaire/admin/evenements");
+    return $app['twig']->render('admin_evenements.twig', array('evenements' => $evenements));
+})->bind('supprimerEvenement');
+
+/****Cours*****/
+/*liste cours admin*/
+$app->get('/admin/cours', function () use ($app) {
+    $cours['tous'] = $app['dao.cours']->findFirstAll();
+    return $app['twig']->render('admin_cours.twig', array('cours' => $cours));
+})->bind('gestion_admin_cours');
+
+/*suppression cours*/
+$app->get('/admin/supprimerCours/{id}', function ($id) use ($app) {
+    $cours['tous'] = $app['dao.cours']->findFirstAll();
+    $app['dao.cours']->supprimerCours($id);
+    $delai = 2;
+    header("Refresh: $delai;url=http://localhost/segmi-solidaire/admin/cours");
+    return $app['twig']->render('admin_cours.twig', array('cours' => $cours));
+})->bind('supprimerCours');
+
+/****Annales*****/
+/*liste annales admin*/
+$app->get('/admin/annales', function () use ($app) {
+    $annales['tous'] = $app['dao.annale']->findFirstAll();
+    return $app['twig']->render('admin_annales.twig', array('annales' => $annales));
+})->bind('gestion_admin_annales');
+
+/*suppression annale*/
+$app->get('/admin/supprimerAnnale/{id}', function ($id) use ($app) {
+    $annales['tous'] = $app['dao.annale']->findFirstAll();
+    $app['dao.annale']->supprimerAnnale($id);
+    $delai = 2;
+    header("Refresh: $delai;url=http://localhost/segmi-solidaire/admin/annales");
+    return $app['twig']->render('admin_annales.twig', array('annales' => $annales));
+})->bind('supprimerAnnale');
+
+/****Jobs*****/
+/*liste jobs admin*/
+$app->get('/admin/jobs', function () use ($app) {
+    $jobs['tous'] = $app['dao.job']->findFirstAll();
+    return $app['twig']->render('admin_jobs.twig', array('jobs' => $jobs));
+})->bind('gestion_admin_jobs');
+
+/*suppression job*/
+$app->get('/admin/supprimerJob/{id}', function ($id) use ($app) {
+    $jobs['tous'] = $app['dao.job']->findFirstAll();
+    $app['dao.job']->supprimerJob($id);
+    $delai = 2;
+    header("Refresh: $delai;url=http://localhost/segmi-solidaire/admin/jobs");
+    return $app['twig']->render('admin_jobs.twig', array('jobs' => $jobs));
+})->bind('supprimerJob');
+
+/****Livres*****/
+/*liste livres à vendre admin*/
+$app->get('/admin/livres', function () use ($app) {
+    $livres['tous'] = $app['dao.livre']->findFirstAll();
+    return $app['twig']->render('admin_livres.twig', array('livres' => $livres));
+})->bind('gestion_admin_livres');
+
+/*suppression livre*/
+$app->get('/admin/supprimerLivre/{id}', function ($id) use ($app) {
+    $livres['tous'] = $app['dao.livre']->findFirstAll();
+    $app['dao.livre']->supprimerLivre($id);
+    $delai = 2;
+    header("Refresh: $delai;url=http://localhost/segmi-solidaire/admin/livres");
+    return $app['twig']->render('admin_livres.twig', array('livres' => $livres));
+})->bind('supprimerLivre');
+
+
 /***
  *** LES FORMULAIRES D'AJOUT ***
  ***/
@@ -217,7 +316,7 @@ $app->get('/listeConference', function () use ($app) {
 $app->get('/evenement/{id}', function ($id) use ($app) {
     $evenement = $app['dao.evenement']->find($id);
     return $app['twig']->render('evenement_details.twig', array('evenement' => $evenement));
-})->bind('evenement_detail');
+})->bind('evenementDetails');
 
 ///////////////////////////////LIVRES//////////////////////////////////////////
 $app->get('/livres_all', function () use ($app) {

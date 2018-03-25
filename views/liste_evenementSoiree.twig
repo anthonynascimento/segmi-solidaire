@@ -15,7 +15,7 @@
             <div class="row">
     {% if evenementsSoiree['tous'] is not empty %}
                 {% for evenementsSoiree in evenementsSoiree['tous'] %}
-                    <article style="cursor: pointer; height:800px" onclick="parent.location='{{ path('evenement_detail', {'id': evenementsSoiree.idEvenement }) }}'" class="4u 12u(mobile) special">
+                    <article style="cursor: pointer; height:800px" onclick="parent.location='{{ path('evenementDetails', {'id': evenementsSoiree.idEvenement }) }}'" class="4u 12u(mobile) special">
                         <a href="#" class="image featured"><img style="height: 350px;" src="web/images/{{ evenementsSoiree.image }}" alt=""/></a>
                         <header>
                             <h3><a href="#">{{ evenementsSoiree.titre }}</a></h3>

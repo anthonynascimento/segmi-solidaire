@@ -39,7 +39,7 @@ class InscriptionDAO extends DAO
         $recaptcha = new \ReCaptcha\ReCaptcha('6Lem9UwUAAAAAEs2q4Nt3CY7e9QmGqgid9Vy08-V');
         $resp = $recaptcha->verify($_POST['g-recaptcha-response']);
         if ($resp->isSuccess()) {
-            $row = $this->getDb()->executeQuery("insert into etudiant (nom,prenom,email,telephone,mdp) values ('" . addslashes($_POST['nom']) . "','" . addslashes($_POST['prenom']) . "','" . addslashes($_POST['email']) . "','" . addslashes($_POST['tel']) . "','" . addslashes($mdp) . "')");
+            $row = $this->getDb()->executeQuery("insert into etudiant (username,nom,prenom,email,telephone,mdp) values ('" . addslashes($_POST['username']) . "','" . addslashes($_POST['nom']) . "','" . addslashes($_POST['prenom']) . "','" . addslashes($_POST['email']) . "','" . addslashes($_POST['tel']) . "','" . addslashes($mdp) . "')");
             if ($row) {
                 echo "<br>";
                 echo "<br>";

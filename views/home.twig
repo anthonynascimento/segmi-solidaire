@@ -25,7 +25,7 @@
 
             {% if evenements['tous'] is not empty %}
                 {% for evenements in evenements['tous'] %}
-                    <article style="cursor: pointer;"onclick="parent.location='{{ path('evenement_detail', {'id': evenements.idEvenement }) }}'"  class="4u 12u(mobile) special">
+                    <article style="cursor: pointer;"onclick="parent.location='{{ path('evenementDetails', {'id': evenements.idEvenement }) }}'"  class="4u 12u(mobile) special">
                         <a  class="image featured"><img  src="web/images/{{ evenements.image }}" alt=""/></a>
                         <header>
                             <h3><a>{{ evenements.titre }}</a></h3>

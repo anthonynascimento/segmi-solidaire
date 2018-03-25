@@ -117,6 +117,19 @@ class AnnaleDAO extends DAO
         return $annale;
     }
 
+    public function supprimerAnnale($id)
+    {
+        $sql = "delete from annale where idAnnale='" . $id . "'";
+        $result = $this->getDb()->query($sql);
+        if($result) {
+            echo "<br>";
+            echo "<div class=\"container\">";
+            echo "<div class=\"alert alert-success\">";
+            echo "<strong>Annale supprimée !</strong> ";
+            echo "</div> </div> ";
+        }
+    }
+
 
 
     protected function buildDomainObject($row)

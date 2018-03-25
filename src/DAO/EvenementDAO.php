@@ -22,6 +22,19 @@ class EvenementDAO extends DAO
         return $evenement;
     }
 
+    public function supprimerEvenement($id)
+    {
+        $sql = "delete from evenement where idEvenement='" . $id . "'";
+        $result = $this->getDb()->query($sql);
+        if($result) {
+            echo "<br>";
+            echo "<div class=\"container\">";
+            echo "<div class=\"alert alert-success\">";
+            echo "<strong>Evenement supprimé !</strong> ";
+            echo "</div> </div> ";
+        }
+    }
+
     public function findFirstAllSport()
     {
         $sql = "SELECT * FROM evenement where type='sport'";

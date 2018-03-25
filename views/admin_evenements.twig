@@ -1,0 +1,83 @@
+{% extends "administration_layout.twig" %}
+
+{% set menu_selected = 'home' %}
+
+{% block title %}Admin{% endblock %}
+
+{% block content %}
+
+
+    <!-- /.row -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">Liste des évènements disponibles</h1>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <table width="100%" class="table table-striped table-bordered table-hover" id="example">
+                                <thead>
+                                <tr>
+                                    <th>Titre de l'évènement</th>
+                                    <th>Description</th>
+                                    <th style="">Date de debut</th>
+                                    <th style="">Date de fin</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% if evenements['tous'] is not empty %}
+                                    {% for evenements in evenements['tous'] %}
+                                        <tr style="" onclick="parent.location=''" style="height: 6em">
+                                            <td style="">{{ evenements.titre }}</td>
+                                            <td style="">{{ evenements.description|raw }}</td>
+                                            <td ><div style="overflow: auto; height: 6em">{{ evenements.dateDebut }}</div></td>
+                                            <td>{{ evenements.dateFin }}</td>
+                                            <th class="">
+
+                                                <a style="width: 90px" title="Visualiser l'evenement" class="btn btn-success" href="{{ path('evenementDetails', {'id': evenements.idEvenement }) }}">
+                                                    <i class="glyphicon glyphicon-zoom-in icon-white"></i>
+                                                    View
+                                                </a>
+                                                <a style="width: 90px" title="Modifier l'evenement" class="btn btn-info" href="#">
+                                                    <i class="glyphicon glyphicon-edit icon-white"></i>
+                                                    Edit
+                                                </a>
+                                                <a style="width: 90px" title="Supprimer l'evenement" class="btn btn-danger" href="{{ path('supprimerEvenement', {'id': evenements.idEvenement }) }}">
+                                                    <i class="glyphicon glyphicon-trash icon-white"></i>
+                                                    Delete
+                                                </a>
+                                            </th>
+                                        </tr>
+
+                                    {% endfor %}
+
+                                {% else %}
+                                    <strong style="color: red">Aucun évènement </strong>
+                                {% endif %}
+                                </tbody>
+                            </table>
+                            <!-- /.table-responsive -->
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.col-lg-8 -->
+
+        <!-- /.col-lg-4 -->
+    </div>
+    <!-- /.row -->
+{% endblock %}

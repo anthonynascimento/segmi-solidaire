@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  Dim 25 mars 2018 à 00:20
+-- Généré le :  Dim 25 mars 2018 à 15:00
 -- Version du serveur :  5.7.19
 -- Version de PHP :  7.0.23
 
@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS `annale` (
   `fichier` text NOT NULL,
   `niveau` varchar(2) NOT NULL,
   `matiere` varchar(64) NOT NULL,
-  `idEtudiant` int(11) DEFAULT NULL,
+  `username` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`idAnnale`),
   UNIQUE KEY `idAnnale` (`idAnnale`)
 ) ENGINE=MyISAM AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
@@ -45,13 +45,12 @@ CREATE TABLE IF NOT EXISTS `annale` (
 -- Déchargement des données de la table `annale`
 --
 
-INSERT INTO `annale` (`idAnnale`, `nom`, `datePublication`, `fichier`, `niveau`, `matiere`, `idEtudiant`) VALUES
-(7, 'Le c et ces particularités', 2018, '', 'M1', 'C', 0),
-(6, 'tchoin', 1987, 'even1.jpg', 'L1', 'C', 0),
-(8, 'Le zgeg', 2017, '', 'M1', 'C', 0),
-(9, 'java en ballllle', 2017, '', 'L3', 'JAVA', 0),
-(10, 'encore un test', 2016, '', 'L2', 'JAVA', 0),
-(17, 'Le java et ses particularités avancées', 2015, 'CCMars2014-POOMIAGEL3.pdf', 'L3', 'JAVA', 0),
+INSERT INTO `annale` (`idAnnale`, `nom`, `datePublication`, `fichier`, `niveau`, `matiere`, `username`) VALUES
+(7, 'Le c et ces particularités', 2018, '', 'M1', 'C', '0'),
+(6, 'tchoin', 1987, 'even1.jpg', 'L1', 'C', '0'),
+(8, 'Le zgeg', 2017, '', 'M1', 'C', '0'),
+(10, 'encore un test', 2016, '', 'L2', 'JAVA', '0'),
+(17, 'Le java et ses particularités avancées', 2015, 'CCMars2014-POOMIAGEL3.pdf', 'L3', 'JAVA', '0'),
 (18, 'BD et les triggers ', 2011, 'CTDec2014-POOMIAGEL3-COR.pdf', 'M2', 'BD', NULL),
 (19, 'QQQQQQQQQQQQQQ', 2015, 'logo.png', 'M1', 'M1: MBFA', NULL);
 
@@ -68,7 +67,7 @@ CREATE TABLE IF NOT EXISTS `cours` (
   `description` text NOT NULL,
   `niveau` varchar(2) NOT NULL,
   `matiere` varchar(100) NOT NULL,
-  `idEtudiant` int(11) DEFAULT NULL,
+  `username` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`idCours`),
   UNIQUE KEY `idCours` (`idCours`)
 ) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
@@ -77,12 +76,11 @@ CREATE TABLE IF NOT EXISTS `cours` (
 -- Déchargement des données de la table `cours`
 --
 
-INSERT INTO `cours` (`idCours`, `nomCours`, `description`, `niveau`, `matiere`, `idEtudiant`) VALUES
+INSERT INTO `cours` (`idCours`, `nomCours`, `description`, `niveau`, `matiere`, `username`) VALUES
 (1, 'Aide pour la BD', 'test test dhsjfhdjfhjsdfhsdjkfhjksdhfdjlfhjkfhsdklmhdksmghdfkgkdfjgmdfkljsdkjgksdfg', 'L1', 'BD', NULL),
 (5, 'aide en java pour les pros', '<p>on va t&#39;aider en lousd&eacute;</p>\r\n', 'M1', 'JAVA', NULL),
 (4, 'Bonjour', '<p>test</p>\r\n', 'L1', 'JAVA', NULL),
 (6, 'test', '<p>fdfdfd</p>\r\n', 'M1', 'C', NULL),
-(7, 'testets', '<p>fdfdfsdfd</p>\r\n', 'L1', 'JAVA', NULL),
 (8, 'specialite test', '<p>dfhgdfgdfgj!kgjmdfklgjdfklgjdfklgj gi sdg</p>\r\n\r\n<p>gksdigsdfigujpsdfgosdfg</p>\r\n\r\n<p>$qsgopsdfjpgosdfg</p>\r\n', 'L2', 'JAVA', NULL),
 (9, 'CECI EST UN TEST', '<p>go&ugrave;fjkgjdfklgjfklgdfg</p>\r\n', 'L2', '', NULL),
 (10, 'lmmmmmmmmmmmmm', '<p>gfffffffffffffffffffff</p>\r\n', 'L1', '1', NULL),
@@ -102,21 +100,24 @@ INSERT INTO `cours` (`idCours`, `nomCours`, `description`, `niveau`, `matiere`, 
 DROP TABLE IF EXISTS `etudiant`;
 CREATE TABLE IF NOT EXISTS `etudiant` (
   `idEtudiant` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `username` varchar(50) NOT NULL,
   `nom` varchar(64) NOT NULL,
   `prenom` varchar(64) NOT NULL,
   `email` text NOT NULL,
   `telephone` int(10) NOT NULL,
   `mdp` text NOT NULL,
   PRIMARY KEY (`idEtudiant`),
-  UNIQUE KEY `idEtudiant` (`idEtudiant`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+  UNIQUE KEY `idEtudiant` (`idEtudiant`),
+  UNIQUE KEY `username` (`username`)
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `etudiant`
 --
 
-INSERT INTO `etudiant` (`idEtudiant`, `nom`, `prenom`, `email`, `telephone`, `mdp`) VALUES
-(1, 'dorian', 'vieira', 'dodo@gmail.com', 677845112, 'Dy/NUsQOhCZsDtA7eQtil2rybCXrRi72G680Gh2wVbtdj0c0qtE9zXIOFwdp7yAGjigeJBnOUT5nA+wBpeFBXA==');
+INSERT INTO `etudiant` (`idEtudiant`, `username`, `nom`, `prenom`, `email`, `telephone`, `mdp`) VALUES
+(1, '', 'dorian', 'vieira', 'dodo@gmail.com', 677845112, 'Dy/NUsQOhCZsDtA7eQtil2rybCXrRi72G680Gh2wVbtdj0c0qtE9zXIOFwdp7yAGjigeJBnOUT5nA+wBpeFBXA=='),
+(5, 'pseudotest', 'henry', 'jack', 'jackh@gmail.com', 647877878, 'p+c207X6Onpv/NW823IU/MGiluOEIA2VyrDYaaJD6oyD4IQN2/sxsH1MNKwDEJNCKwRdto5mQBQiqG5TmfivDw==');
 
 -- --------------------------------------------------------
 
@@ -134,7 +135,7 @@ CREATE TABLE IF NOT EXISTS `evenement` (
   `dateFin` date NOT NULL,
   `type` varchar(64) NOT NULL,
   `image` text NOT NULL,
-  `idEtudiant` int(11) DEFAULT NULL,
+  `username` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`idEvenement`),
   UNIQUE KEY `idEvenement` (`idEvenement`)
 ) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
@@ -143,7 +144,7 @@ CREATE TABLE IF NOT EXISTS `evenement` (
 -- Déchargement des données de la table `evenement`
 --
 
-INSERT INTO `evenement` (`idEvenement`, `titre`, `description`, `lieu`, `dateDebut`, `dateFin`, `type`, `image`, `idEtudiant`) VALUES
+INSERT INTO `evenement` (`idEvenement`, `titre`, `description`, `lieu`, `dateDebut`, `dateFin`, `type`, `image`, `username`) VALUES
 (1, 'Safari dans le desert', 'Dubai Le safari dans le désert est une activité incontournable à Dubaï. Vous allez vivre une expérience palpitante dans les dunes de sable du désert d’Arabie. Profitez d’un excellent dîner-barbecue en admirant un spectacle de danse orientale dans un campement situé au cœur du désert, juste en dehors de la ville moderne de Dubaï.', '', '2018-02-13', '2018-02-14', 'soirée', 'even1.jpg', NULL),
 (2, 'Match PSG-REAL', 'Le meilleur match attendu', '', '2018-02-28', '2018-02-28', 'sport', 'foot.jpg', NULL),
 (3, 'Conférence du PDG d\'Apple', 'Presentation de l\'iphone X', '', '2018-02-28', '2018-03-22', 'conférence', 'conf.jpg', NULL),
@@ -153,8 +154,7 @@ INSERT INTO `evenement` (`idEvenement`, `titre`, `description`, `lieu`, `dateDeb
 (8, 'Choc des héros L\'angleterre ', '«Le Canada et les États-Unis ont une relation commerciale équilibrée et mutuellement bénéfique», a-t-il insisté auprès de l\'AFP.\r\n\r\nDu reste, le cabinet de Justin Trudeau a refusé de commenter les propos que M. Trump auraient tenus mercredi soir.', '', '2018-03-16', '2018-04-20', 'sport', 'even5.jpg', NULL),
 (9, 'Sortie entre poto', '<p><strong>Vous aure pour occasion de :</strong></p>\r\n\r\n<ul>\r\n	<li>Traversez un lac rude</li>\r\n	<li>Avoir de bons amis</li>\r\n</ul>\r\n\r\n<ol>\r\n	<li>De faire du kayak</li>\r\n</ol>\r\n', '', '2008-02-27', '2022-08-28', 'soirée', 'even2.jpg', NULL),
 (10, 'Le feu mec ', '<p><strong>On va tester tous &ccedil;a&nbsp;</strong></p>\r\n\r\n<p><em><s>ouaiisss</s></em></p>\r\n', '', '2018-03-01', '2018-06-04', 'sport', 'even2.jpg', NULL),
-(11, 'test test', '<p>saluttttttttttttttt</p>\r\n', '', '2018-01-01', '2019-01-01', 'conférence', 'even2.jpg', NULL),
-(13, 'test 2.0', '<p>fhdjkhlfksjdfhsdjkhsdkhfjkhqjkhfsdjhfqsdjhfjkqhdfjkhqshfmquiofhjsdhfjklqshfdfhqsdkfhmqsdkfjqskfs</p>\r\n', '214 avenue salam', '2018-01-01', '2018-01-01', 'sport', '3-13-14 Miami Skyline.jpg', NULL);
+(11, 'test test', '<p>saluttttttttttttttt</p>\r\n', '', '2018-01-01', '2019-01-01', 'conférence', 'even2.jpg', NULL);
 
 -- --------------------------------------------------------
 
@@ -168,7 +168,7 @@ CREATE TABLE IF NOT EXISTS `job` (
   `titre` text NOT NULL,
   `description` text NOT NULL,
   `categorie` varchar(64) NOT NULL,
-  `idEtudiant` int(11) DEFAULT NULL,
+  `username` int(50) DEFAULT NULL,
   PRIMARY KEY (`idJob`),
   UNIQUE KEY `idJob` (`idJob`)
 ) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
@@ -177,13 +177,12 @@ CREATE TABLE IF NOT EXISTS `job` (
 -- Déchargement des données de la table `job`
 --
 
-INSERT INTO `job` (`idJob`, `titre`, `description`, `categorie`, `idEtudiant`) VALUES
+INSERT INTO `job` (`idJob`, `titre`, `description`, `categorie`, `username`) VALUES
 (1, 'Film X', '<ul>\r\n	<li><strong>comme never tu vas prendre cher</strong></li>\r\n</ul>\r\n', 'babysitting', NULL),
 (2, 'mlmlm', '<ul>\r\n	<li>lmlmll</li>\r\n</ul>\r\n', 'babysitting', NULL),
 (3, 'vbcbcvbv', '<p>vbbvbvb</p>\r\n', 'vendanges', NULL),
 (4, 'Aide aux devoirs', '<ul>\r\n	<li>test&nbsp;</li>\r\n	<li>test</li>\r\n	<li>test</li>\r\n	<li><em>okkkkkk</em></li>\r\n</ul>\r\n', 'services', NULL),
-(5, 'test', '<p>gfgfgfgdfdfgdf</p>\r\n', 'vente', NULL),
-(6, 'testestg', '<p>fmdlsgjdfjgdfkmgdf</p>\r\n', 'vente', NULL);
+(5, 'test', '<p>gfgfgfgdfdfgdf</p>\r\n', 'vente', NULL);
 
 -- --------------------------------------------------------
 
@@ -199,7 +198,7 @@ CREATE TABLE IF NOT EXISTS `livre` (
   `prix` decimal(10,2) NOT NULL,
   `niveau` varchar(2) NOT NULL,
   `matiere` varchar(100) NOT NULL,
-  `idEtudiant` int(11) DEFAULT NULL,
+  `username` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`idLivre`),
   UNIQUE KEY `idLivre` (`idLivre`)
 ) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
@@ -208,13 +207,12 @@ CREATE TABLE IF NOT EXISTS `livre` (
 -- Déchargement des données de la table `livre`
 --
 
-INSERT INTO `livre` (`idLivre`, `titre`, `auteur`, `prix`, `niveau`, `matiere`, `idEtudiant`) VALUES
+INSERT INTO `livre` (`idLivre`, `titre`, `auteur`, `prix`, `niveau`, `matiere`, `username`) VALUES
 (1, 'ZEBI', 'Jules cesar', '12.00', 'M2', 'BD', NULL),
 (2, 'java et ses particularités en lousdé', 'Lom Hillat', '3.00', 'L3', 'JAVA', NULL),
 (3, 'ceci est un test', 'Zebi Ducand', '13.00', 'L3', 'JAVA', NULL),
 (4, 'BOnjour', 'test50', '4.00', 'L1', 'BD', NULL),
-(5, 'dfhhfghgh', 'ghfghfghfghf', '2.50', 'L1', 'BD', NULL),
-(6, 'tttttttttttttttt', 'ttttttttttttttttttt', '1.50', 'L1', 'BD', NULL);
+(5, 'dfhhfghgh', 'ghfghfghfghf', '2.50', 'L1', 'BD', NULL);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -109,6 +109,20 @@ class CoursDAO extends DAO
     }
 
 
+    public function supprimerCours($id)
+    {
+        $sql = "delete from cours where idCours='" . $id . "'";
+        $result = $this->getDb()->query($sql);
+        if($result) {
+            echo "<br>";
+            echo "<div class=\"container\">";
+            echo "<div class=\"alert alert-success\">";
+            echo "<strong>Cours supprimé !</strong> ";
+            echo "</div> </div> ";
+        }
+    }
+
+
     protected function buildDomainObject($row)
     {
         $cours = new Cours();

@@ -42,6 +42,19 @@ class LivreDAO extends DAO
         return $result;
     }
 
+    public function supprimerLivre($id)
+    {
+        $sql = "delete from livre where idLivre='" . $id . "'";
+        $result = $this->getDb()->query($sql);
+        if($result) {
+            echo "<br>";
+            echo "<div class=\"container\">";
+            echo "<div class=\"alert alert-success\">";
+            echo "<strong>Livre supprimé !</strong> ";
+            echo "</div> </div> ";
+        }
+    }
+
 
     protected function buildDomainObject($row)
     {
