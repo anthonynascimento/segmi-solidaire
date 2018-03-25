@@ -25,7 +25,7 @@
             <tbody>
             {% if jobs['tous'] is not empty %}
             {% for jobs in jobs['tous'] %}
-                <tr title="Visualiser le job" style="cursor: pointer;" onmouseover="this.style.backgroundColor='#B0C4DE'" onmouseout="this.style.backgroundColor=''" onclick="parent.location='{{ path('jobDetails', {'id': jobs.idJob }) }}'" style="height: 6em">
+                <tr title="Visualiser le job" style="cursor: pointer;" onmouseover="this.style.backgroundColor='#EAE7DC'" onmouseout="this.style.backgroundColor=''" onclick="parent.location='{{ path('jobDetails', {'id': jobs.idJob }) }}'" style="height: 6em">
                     <td style="font-family: Impact, Charcoal, sans-serif; text-align: center">{{ jobs.titre }}</td>
                     <td style="overflow: auto; height: 6em">{{ jobs.description|raw }}</td>
                     <td style="text-align: center">{{ jobs.categorie }}</td>

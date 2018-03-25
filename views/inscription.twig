@@ -29,29 +29,36 @@
 						</span>
 
                     <div class="wrap-input100 validate-input" data-validate="Entrez votre nom">
+                        <input  id="username"  class="input100" type="text" name="username">
+                        <span class="focus-input100" data-placeholder="Votre pseudo"></span><!--doit etre unique-->
+                        <span style="color:red" id="nom_err"></span>
+
+                    </div>
+
+                    <div class="wrap-input100 validate-input" data-validate="Entrez votre nom">
                         <input  id="nom"  class="input100" type="text" name="nom">
-                        <span class="focus-input100" data-placeholder="Nom de l'étudiant"></span>
+                        <span class="focus-input100" data-placeholder="Votre Nom"></span>
                         <span style="color:red" id="nom_err"></span>
 
                     </div>
 
                     <div class="wrap-input100 validate-input" data-validate="Entrez votre prénom">
                         <input  id="prenom"  class="input100" type="text" name="prenom">
-                        <span class="focus-input100" data-placeholder="Prénom de l'étudiant"></span>
+                        <span class="focus-input100" data-placeholder="Votre Prénom"></span>
                         <span style="color:red" id="prenom_err"></span>
 
                     </div>
 
                     <div class="wrap-input100 validate-input" data-validate="Entrez votre adresse email">
                         <input class="input100" type="text" name="email">
-                        <span class="focus-input100" data-placeholder="Email de l'étudiant"></span>
+                        <span class="focus-input100" data-placeholder="Votre Email"></span>
                         <span style="color:red" id="email_err"></span>
 
                     </div>
 
                     <div class="wrap-input100 validate-input" data-validate="Entrez votre numéro de téléphone">
-                        <input  id="tel" class="input100" type="text" name="tel">
-                        <span class="focus-input100" data-placeholder="Téléphone"></span>
+                        <input id="tel" class="input100" type="text" name="tel" maxlength="10">
+                        <span class="focus-input100" data-placeholder="Votre numéro de téléphone"></span>
                         <span style="color:red" id="tel_err"></span>
 
                     </div>

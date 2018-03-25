@@ -7,90 +7,22 @@ class Cours
     private $idCours;
     private $nomCours;
     private $description;
-    private $matiere;
     private $niveau;
+    private $matiere;
+    private $username;
 
 
-    /**
-     * @return mixed
-     */
-    public function getIdCours()
-    {
-        return $this->idCours;
-    }
+    public function getIdCours() { return $this->idCours; }
+    public function getNomCours() { return $this->nomCours; }
+    public function getDescription() { return $this->description; }
+    public function getNiveau() { return $this->niveau; }
+    public function getMatiere() { return $this->matiere; }
+    public function getUsername() { return $this->username; }
 
-    /**
-     * @param mixed $idCours
-     */
-    public function setIdCours($idCours)
-    {
-        $this->idCours = $idCours;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getNomCours()
-    {
-        return $this->nomCours;
-    }
-
-    /**
-     * @param mixed $nom
-     */
-    public function setNomCours($nomCours)
-    {
-        $this->nomCours = $nomCours;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getDescription()
-    {
-        return $this->description;
-    }
-
-    /**
-     * @param mixed $description
-     */
-    public function setDescription($description)
-    {
-        $this->description = $description;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getMatiere()
-    {
-        return $this->matiere;
-    }
-
-    /**
-     * @param mixed $idMatiere
-     */
-    public function setMatiere($matiere)
-    {
-        $this->matiere= $matiere;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getNiveau()
-    {
-        return $this->niveau;
-    }
-
-    /**
-     * @param mixed $numEtu
-     */
-    public function setNiveau($niveau)
-    {
-        $this->niveau = $niveau;
-    }
-
-
-
+    public function setIdCours($id) { $this->idCours = $id; }
+    public function setNomCours($nom) { $this->nomCours = $nom; }
+    public function setDescription($description) { $this->description = $description; }
+    public function setNiveau($id) { $this->niveau = $id; }
+    public function setMatiere($matiere) { $this->matiere = $matiere; }
+    public function setUsername($username) { $this->username = $username; }
 }

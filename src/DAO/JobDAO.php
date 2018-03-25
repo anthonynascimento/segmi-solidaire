@@ -42,19 +42,24 @@ class JobDAO extends DAO
         return $result;
     }
 
-    public function findAllJobByCat($cat) //A FINIR CAR JE SAIS PAS OU DODO A MIS LES CATEGORIES
+    public function supprimerJob($id)
     {
-        $sql = "SELECT * FROM cours c, matiere m, niveau n where c.idMatiere=m.idMatiere and m.idNiveau=n.idNiveau and n.nom='L2'";
-        $result = $this->getDb()->fetchAll($sql);
-
-        $cours = array();
-        foreach ($result as $row) {
-            $courId = $row['idCours'];
-            $cours[$courId] = $this->buildDomainObject($row);
+        $sql = "delete from job where idJob='" . $id . "'";
+        $result = $this->getDb()->query($sql);
+        if($result) {
+            echo "<br>";
+            echo "<div class=\"container\">";
+            echo "<div class=\"alert alert-success\">";
+            echo "<strong>Offre de mini-job supprimée !</strong> ";
+            echo "</div> </div> ";
         }
-        return $cours;
     }
 
+    public function modifierJob($id)
+    {
+        $sql = "UPDATE job SET titre='" . addslashes($_POST['titre']) . "', description='" . addslashes($_POST['description']) . "',categorie='" . addslashes($_POST['categorie']) . "' where idJob='" . $id . "'";
+        $this->getDb()->query($sql);
+    }
 
     protected function buildDomainObject($row)
     {

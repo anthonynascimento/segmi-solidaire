@@ -30,7 +30,7 @@
         <ul>
             <li><a href="{{ path('home') }}">Accueil</a></li>
             <li>
-              <a href="{{ path('cours') }}">Cours</a>
+              <a href="{{ path('cours') }}">Cours</a><!--tous les cours-->
               <ul>
                   <li><a href="{{ path('cours_l1') }}">Cours L1</a></li>
                   <li><a href="{{ path('cours_l2') }}">Cours L2</a></li>
@@ -41,7 +41,7 @@
               </ul>
             </li>
             <li>
-              <a href="{{ path('annales') }}">Annales</a>
+              <a href="{{ path('annales') }}">Annales</a><!--tous les cours-->
               <ul>
                   <li><a href="{{ path('annales_l1') }}">Niveau L1</a></li>
                   <li><a href="{{ path('annales_l2') }}">Niveau L2</a></li>
@@ -92,7 +92,7 @@
                 </ul>
             </li>
             <li>
-                <a href="{{ path('evenement') }}">Évènement</a>
+                <a href="{{ path('evenement') }}">Évènement</a><!--tous les evenements-->
                 <ul>
                     <li><a href="{{ path('evenementSport') }}">Sport</a></li>
                     <li><a href="{{ path('evenementSoiree') }}">Soirée</a></li>
@@ -119,6 +119,13 @@
                     </li>
                 </ul>
             <li><a href="{{ path('login') }}">Connexion</a></li>
+            <li><a href="{{ path('inscription') }}">Inscription</a></li>
+
+            <!--si admin connecté -->
+            <li><a href="{{ path('gestion_admin_accueil') }}">Gestion</a></li>
+
+
+
         </ul>
         <img id="logo" style="height: 80px;" src="{{ app.request.basepath }}/web/images/logo.png">
 

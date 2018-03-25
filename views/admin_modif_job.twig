@@ -1,0 +1,73 @@
+{% extends "layout.twig" %}
+
+{% set menu_selected = 'home' %}
+
+{% block title %}admnistrateur{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <h2>Modifier le mini-job</h2>
+            <form class="container" method="POST"  action="{{ path('modif_Job', {'id': job.idJob }) }}">
+                <br><br>
+
+                <div class="col-xs-4"><h4>Le titre du mini-job que vous proposez</h4>
+                    <!-- Page Heading/Breadcrumbs -->
+                    <h1 class="mt-4 mb-3">
+                        <input type="text" placeholder="Intitulé du job" class="form-control" value="{{ job.titre }}" name="titre" required>
+
+                    </h1>
+                    <br>
+
+                    <h4>Description de ce que vous proposez</h4>
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div class="form-group row">
+                                <script type="text/javascript" src="{{ app.request.basepath }}/web/ckeditor/ckeditor.js"></script>
+                                <div class="col-sm-12">
+                                    <textarea id="editorDesc" class="form-control" name="description" placeholder="Descrivez ici les missions" rows="6" required>{{ job.description|raw }}</textarea>
+                                </div>
+                                <script type="text/javascript">
+                                    CKEDITOR.config.justifyClasses = [ 'AlignLeft', 'AlignCenter', 'AlignRight', 'AlignJustify' ];
+                                    CKEDITOR.extraPlugins='justify';
+
+                                    CKEDITOR.replace( 'editorDesc' );
+                                </script>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <br>
+
+
+                    <p>Veuillez choisir la catégorie</p>
+                    <select name="categorie" class="form-control form-control-lg" required>
+                        <option value="babysitting">Babysitting</option>
+                        <option value="animation">Animation</option>
+                        <option value="telemarketing ">Télémarketing </option>
+                        <option value="secretariat">Secrétariat</option>
+                        <option value="vente">Vente</option>
+                        <option value="manutention">Manutention</option>
+                        <option value="cueillette">Cueillette</option>
+                        <option value="vendanges">Vendanges</option>
+                        <option value="restauration">Restauration</option>
+                        <option value="hotessariat">Hôtessariat</option>
+                        <option value="hotellerie">Hôtellerie</option>
+                        <option value="informatique">Informatique</option>
+                        <option value="services">Services</option>
+                        <option value="autre">Autre</option>
+                    </select>
+                    <p>Catégorie initiale: {{ job.categorie }}</p>
+
+
+                    <br>
+
+
+                    <button type="submit" class="btn btn-success" onclick="alert('Mini-job modifié avec succès !')";>Modifier</button>
+                    <br><br>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

@@ -13,15 +13,18 @@
                 <h2>Liste des evenements de Soirée</h2>
             </header>
             <div class="row">
+    {% if evenementsSoiree['tous'] is not empty %}
                 {% for evenementsSoiree in evenementsSoiree['tous'] %}
-                    <article onclick="parent.location='{{ path('evenement_detail', {'id': evenementsSoiree.idEvenement }) }}'" class="4u 12u(mobile) special">
-                        <a href="#" class="image featured"><img src="web/images/{{ evenementsSoiree.image }}" alt=""/></a>
+                    <article style="cursor: pointer; height:800px" onclick="parent.location='{{ path('evenementDetails', {'id': evenementsSoiree.idEvenement }) }}'" class="4u 12u(mobile) special">
+                        <a href="#" class="image featured"><img style="height: 350px;" src="web/images/{{ evenementsSoiree.image }}" alt=""/></a>
                         <header>
                             <h3><a href="#">{{ evenementsSoiree.titre }}</a></h3>
                         </header>
-                        <p>
-                            {{ evenementsSoiree.description }}
+                        <div style="overflow: auto;">
+                        <p style="max-height: 15em; overflow: auto">
+                            {{ evenementsSoiree.description|raw }}
                         </p>
+                        </div>
                         <p>
                             Début de l'évenement: {{ evenementsSoiree.dateDebut }}
                         </p>
@@ -30,6 +33,9 @@
                         </p>
                     </article>
                 {% endfor %}
+    {% else %}
+        <strong style="color: red">Il n'y a actuellement aucune soirée disponible</strong>
+    {% endif %}
             </div>
         </section>
 

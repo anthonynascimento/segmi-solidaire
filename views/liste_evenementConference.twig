@@ -13,15 +13,18 @@
                 <h2>Liste des evenements de Conférence</h2>
             </header>
             <div class="row">
+    {% if evenementsConf['tous'] is not empty %}
                 {% for evenementsConf in evenementsConf['tous'] %}
-                    <article onclick="parent.location='{{ path('evenement_detail', {'id': evenementsConf.idEvenement }) }}'" class="4u 12u(mobile) special">
-                        <a href="#" class="image featured"><img src="web/images/{{ evenementsConf.image }}" alt=""/></a>
+                    <article style="cursor: pointer; height:800px" onclick="parent.location='{{ path('evenementDetails', {'id': evenementsConf.idEvenement }) }}'" class="4u 12u(mobile) special">
+                        <a href="#" class="image featured"><img style="height: 350px;" src="web/images/{{ evenementsConf.image }}" alt=""/></a>
                         <header>
                             <h3><a href="#">{{ evenementsConf.titre }}</a></h3>
                         </header>
-                        <p>
-                            {{ evenementsConf.description }}
+                        <div style="overflow: auto;">
+                        <p style="max-height: 15em; overflow: auto">
+                            {{ evenementsConf.description|raw }}
                         </p>
+                        </div>
                         <p>
                             Début de l'évenement: {{ evenementsConf.dateDebut }}
                         </p>
@@ -30,6 +33,9 @@
                         </p>
                     </article>
                 {% endfor %}
+    {% else %}
+        <strong style="color: red">Il n'y a actuellement aucune conférence disponible</strong>
+    {% endif %}
             </div>
         </section>
 

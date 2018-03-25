@@ -25,14 +25,16 @@
 
             {% if evenements['tous'] is not empty %}
                 {% for evenements in evenements['tous'] %}
-                    <article style="cursor: pointer;"onclick="parent.location='{{ path('evenement_detail', {'id': evenements.idEvenement }) }}'"  class="4u 12u(mobile) special">
-                        <a  class="image featured"><img src="web/images/{{ evenements.image }}" alt=""/></a>
+                    <article style="cursor: pointer;"onclick="parent.location='{{ path('evenementDetails', {'id': evenements.idEvenement }) }}'"  class="4u 12u(mobile) special">
+                        <a  class="image featured"><img  src="web/images/{{ evenements.image }}" alt=""/></a>
                         <header>
                             <h3><a>{{ evenements.titre }}</a></h3>
                         </header>
+                        <div style="overflow: auto">
                         <p style="overflow: auto; max-height: 6em;">
-                            {{ evenements.description }}
+                            {{ evenements.description|raw }}
                         </p>
+                        </div>
                 </article>
                 {% endfor %}
 
@@ -130,27 +132,16 @@
                 <header>
                     <h2><a href="#">UFR SEGMI de l’Université Paris Nanterre</a></h2>
                     <p>
-                        Notre site est un site d’entraide ayant pour but de mettre en relation les étudiants de l’UFR
-                        SEGMI de l’université Paris Nanterre à travers des services scolaires et extrascolaires.
+                    Bienvenue sur SEGMI Solidaire,<br/>
+                      Un site d'entraide dédié aux étudiants de l'UFR SEGMI de l'Université Paris-Nanterre.
+    Ici vous pouvez trouver et partager livres, annales et cours mais aussi organiser des évènements ou encore déposer et chercher des annonces de mini-jobs. Bonne visite!
                     </p>
                 </header>
                 <p>
-                    Commodo id natoque malesuada sollicitudin elit suscipit. Curae suspendisse mauris posuere accumsan
-                    massa
-                    posuere lacus convallis tellus interdum. Amet nullam fringilla nibh nulla convallis ut venenatis
-                    purus
-                    sit arcu sociis. Nunc fermentum adipiscing tempor cursus nascetur adipiscing adipiscing. Primis
-                    aliquam
-                    mus lacinia lobortis phasellus suscipit. Fermentum lobortis non tristique ante proin sociis accumsan
-                    lobortis. Auctor etiam porttitor phasellus tempus cubilia ultrices tempor sagittis. Nisl fermentum
-                    consequat integer interdum integer purus sapien. Nibh eleifend nulla nascetur pharetra commodo mi
-                    augue
-                    interdum tellus. Ornare cursus augue feugiat sodales velit lorem. Semper elementum ullamcorper
-                    lacinia
-                    natoque aenean scelerisque.
+
                 </p>
                 <footer>
-                    <a href="#" class="button">Continue Reading</a>
+                    <a href="#" class="button">Voir les évènements</a>
                 </footer>
             </article>
 

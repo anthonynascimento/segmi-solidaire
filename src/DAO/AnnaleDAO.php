@@ -34,12 +34,36 @@ class AnnaleDAO extends DAO
             throw new \Exception("No article matching id " . $id);
     }
 
-    public function ajouterAnnale(){
 
-        $sql = "insert into annale (nom,datePublication,niveau,fichier,matiere) values('" . $_POST['nom'] . "','" . $_POST['datePublication'] . "','" . $_POST['niveau'] . "','" . $_POST['fichier'] . "','" . $_POST['matiere'] . "')";
-        $result = $this->getDb()->query($sql);
-        return $result;
+    public function ajouterAnnale(){
+        if (is_uploaded_file($_FILES['fichier']['tmp_name']) && $_FILES['fichier']['error']==0) {
+            $path = 'web/fichiers/' . $_FILES['fichier']['name'];
+            $fichier=$_FILES['fichier']['name'];
+            if (!file_exists($path)) {
+                $sql = "insert into annale (nom,datePublication,niveau,fichier,matiere) values('" . $_POST['nom'] . "','" . $_POST['datePublication'] . "','" . $_POST['niveau'] . "','" . $fichier . "','" . $_POST['matiere'] . "')";
+                $this->getDb()->query($sql);
+                move_uploaded_file($_FILES['fichier']['tmp_name'], $path);
+
+            }
+        }
     }
+
+    public function modifierAnnale($id){
+        if (is_uploaded_file($_FILES['fichier']['tmp_name']) && $_FILES['fichier']['error']==0) {
+            $path = 'web/fichiers/' . $_FILES['fichier']['name'];
+            $fichier=$_FILES['fichier']['name'];
+            if (!file_exists($path)) {
+                $sql = "UPDATE annale SET nom='" . addslashes($_POST['nom']) . "', datePublication='" . addslashes($_POST['datePublication']) . "',fichier='" . $fichier . "',niveau='" . addslashes($_POST['niveau']) . "', matiere='" . addslashes($_POST['matiere']) . "' where idAnnale='" . $id . "'";
+                $this->getDb()->query($sql);
+                move_uploaded_file($_FILES['fichier']['tmp_name'], $path);
+
+            }
+        }
+    }
+
+
+
+
 
     public function findAllAnnalesL1()
     {
@@ -106,6 +130,19 @@ class AnnaleDAO extends DAO
         return $annale;
     }
 
+    public function supprimerAnnale($id)
+    {
+        $sql = "delete from annale where idAnnale='" . $id . "'";
+        $result = $this->getDb()->query($sql);
+        if($result) {
+            echo "<br>";
+            echo "<div class=\"container\">";
+            echo "<div class=\"alert alert-success\">";
+            echo "<strong>Annale supprimée !</strong> ";
+            echo "</div> </div> ";
+        }
+    }
+
 
 
     protected function buildDomainObject($row)
@@ -114,9 +151,10 @@ class AnnaleDAO extends DAO
         $annale->setIdAnnale($row['idAnnale']);
         $annale->setNom($row['nom']);
         $annale->setDatePublication($row['datePublication']);
-        $annale->setNiveau($row['niveau']);
         $annale->setFichier($row['fichier']);
+        $annale->setNiveau($row['niveau']);
         $annale->setMatiere($row['matiere']);
+        $annale->setUsername($row['username']);
 
         return $annale;
     }

@@ -1,0 +1,163 @@
+{% extends "layout.twig" %}
+
+{% set menu_selected = 'home' %}
+
+{% block title %}administrateur{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <h2>Ajouter voter aide pour un cours d'une matière</h2>
+            <form class="container" method="POST"  action="{{ path('modif_Cours', {'id': cours.idCours}) }}">
+                <br><br>
+
+                <div class="col-xs-4"><h4>La matière dans laquelle vous proposez un soutien</h4>
+                    <!-- Page Heading/Breadcrumbs -->
+
+                    <h4>Intitulé du cours</h4>
+                    <p>
+                        <input type="text" placeholder="Intitulé du cours" class="form-control" value="{{ cours.nomCours }}" name="nomCours" required>
+                    </p>
+
+
+                    <br>
+
+                    <h4>Description de ce que vous proposez</h4>
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div class="form-group row">
+                                <script type="text/javascript" src="{{ app.request.basepath }}/web/ckeditor/ckeditor.js"></script>
+                                <div class="col-sm-12">
+                                    <textarea id="editorDesc" class="form-control" name="description" placeholder="Descrivez ici" rows="6" required>{{ cours.description|raw }}</textarea>
+                                </div>
+                                <script type="text/javascript">
+                                    CKEDITOR.config.justifyClasses = [ 'AlignLeft', 'AlignCenter', 'AlignRight', 'AlignJustify' ];
+                                    CKEDITOR.extraPlugins='justify';
+
+                                    CKEDITOR.replace( 'editorDesc' );
+                                </script>
+                            </div>
+                        </div>
+                    </div>
+
+                    <br>
+
+                    <h1 class="mt-4 mb-3">
+
+                        <p>Veuillez choisir le niveau du cours:</p>
+                        <select id="niveau" name="niveau" class="selectpicker" data-style="btn-primary" onchange="niveauMatiere(this)" required>
+                            <option value=""></option>
+                            <option value="L1">L1</option>
+                            <option value="L2">L2</option>
+                            <option value="L3">L3</option>
+                            <option value="M1">M1</option>
+                            <option value="M2">M2</option>
+                        </select>
+                        <p>Niveau initial: {{ cours.niveau }}</p>
+                    </h1>
+                    <br>
+
+
+
+                    <h1 class="mt-4 mb-3">
+                        <p>Veuillez choisir la matière du cours:</p>
+                        <select name="matiere" class="custom-select">
+                            <option value=""></option>
+                            <optgroup id="L1MIASHS" label="L1 MIASHS">
+                                <option id="1" value="L1 UP1: App/ réussite">L1 UP1: App/ réussite</option>
+                                <option value="L1 UP2: Ouverture">L1 UP2: Ouverture</option>
+                                <option value="L1 UP3: réussite">L1 UP3: réussite</option>
+                                <option value="L1 UP4: Langues">L1 UP4: Langues</option>
+                                <option value="L1 UP5: Droit">L1 UP5: Droit</option>
+                            </optgroup>
+                            <optgroup id="L2MIASHS" label="L2 MIASHS">
+                                <option value="L2 UP1: PG">L2 UP1: PG</option>
+                                <option value="L2 UP2: PG">L2 UP2: PG</option>
+                                <option value="L2 UP3: Langues">L2 UP3: Langues</option>
+                                <option value="L2 UP3: Droit">L2 UP3: Droit</option>
+                            </optgroup>
+                            <optgroup id="L3" label="L3">
+                                <option value="L3 UP Economie">L3 UP Economie</option>
+                                <option value="L3 UPE: Droit">L3 UPE: Droit</option>
+                                <option value="L3 MIASHS">L3 MIASHS</option>
+                                <option value="L3 UP Gestion">L3 UP Gestion</option>
+                                <option value="L3 Franco-chinois- cursus international">L3 Franco-chinois- cursus international</option>
+                            </optgroup>
+                            <optgroup id="M1" label="Master 1">
+                                <option value="M1: MBFA">M1: MBFA</option>
+                                <option value="M1: EA">M1: EA</option>
+                                <option value="M1: EET">M1: EET</option>
+                                <option value="M1: APE">M1: APE</option>
+                                <option value="M1: ECO DU DROIT">M1: ECO DU DROIT</option>
+                                <option value="M1: GESTION">M1: GESTION</option>
+                                <option value="M1: CCA">M1: CCA</option>
+                                <option value="M1: B&M">M1: B&M</option>
+                                <option value="M1:MEEF-PLC-SES">M1: MEEF-PLC-SES</option>
+                                <option value="M1:SES (SSA)">M1: SES (SSA)</option>
+                            </optgroup>
+                            <optgroup id="M2" label="Master 2">
+                                <option value="M2: ECONOMIE">M2: ECONOMIE</option>
+                                <option value="M2: GESTION">M2: GESTION</option>
+                                <option value="M2: PULV">M2: PULV</option>
+                                <option value="M2: SES-IES">M2: SES-IES</option>
+                                <option value="M2: OSPS">M2: OSPS</option>
+                            </optgroup>
+                            <optgroup label="Autre">
+                                <option value="Autre">Autre</option>
+                            </optgroup>
+
+                        </select>
+                        <p>Matière initiale: {{ cours.matiere }}</p>
+                    </h1>
+                    <br>
+
+                    <button type="submit" class="btn btn-success" onclick="alert('Cours modifié avec succès !')";>Modifier</button>
+                    <br><br>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        function niveauMatiere(elem) {
+            var niveau = document.getElementById("niveau");
+            var selectedValue = niveau.options[niveau.selectedIndex].value;
+
+            if(selectedValue === 'L1'){
+                $('#L1MIASHS').show();
+                $('#L2MIASHS').hide();
+                $('#L3').hide();
+                $('#M1').hide();
+                $('#M2').hide();
+            }
+            if(selectedValue === 'L2'){
+                $('#L1MIASHS').hide();
+                $('#L2MIASHS').show();
+                $('#L3').hide();
+                $('#M1').hide();
+                $('#M2').hide();
+            }
+            if(selectedValue === 'L3'){
+                $('#L1MIASHS').hide();
+                $('#L2MIASHS').hide();
+                $('#L3').show();
+                $('#M1').hide();
+                $('#M2').hide();
+            }
+            if(selectedValue === 'M1'){
+                $('#L1MIASHS').hide();
+                $('#L2MIASHS').hide();
+                $('#L3').hide();
+                $('#M1').show();
+                $('#M2').hide();
+            }
+            if(selectedValue === 'M2'){
+                $('#L1MIASHS').hide();
+                $('#L2MIASHS').hide();
+                $('#L3').hide();
+                $('#M1').hide();
+                $('#M2').show();
+            }
+        }
+    </script>
+{% endblock %}

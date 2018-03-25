@@ -19,20 +19,40 @@
                             <br>
                             <h4>Matière</h4>
                             <p>{{ cours.matiere }}</p>
-                            <hr><br>
+                            <br>
                             <h4>Niveau</h4>
                             <p>{{ cours.niveau }}</p>
-                            <hr><br>
+                            <br>
+                            {% if cours.specialite is not empty %}
+                            <h4>Spécialité</h4>
+                            <p>{{ cours.specialite }}</p>
+                            <br>
+                            {% endif %}
                             <div class="col-lg-5 col-lg-offset-1" style="text-align:justify;">
                                 <h4>Description</h4>
                                 <p>{{ cours.description|raw }}</p>
                             </div>
+                            {% if cours.idEtudiant is not empty %}
                             <hr><br>
                             <div class="col-lg-5 col-lg-offset-1" style="text-align:justify;">
-                                <h4>Coordonnées de celui qui propose</h4>
+                                <h4>Coordonnées de la personne qui propose :</h4>
+
+                                <h4>Nom</h4>
+                                <p>{{ cours.e.nom }}</p>
+                                <br>
+                                <h4>Prénom</h4>
+                                <p>{{ cours.prenom }}</p>
+                                <br>
+                                <h4>Email</h4>
+                                <p>{{ cours.email }}</p>
+                                <br>
+                                <h4>Téléphone</h4>
+                                <p>{{ cours.telephone }}</p>
+                                <br>
+
                                 <p>On affiche ici les coordonnées nom, prenom, tel de la personne qui a posté l'aide à ce cours</p>
                             </div>
-
+                            {% endif %}
                         </div>
                     </div>
                 </div>

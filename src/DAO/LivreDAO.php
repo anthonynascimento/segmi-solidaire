@@ -42,18 +42,25 @@ class LivreDAO extends DAO
         return $result;
     }
 
-    public function findAllLivresL2()
+    public function supprimerLivre($id)
     {
-        $sql = "SELECT * FROM livre l, niveau n where  l.idNiveau=n.idNiveau and n.nom='L2'";
-        $result = $this->getDb()->fetchAll($sql);
-
-        $livre = array();
-        foreach ($result as $row) {
-            $livId = $row['idLivre'];
-            $livre[$livId] = $this->buildDomainObject($row);
+        $sql = "delete from livre where idLivre='" . $id . "'";
+        $result = $this->getDb()->query($sql);
+        if($result) {
+            echo "<br>";
+            echo "<div class=\"container\">";
+            echo "<div class=\"alert alert-success\">";
+            echo "<strong>Livre supprimé !</strong> ";
+            echo "</div> </div> ";
         }
-        return $livre;
     }
+
+    public function modifierLivre($id)
+    {
+        $sql = "UPDATE livre SET titre='" . addslashes($_POST['titre']) . "', auteur='" . addslashes($_POST['auteur']) . "',prix='" . addslashes($_POST['prix']) . "',niveau='" . addslashes($_POST['niveau']) . "',matiere='" . addslashes($_POST['matiere']) . "' where idLivre='" . $id . "'";
+        $this->getDb()->query($sql);
+    }
+
 
     protected function buildDomainObject($row)
     {
@@ -61,9 +68,10 @@ class LivreDAO extends DAO
         $livre->setIdLivre($row['idLivre']);
         $livre->setTitre($row['titre']);
         $livre->setAuteur($row['auteur']);
-        $livre->setMatiere($row['matiere']);
-        $livre->setNiveau($row['niveau']);
         $livre->setPrix($row['prix']);
+        $livre->setNiveau($row['niveau']);
+        $livre->setMatiere($row['matiere']);
+        $livre->setUsername($row['username']);
 
         return $livre;
     }

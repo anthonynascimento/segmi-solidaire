@@ -8,7 +8,7 @@
     <div class="container">
     <div class="row">
     <h2>Ajouter voter évènement</h2>
-    <form class="container" method="POST"  action="{{ path('ajout_evt') }}">
+    <form class="container" enctype="multipart/form-data" method="POST"  action="{{ path('ajout_evt') }}">
         <br><br>
 
         <div class="col-xs-4"><h4>Titre de l'évènement</h4>
@@ -38,6 +38,14 @@
             </div>
 
 
+            <br>
+
+            <h4>Lieu</h4>
+            <p>
+                <input id="pac-input" type="text" class="form-control" type="text" name="lieu"
+                       placeholder="Entrez l'adresse de l'evenement" value=""required>
+            <div id="map"></div>
+            </p>
 
             <br>
 
@@ -60,10 +68,11 @@
                     <option value="conférence">Conférence</option>
                 </select>
 
+            <br>
 
             <h4>Image illustant l'évènement</h4>
             <input type="file" name="image" />
-            <p>
+
 
             <button type="submit" class="btn btn-success" onclick="alert('Evènement a été ajouté avec succès')";>Ajouter</button>
             <br><br>

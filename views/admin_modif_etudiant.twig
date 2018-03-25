@@ -1,0 +1,49 @@
+{% extends "layout.twig" %}
+
+{% set menu_selected = 'home' %}
+
+{% block title %}admnistrateur{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <h2>Modifier le mini-job</h2>
+            <form class="container" method="POST"  action="{{ path('modif_Etudiant', {'id': etudiant.idEtudiant }) }}">
+                <br><br>
+
+                <div class="col-xs-4"><h1>Informations concernant l'étudiant</h1><br>
+                    <!-- Page Heading/Breadcrumbs -->
+
+                    <h1 class="mt-4 mb-3">Pseudo
+                        <input style="background-color: lightgrey "type="text" class="form-control" value="{{ etudiant.username }}" name="username" readonly>
+                    </h1>
+                    <br>
+
+                    <h1 class="mt-4 mb-3">Nom
+                        <input style="background-color: lightgrey " type="text" placeholder="Nom étudiant" class="form-control" value="{{ etudiant.nom }}" name="nom" readonly>
+                    </h1>
+                    <br>
+
+                    <h1 class="mt-4 mb-3">Prénom
+                        <input style="background-color: lightgrey " type="text" placeholder="Prénom étudiant" class="form-control" value="{{ etudiant.prenom }}" name="prenom" readonly>
+                    </h1>
+                    <br>
+
+                    <h1 class="mt-4 mb-3">Email @
+                        <input type="email" placeholder="Email étudiant" class="form-control" value="{{ etudiant.email }}" name="email" required>
+                    </h1>
+                    <br>
+
+                    <h1 class="mt-4 mb-3">Téléphone
+                        <br>
+                        <input type="tel" placeholder="Téléphone étudiant" maxlength="10" class="form-control" value="0{{ etudiant.telephone }}" name="telephone" required>
+                    </h1>
+                    <br>
+
+                    <button type="submit" class="btn btn-success" onclick="alert('Information(s) étudiant modifiée(s) !')";>Modifier</button>
+                    <br><br>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

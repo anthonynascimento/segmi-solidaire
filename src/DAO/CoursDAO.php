@@ -90,7 +90,7 @@ class CoursDAO extends DAO
 
     public function find($id)
     {
-        $sql = "select * from cours where idCours=?";
+        $sql = "SELECT * from cours where idCours=?";
         $row = $this->getDb()->fetchAssoc($sql, array($id));
 
         if ($row)
@@ -99,14 +99,34 @@ class CoursDAO extends DAO
             throw new \Exception("No article matching id " . $id);
     }
 
+
     /*en parametre il faudra le num etudiant*/
     public function ajouterAideCours(){
-
-        $sql = "insert into cours (nomCours,description,niveau,matiere) values('" . $_POST['nomCours'] . "','" . $_POST['description'] . "','" . $_POST['niveau'] . "','" . $_POST['matiere'] . "')";
+        $matiere=$_POST['matiere'];
+        $sql = "insert into cours (nomCours,description,niveau,matiere) values('" . $_POST['nomCours'] . "','" . $_POST['description'] . "','" . $_POST['niveau'] . "','" . $matiere . "')";
         $result = $this->getDb()->query($sql);
         return $result;
     }
 
+
+    public function supprimerCours($id)
+    {
+        $sql = "delete from cours where idCours='" . $id . "'";
+        $result = $this->getDb()->query($sql);
+        if($result) {
+            echo "<br>";
+            echo "<div class=\"container\">";
+            echo "<div class=\"alert alert-success\">";
+            echo "<strong>Cours supprimé !</strong> ";
+            echo "</div> </div> ";
+        }
+    }
+
+    public function modifierCours($id)
+    {
+        $sql = "UPDATE cours SET nomCours='" . addslashes($_POST['nomCours']) . "', description='" . addslashes($_POST['description']) . "',niveau='" . addslashes($_POST['niveau']) . "',matiere='" . addslashes($_POST['matiere']) . "' where idCours='" . $id . "'";
+        $this->getDb()->query($sql);
+    }
 
     protected function buildDomainObject($row)
     {

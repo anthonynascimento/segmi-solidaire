@@ -1,0 +1,85 @@
+{% extends "administration_layout.twig" %}
+
+{% set menu_selected = 'home' %}
+
+{% block title %}Admin{% endblock %}
+
+{% block content %}
+
+
+    <!-- /.row -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">Liste des livres disponibles à la vente</h1>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <table width="100%" class="table table-striped table-bordered table-hover" id="example">
+                                <thead>
+                                <tr>
+                                    <th>Titre du livre</th>
+                                    <th style="">Auteur</th>
+                                    <th style="">Prix €</th>
+                                    <th style="">Niveau</th>
+                                    <th style="">Matière</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% if livres['tous'] is not empty %}
+                                    {% for livres in livres['tous'] %}
+                                        <tr style="" onclick="parent.location=''" style="height: 6em">
+                                            <td style="">{{ livres.titre }}</td>
+                                            <td style="">{{ livres.auteur }}</td>
+                                            <td ><div style="">{{ livres.prix }}</div></td>
+                                            <td ><div style="">{{ livres.niveau }}</div></td>
+                                            <td ><div style="">{{ livres.matiere }}</div></td>
+                                            <th class="">
+
+                                                <a style="width: 90px" title="Visualiser le livre" class="btn btn-success" href="{{ path('livreDetails', {'id': livres.idlivre }) }}">
+                                                    <i class="glyphicon glyphicon-zoom-in icon-white"></i>
+                                                    View
+                                                </a>
+                                                <a style="width: 90px" title="Modifier le livre" class="btn btn-info" href="{{ path('modifierLivre', {'id': livres.idlivre }) }}">
+                                                    <i class="glyphicon glyphicon-edit icon-white"></i>
+                                                    Edit
+                                                </a>
+                                                <a style="width: 90px" title="Supprimer le livre" class="btn btn-danger" href="{{ path('supprimerLivre', {'id': livres.idlivre }) }}">
+                                                    <i class="glyphicon glyphicon-trash icon-white"></i>
+                                                    Delete
+                                                </a>
+                                            </th>
+                                        </tr>
+
+                                    {% endfor %}
+
+                                {% else %}
+                                    <strong style="color: red">Aucun livre à vendre </strong>
+                                {% endif %}
+                                </tbody>
+                            </table>
+                            <!-- /.table-responsive -->
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.col-lg-8 -->
+
+        <!-- /.col-lg-4 -->
+    </div>
+    <!-- /.row -->
+{% endblock %}

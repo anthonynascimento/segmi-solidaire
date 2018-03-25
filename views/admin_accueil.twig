@@ -1,0 +1,80 @@
+{% extends "administration_layout.twig" %}
+
+{% set menu_selected = 'home' %}
+
+{% block title %}Admin{% endblock %}
+
+{% block content %}
+
+
+    <!-- /.row -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">Liste des utilisateurs du site</h1>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <table width="100%" class="table table-striped table-bordered table-hover" id="example">
+                                <thead>
+                                <tr>
+                                    <th>Pseudo</th>
+                                    <th>Nom de l'utilisateur</th>
+                                    <th>Prénom de l'utilisateur</th>
+                                    <th style="width: 30%">Email</th>
+                                    <th style="width: 20%">Téléphone</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% if etudiants['tous'] is not empty %}
+                                    {% for etudiants in etudiants['tous'] %}
+                                        <tr style="" onclick="parent.location=''" style="height: 6em">
+                                            <td style="">{{ etudiants.username }}</td>
+                                            <td style="">{{ etudiants.nom }}</td>
+                                            <td style="">{{ etudiants.prenom }}</td>
+                                            <td ><div style="overflow: auto; height: 6em">{{ etudiants.email }}</div></td>
+                                            <td>0{{ etudiants.telephone }}</td>
+                                            <th class="">
+                                                <a style="width: 90px" title="Modifier infos étudiant" class="btn btn-info" href="{{ path('modifierEtudiant', {'id': etudiants.idEtudiant }) }}">
+                                                    <i class="glyphicon glyphicon-edit icon-white"></i>
+                                                    Edit
+                                                </a>
+                                                <a style="width: 90px" title="Supprimer l'étudiant" class="btn btn-danger" href="{{ path('supprimerEtudiant', {'id': etudiants.idEtudiant }) }}">
+                                                    <i class="glyphicon glyphicon-trash icon-white"></i>
+                                                    Delete
+                                                </a>
+                                            </th>
+                                        </tr>
+
+                                    {% endfor %}
+
+                                {% else %}
+                                    <strong style="color: red">Aucun utilisateur </strong>
+                                {% endif %}
+                                </tbody>
+                            </table>
+                            <!-- /.table-responsive -->
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.col-lg-8 -->
+
+        <!-- /.col-lg-4 -->
+    </div>
+    <!-- /.row -->
+{% endblock %}

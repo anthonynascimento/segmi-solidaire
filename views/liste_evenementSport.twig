@@ -13,15 +13,18 @@
                 <h2>Liste des evenements de Sport</h2>
             </header>
             <div class="row">
+    {% if evenementsSport['tous'] is not empty %}
                 {% for evenementsSport in evenementsSport['tous'] %}
-                    <article onclick="parent.location='{{ path('evenement_detail', {'id': evenementsSport.idEvenement }) }}'" class="4u 12u(mobile) special">
-                        <a href="#" class="image featured"><img src="web/images/{{ evenementsSport.image }}" alt=""/></a>
+                    <article style="cursor: pointer; height:800px" onclick="parent.location='{{ path('evenementDetails', {'id': evenementsSport.idEvenement }) }}'" class="4u 12u(mobile) special">
+                        <a href="#" class="image featured"><img style="height: 350px;" src="web/images/{{ evenementsSport.image }}" alt=""/></a>
                         <header>
                             <h3><a href="#">{{ evenementsSport.titre }}</a></h3>
                         </header>
-                        <p>
-                            {{ evenementsSport.description }}
+                        <div style="overflow: auto;">
+                        <p style="max-height: 15em; overflow: auto">
+                            {{ evenementsSport.description|raw }}
                         </p>
+                        </div>
                         <p>
                             Début de l'évenement: {{ evenementsSport.dateDebut }}
                         </p>
@@ -29,7 +32,11 @@
                             Fin de l'évenement: {{ evenementsSport.dateFin }}
                         </p>
                     </article>
+
                 {% endfor %}
+    {% else %}
+        <strong style="color: red">Il n'y a actuellement aucun évenement sport disponible</strong>
+    {% endif %}
             </div>
         </section>
 
