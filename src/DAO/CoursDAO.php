@@ -3,6 +3,7 @@
 namespace MicroCMS\DAO;
 
 use MicroCMS\Domain\Cours;
+use MicroCMS\Domain\Etudiant;
 
 
 class CoursDAO extends DAO
@@ -12,6 +13,19 @@ class CoursDAO extends DAO
     public function findFirstAll()
     {
         $sql = "SELECT * FROM cours";
+        $result = $this->getDb()->fetchAll($sql);
+
+        $cours = array();
+        foreach ($result as $row) {
+            $coursId = $row['idCours'];
+            $cours[$coursId] = $this->buildDomainObject($row);
+        }
+        return $cours;
+    }
+
+    public function findCoursUser($id)
+    {
+        $sql = "SELECT * FROM cours where username='" . $id . "'";
         $result = $this->getDb()->fetchAll($sql);
 
         $cours = array();
@@ -101,13 +115,23 @@ class CoursDAO extends DAO
 
 
     /*en parametre il faudra le num etudiant*/
-    public function ajouterAideCours(){
+    public function ajouterAideCours($username){
         $matiere=$_POST['matiere'];
-        $sql = "insert into cours (nomCours,description,niveau,matiere) values('" . $_POST['nomCours'] . "','" . $_POST['description'] . "','" . $_POST['niveau'] . "','" . $matiere . "')";
+        $sql = "insert into cours (nomCours,description,niveau,matiere,username) values('" . $_POST['nomCours'] . "','" . $_POST['description'] . "','" . $_POST['niveau'] . "','" . $matiere . "','" . $username . "')";
         $result = $this->getDb()->query($sql);
         return $result;
     }
 
+    public function findInfosEtudiantCours($id)
+    {
+        $sql = "select * from etudiant etu, cours c where etu.username=c.username and idCours=$id";
+        $row = $this->getDb()->fetchAssoc($sql, array($id));
+
+        if ($row)
+            return $this->buildDomainObject2($row);
+        else
+            throw new \Exception("No article matching id " . $id);
+    }
 
     public function supprimerCours($id)
     {
@@ -136,7 +160,21 @@ class CoursDAO extends DAO
         $cours->setDescription($row['description']);
         $cours->setMatiere($row['matiere']);
         $cours->setNiveau($row['niveau']);
+        $cours->setUsername($row['username']);
 
         return $cours;
+    }
+
+    protected function buildDomainObject2($row)
+    {
+        $etudiant = new Etudiant();
+        $etudiant->setIdEtudiant($row['idEtudiant']);
+        $etudiant->setUsername($row['username']);
+        $etudiant->setNom($row['nom']);
+        $etudiant->setPrenom($row['prenom']);
+        $etudiant->setTelephone($row['telephone']);
+        $etudiant->setMdp($row['mdp']);
+
+        return $etudiant;
     }
 }

@@ -32,9 +32,12 @@ $app->register(new Silex\Provider\SecurityServiceProvider(), array(
             }),
         ),
     ),
+    /*'security.role_hierarchy' => array(
+        'ROLE_ETUDIANT' => array('ROLE_USER'),
+    ),*/
     'security.access_rules' => array(
         // ROLE_USER est défini arbitrairement, vous pouvez le remplacer par le nom que vous voulez
-        array('^/ad/', 'ROLE_ADMIN')
+        array('^/admin', 'ROLE_ADMIN')
     )
 ));
 

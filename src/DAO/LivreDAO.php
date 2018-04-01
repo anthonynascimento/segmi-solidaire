@@ -3,6 +3,8 @@
 namespace MicroCMS\DAO;
 
 use MicroCMS\Domain\Livre;
+use MicroCMS\Domain\Etudiant;
+
 
 
 class LivreDAO extends DAO
@@ -34,12 +36,35 @@ class LivreDAO extends DAO
             throw new \Exception("No article matching id " . $id);
     }
 
+    public function findLivresUser($id)
+    {
+        $sql = "SELECT * FROM livre where username='" . $id . "'";
+        $result = $this->getDb()->fetchAll($sql);
+        $livres = array();
+        foreach ($result as $row) {
+            $livreId = $row['idLivre'];
+            $livres[$livreId] = $this->buildDomainObject($row);
+        }
+        return $livres;
+    }
 
-    public function ajouterLivre(){
 
-        $sql = "insert into livre (titre,auteur,matiere,niveau,prix) values('" . $_POST['titre'] . "','" . $_POST['auteur'] . "','" . $_POST['matiere'] . "','" . $_POST['niveau'] . "','" . $_POST['prix'] . "')";
+    public function ajouterLivre($username){
+
+        $sql = "insert into livre (titre,auteur,matiere,niveau,prix,username) values('" . $_POST['titre'] . "','" . $_POST['auteur'] . "','" . $_POST['matiere'] . "','" . $_POST['niveau'] . "','" . $_POST['prix'] . "','" . $username . "')";
         $result = $this->getDb()->query($sql);
         return $result;
+    }
+
+    public function findInfosEtudiantLivre($id)
+    {
+        $sql = "select * from etudiant etu, livre l where etu.username=l.username and idLivre=$id";
+        $row = $this->getDb()->fetchAssoc($sql, array($id));
+
+        if ($row)
+            return $this->buildDomainObject2($row);
+        else
+            throw new \Exception("No article matching id " . $id);
     }
 
     public function supprimerLivre($id)
@@ -74,5 +99,18 @@ class LivreDAO extends DAO
         $livre->setUsername($row['username']);
 
         return $livre;
+    }
+
+    protected function buildDomainObject2($row)
+    {
+        $etudiant = new Etudiant();
+        $etudiant->setIdEtudiant($row['idEtudiant']);
+        $etudiant->setUsername($row['username']);
+        $etudiant->setNom($row['nom']);
+        $etudiant->setPrenom($row['prenom']);
+        $etudiant->setTelephone($row['telephone']);
+        $etudiant->setMdp($row['mdp']);
+
+        return $etudiant;
     }
 }

@@ -2,13 +2,13 @@
 
 {% set menu_selected = 'home' %}
 
-{% block title %}administrateur{% endblock %}
+{% block title %}etudiant{% endblock %}
 
 {% block content %}
     <div class="container">
         <div class="row">
-            <h2>Modifier l'évènement</h2>
-            <form class="container" enctype="multipart/form-data" method="POST"  action="{{ path('modif_Evenement', {'id': evenement.idEvenement}) }}">
+            <h2>Modifier mon évènement</h2>
+            <form class="container" enctype="multipart/form-data" method="POST"  action="{{ path('modif_Evenement_Etu', {'id': evenement.idEvenement}) }}">
                 <br><br>
 
                 <div class="col-xs-4"><h4>Titre de l'évènement</h4>
@@ -77,14 +77,13 @@
 
                     <h4>Image illustant l'évènement</h4>
                     <input type="file" name="image" />
+                    <p style="color: red;">Vous devez importer une image obligatoirement</p>
                     <p>
-                    Type initial: {{ evenement.image }}
+                        Type initial: {{ evenement.image }}
                     </p>
-                    <p style="color: red;">Veuillez choisir une image obligatoirement</p>
-
 
                     <button type="submit" class="btn btn-success" onclick="alert('Evenement modifié avec succès !')";>Modifier</button>
-                        <br><br>
+                    <br><br>
                 </div>
             </form>
         </div>

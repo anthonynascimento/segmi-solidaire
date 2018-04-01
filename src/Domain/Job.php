@@ -8,6 +8,8 @@ class Job
     private $titre;
     private $description;
     private $categorie;
+    private $username;
+
 
     public function getIdJob() {
         return $this->idJob;
@@ -21,9 +23,15 @@ class Job
     public function getCategorie() {
         return $this->categorie;
     }
+    public function getUsername() {
+        return $this->username;
+    }
 
     public function setIdJob($id) {
         return $this->idJob = $id;
+    }
+    public function setUsername($id) {
+        return $this->username = $id;
     }
     public function setTitre($titre) {
         return $this->titre = $titre;

@@ -4,6 +4,9 @@ namespace MicroCMS\DAO;
 
 use MicroCMS\Domain\Job;
 
+use MicroCMS\Domain\Etudiant;
+
+
 
 class JobDAO extends DAO
 {
@@ -34,12 +37,35 @@ class JobDAO extends DAO
             throw new \Exception("No article matching id " . $id);
     }
 
-    /*en parametre il faudra le num etudiant*/
-    public function ajouterMiniJob(){
+    public function findJobsUser($id)
+    {
+        $sql = "SELECT * FROM job where username='" . $id . "'";
+        $result = $this->getDb()->fetchAll($sql);
+        $jobs = array();
+        foreach ($result as $row) {
+            $jobId = $row['idJob'];
+            $jobs[$jobId] = $this->buildDomainObject($row);
+        }
+        return $jobs;
+    }
 
-        $sql = "insert into job (titre,description,categorie) values('" . $_POST['titre'] . "','" . $_POST['description'] . "','" . $_POST['categorie'] . "')";
+    /*en parametre il faudra le num etudiant*/
+    public function ajouterMiniJob($username){
+
+        $sql = "insert into job (titre,description,categorie,username) values('" . $_POST['titre'] . "','" . $_POST['description'] . "','" . $_POST['categorie'] . "','" . $username . "')";
         $result = $this->getDb()->query($sql);
         return $result;
+    }
+
+    public function findInfosEtudiantJob($id)
+    {
+        $sql = "select * from etudiant etu, job j where etu.username=j.username and idJob=$id";
+        $row = $this->getDb()->fetchAssoc($sql, array($id));
+
+        if ($row)
+            return $this->buildDomainObject2($row);
+        else
+            throw new \Exception("No article matching id " . $id);
     }
 
     public function supprimerJob($id)
@@ -68,7 +94,22 @@ class JobDAO extends DAO
         $job->setTitre($row['titre']);
         $job->setDescription($row['description']);
         $job->setCategorie($row['categorie']);
+        $job->setUsername($row['username']);
+
 
         return $job;
+    }
+
+    protected function buildDomainObject2($row)
+    {
+        $etudiant = new Etudiant();
+        $etudiant->setIdEtudiant($row['idEtudiant']);
+        $etudiant->setUsername($row['username']);
+        $etudiant->setNom($row['nom']);
+        $etudiant->setPrenom($row['prenom']);
+        $etudiant->setTelephone($row['telephone']);
+        $etudiant->setMdp($row['mdp']);
+
+        return $etudiant;
     }
 }
