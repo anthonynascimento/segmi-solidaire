@@ -4,124 +4,69 @@ namespace MicroCMS\Domain;
 
 use Symfony\Component\Security\Core\User\UserInterface;
 
-class User implements UserInterface
+class Utilisateur implements UserInterface
 {
-    /**
-     * User id.
-     *
-     * @var integer
-     */
-    private $id;
 
-    /**
-     * User name.
-     *
-     * @var string
-     */
-    private $username;
+    private $idEtudiant;
+    private $username;/*c'est un email*/
     private $prenom;
+    private $nom;
+    private $password;
+    private $telephone;
+    private $salt;
+    private $role;
 
-    /**
-     * @return mixed
-     */
     public function getPrenom()
     {
         return $this->prenom;
     }
 
-    /**
-     * @param mixed $prenom
-     */
     public function setPrenom($prenom)
     {
         $this->prenom = $prenom;
     }
 
-    /**
-     * User password.
-     *
-     * @var string
-     */
-    private $password;
-
-    private $email;
-
-    private $telephone;
-
-    /**
-     * @return mixed
-     */
-    public function getEmail()
+    public function getNom()
     {
-        return $this->email;
+        return $this->nom;
     }
 
-    /**
-     * @param mixed $email
-     */
-    public function setEmail($email)
+    public function setNom($nom)
     {
-        $this->email = $email;
+        $this->nom = $nom;
     }
 
-    /**
-     * @return mixed
-     */
     public function getTelephone()
     {
         return $this->telephone;
     }
 
-    /**
-     * @param mixed $telephone
-     */
     public function setTelephone($telephone)
     {
         $this->telephone = $telephone;
     }
 
 
-    /**
-     * Salt that was originally used to encode the password.
-     *
-     * @var string
-     */
-    private $salt;
-
-    /**
-     * Role.
-     * Values : ROLE_USER or ROLE_ADMIN.
-     *
-     * @var string
-     */
-    private $role;
-
-    public function getId()
+    public function getIdEtudiant()
     {
-        return $this->id;
+        return $this->idEtudiant;
     }
 
-    public function setId($id)
+    public function setIdEtudiant($idEtudiant)
     {
-        $this->id = $id;
+        $this->idEtudiant = $idEtudiant;
     }
 
-    /**
-     * @inheritDoc
-     */
     public function getUsername()
     {
         return $this->username;
     }
 
-    public function setNom($username)
+    public function setUsername($username)
     {
         $this->username = $username;
     }
 
-    /**
-     * @inheritDoc
-     */
     public function getPassword()
     {
         return $this->password;
@@ -132,9 +77,6 @@ class User implements UserInterface
         $this->password = $password;
     }
 
-    /**
-     * @inheritDoc
-     */
     public function getSalt()
     {
         return $this->salt;
@@ -155,17 +97,11 @@ class User implements UserInterface
         $this->role = $role;
     }
 
-    /**
-     * @inheritDoc
-     */
     public function getRoles()
     {
         return array($this->getRole());
     }
 
-    /**
-     * @inheritDoc
-     */
     public function eraseCredentials()
     {
         // Nothing to do here

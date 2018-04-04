@@ -13,29 +13,31 @@
         <!-- Page Heading/Breadcrumbs -->
         <h2 style="text-align: center">{{ livre.titre }}</h2>
         <br>
-        <br>
-        <br>
+
 
         <h4> Auteur</h4>
         <p>{{ livre.auteur }}</p>
-        <hr>
+        <br>
 
         <h4>Matiere correspondante</h4>
         <p>{{ livre.matiere }}</p>
-        <hr>
+        <br>
 
         <h4>A partir du niveau</h4>
         <p>{{ livre.niveau }}</p>
-        <hr>
+        <br>
 
         <h4>Prix en €</h4>
         <p>{{ livre.prix }}</p>
         <hr>
 
         <div class="col-lg-5 col-lg-offset-1" style="text-align:justify;">
-            <h4>Coordonnées de celui qui propose</h4>
-            <p>On affiche ici les coordonnées tel,email de la personne qui vend ce livre</p>
-        </div>
+            <h4>Informations de contact</h4>
+            <p>Prénom: <b>{{ infosEtudiant.prenom }}</b></p>
+            <p>Email: <b>{{ infosEtudiant.username }}</b></p>
+            <p>Téléphone: <b>0{{ infosEtudiant.telephone }}</b></p>
 
+        </div>
     </div>
+
 {% endblock %}

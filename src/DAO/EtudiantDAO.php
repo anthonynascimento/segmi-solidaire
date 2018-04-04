@@ -34,6 +34,20 @@ class EtudiantDAO extends DAO
             throw new \Exception("No article matching id " . $id);
     }
 
+    public function findUserConnected($id)
+    {
+        $sql = "SELECT * FROM etudiant where username='" . $id . "'";
+        $result = $this->getDb()->fetchAll($sql);
+
+        $row = $this->getDb()->fetchAssoc($sql, array($id));
+
+        if ($row)
+            return $this->buildDomainObject($row);
+        else
+            throw new \Exception("No article matching id " . $id);
+
+    }
+
 
     public function supprimerEtudiant($id)
     {
@@ -50,7 +64,7 @@ class EtudiantDAO extends DAO
 
     public function modifierEtudiant($id)
     {
-        $sql = "UPDATE etudiant SET username='" . addslashes($_POST['username']) . "', nom='" . addslashes($_POST['nom']) . "',prenom='" . addslashes($_POST['prenom']) . "',email='" . addslashes($_POST['email']) . "',telephone='" . addslashes($_POST['telephone']) . "' where idEtudiant='" . $id . "'";
+        $sql = "UPDATE etudiant SET username='" . addslashes($_POST['username']) . "', nom='" . addslashes($_POST['nom']) . "',prenom='" . addslashes($_POST['prenom']) . "',telephone='" . addslashes($_POST['telephone']) . "' where idEtudiant='" . $id . "'";
         $this->getDb()->query($sql);
     }
 
@@ -61,7 +75,6 @@ class EtudiantDAO extends DAO
         $etudiant->setUsername($row['username']);
         $etudiant->setNom($row['nom']);
         $etudiant->setPrenom($row['prenom']);
-        $etudiant->setEmail($row['email']);
         $etudiant->setTelephone($row['telephone']);
         $etudiant->setMdp($row['mdp']);
 

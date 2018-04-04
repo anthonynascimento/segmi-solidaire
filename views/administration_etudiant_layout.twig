@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Administrateur</title>
+    <title>Gestion</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="{{ app.request.basepath }}/web/admin/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -53,13 +53,14 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
+            <img id="logo" style="height: 80px;" src="{{ app.request.basepath }}/web/images/logo.png">
             <a class="navbar-brand" href="{{ path('home') }}"><i class="fa fa-repeat" aria-hidden="true"></i> Retour à la page d'accueil</a>
 
         </div>
         <!-- /.navbar-header -->
 
         <ul class="nav navbar-top-links navbar-right">
-            <span style="font-size: 160%; text-align: center">Administration Admin</span>
+            <span style="font-size: 160%; text-align: center">Gestion de compte</span>
             <!-- /.dropdown -->
             <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
@@ -80,22 +81,22 @@
                 <ul class="nav" id="side-menu">
 
                     <li>
-                        <a style="color: red;" href="{{ path('gestion_admin_accueil') }}"><i style="color: red;" class="fa fa-meh-o" aria-hidden="true"></i> Liste des utilisateurs</a>
+                        <a style="color: red;" href="{{ path('gestion_etudiant_accueil') }}"><i style="color: red;" class="fa fa-meh-o" aria-hidden="true"></i> Mes informations</a>
                     </li>
                     <li>
-                        <a style="color: red;" href="{{ path('gestion_admin_evenements') }}"><i style="color: red;" class="fa fa-rss" aria-hidden="true"></i> Liste des évènements</a>
+                        <a style="color: red;" href="{{ path('gestion_etudiant_evenements') }}"><i style="color: red;" class="fa fa-rss" aria-hidden="true"></i> Mes évènements ajoutés</a>
                     </li>
                     <li>
-                        <a style="color: red;" href="{{ path('gestion_admin_cours') }}"><i style="color: red;" class="fa fa-users" aria-hidden="true"></i> Liste des aides aux cours</a>
+                        <a style="color: red;" href="{{ path('gestion_etudiant_cours') }}"><i style="color: red;" class="fa fa-users" aria-hidden="true"></i> Mes aides aux cours ajoutées</a>
                     </li>
                     <li>
-                        <a style="color: red;" href="{{ path('gestion_admin_annales') }}"><i style="color: red;" class="fa fa-picture-o" aria-hidden="true"></i> Liste des annales</a>
+                        <a style="color: red;" href="{{ path('gestion_etudiant_annales') }}"><i style="color: red;" class="fa fa-picture-o" aria-hidden="true"></i> Mes annales ajoutées</a>
                     </li>
                     <li>
-                        <a style="color: red;" href="{{ path('gestion_admin_jobs') }}"><i style="color: red;" class="fa fa-suitcase" aria-hidden="true"></i> Liste des mini-jobs</a>
+                        <a style="color: red;" href="{{ path('gestion_etudiant_jobs') }}"><i style="color: red;" class="fa fa-suitcase" aria-hidden="true"></i> Mes mini-jobs ajoutés</a>
                     </li>
                     <li>
-                        <a style="color: red;" href="{{ path('gestion_admin_livres') }}"><i style="color: red;" class="fa fa-book" aria-hidden="true"></i> Liste des livres à vendre</a>
+                        <a style="color: red;" href="{{ path('gestion_etudiant_livres') }}"><i style="color: red;" class="fa fa-book" aria-hidden="true"></i> Mes livres à vendre</a>
                     </li>
 
 

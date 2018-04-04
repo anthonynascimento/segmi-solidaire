@@ -14,7 +14,7 @@ class InscriptionDAO extends DAO
 {
     public function verifCompte($mdp)
     {
-        $requete_verif_exists = $this->getDb()->executeQuery("SELECT email FROM etudiant where email ='" . $_POST['email'] . "' ");
+        $requete_verif_exists = $this->getDb()->executeQuery("SELECT username FROM etudiant where username ='" . $_POST['username'] . "' ");
         $row = $requete_verif_exists->fetch();
         if ($row) {
             echo "<br>";
@@ -26,7 +26,8 @@ class InscriptionDAO extends DAO
             echo "<div class=\"container\">";
             echo "<br>";
             echo "<div class=\"alert alert-danger\">";
-            echo "<strong> Un compte existe deja avec cette adresse email .Veuillez ressayer </strong> ";
+            echo "<strong> Un compte existe deja avec cette adresse email .Veuillez ressayer</strong>";
+            echo "<a href=\"http://localhost/segmi-solidaire/inscription\"> ici</a>";
             echo "</div> </div> ";
         } else {
             $this->inscription($mdp);
@@ -39,7 +40,7 @@ class InscriptionDAO extends DAO
         $recaptcha = new \ReCaptcha\ReCaptcha('6Lem9UwUAAAAAEs2q4Nt3CY7e9QmGqgid9Vy08-V');
         $resp = $recaptcha->verify($_POST['g-recaptcha-response']);
         if ($resp->isSuccess()) {
-            $row = $this->getDb()->executeQuery("insert into etudiant (username,nom,prenom,email,telephone,mdp) values ('" . addslashes($_POST['username']) . "','" . addslashes($_POST['nom']) . "','" . addslashes($_POST['prenom']) . "','" . addslashes($_POST['email']) . "','" . addslashes($_POST['tel']) . "','" . addslashes($mdp) . "')");
+            $row = $this->getDb()->executeQuery("insert into etudiant (nom,prenom,username,telephone,mdp,roles) values ('" . addslashes($_POST['nom']) . "','" . addslashes($_POST['prenom']) . "','" . addslashes($_POST['username']) . "','" . addslashes($_POST['tel']) . "','" . addslashes($mdp) . "',' ROLE_ETUDIANT ')");
             if ($row) {
                 echo "<br>";
                 echo "<br>";
@@ -126,7 +127,7 @@ class InscriptionDAO extends DAO
         $user->setNom($row['nom']);
         $user->setPrenom($row['prenom']);
         $user->setPassword($row['mdp']);
-        $user->setTelephone($row['tel']);
+        $user->setTelephone($row['telephone']);
         $user->setEmail($row['email']);
         return $user;
     }

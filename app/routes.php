@@ -14,6 +14,9 @@ $app->get('/', function () use ($app) {
     return $app['twig']->render('home.twig', array('evenements' => $evenements));
 })->bind('home');
 
+/**
+ * Page d'inscription
+ */
 $app->get('/inscription', function () use ($app) {
     return $app['twig']->render('inscription.twig');
 })->bind('inscription');
@@ -31,9 +34,11 @@ $app->get('/login', function (Request $request) use ($app) {
     ));
 })->bind('login');
 
+
 /********
  ****ADMIN******
  ********/
+
 /*accueil admin*/
 $app->get('/admin', function () use ($app) {
     $etudiants['tous'] = $app['dao.etudiant']->findFirstAll();
@@ -65,7 +70,7 @@ $app->post('/admin/etudiant/modifier/{id}', function ($id) use ($app) {
 })->bind('modif_Etudiant');
 
 
-/****Evenement*****/
+/*****EVENEMENTS*****/
 /*liste evenements admin*/
 $app->get('/admin/evenements', function () use ($app) {
     $evenements['tous'] = $app['dao.evenement']->findFirstAll();
@@ -96,7 +101,7 @@ $app->post('/admin/evenement/modifier/{id}', function ($id) use ($app) {
     return $app['twig']->render('admin_evenements.twig', array('evenements' => $evenements));
 })->bind('modif_Evenement');
 
-/****Cours*****/
+/*****COURS*****/
 /*liste cours admin*/
 $app->get('/admin/cours', function () use ($app) {
     $cours['tous'] = $app['dao.cours']->findFirstAll();
@@ -127,7 +132,7 @@ $app->post('/admin/cours/modifier/{id}', function ($id) use ($app) {
     return $app['twig']->render('admin_cours.twig', array('cours' => $cours));
 })->bind('modif_Cours');
 
-/****Annales*****/
+/****ANNALES*****/
 /*liste annales admin*/
 $app->get('/admin/annales', function () use ($app) {
     $annales['tous'] = $app['dao.annale']->findFirstAll();
@@ -158,7 +163,7 @@ $app->post('/admin/annale/modifier/{id}', function ($id) use ($app) {
     return $app['twig']->render('admin_annales.twig', array('annales' => $annales));
 })->bind('modif_Annale');
 
-/****Jobs*****/
+/*****JOBS*****/
 /*liste jobs admin*/
 $app->get('/admin/jobs', function () use ($app) {
     $jobs['tous'] = $app['dao.job']->findFirstAll();
@@ -189,7 +194,7 @@ $app->post('/admin/job/modifier/{id}', function ($id) use ($app) {
     return $app['twig']->render('admin_jobs.twig', array('jobs' => $jobs));
 })->bind('modif_Job');
 
-/****Livres*****/
+/*****LIVRES*****/
 /*liste livres à vendre admin*/
 $app->get('/admin/livres', function () use ($app) {
     $livres['tous'] = $app['dao.livre']->findFirstAll();
@@ -220,6 +225,231 @@ $app->post('/admin/livre/modifier/{id}', function ($id) use ($app) {
     return $app['twig']->render('admin_livres.twig', array('livres' => $livres));
 })->bind('modif_Livre');
 
+/********
+ ****ETUDIANT******
+ ********/
+
+/*accueil etudiant*/
+$app->get('/etudiant/infos', function () use ($app) {
+    $token = $app['security.token_storage']->getToken();
+    $user = $token->getUser();
+    $etudiantConnecte = $app['dao.etudiant']->findUserConnected($user);
+    return $app['twig']->render('etudiant_accueil.twig', array('etudiants' => $etudiantConnecte));
+})->bind('gestion_etudiant_accueil');
+
+/*modifier infos étudiant*/
+$app->get('/etudiant/mesInfos/{id}', function ($id) use ($app) {
+    $etudiant = $app['dao.etudiant']->find($id);
+    return $app['twig']->render('etudiant_modif_infos.twig', array('etudiant' => $etudiant));
+})->bind('modifierInfos');
+
+
+$app->post('/etudiant/modifierInfos/{id}', function ($id) use ($app) {
+    $app['dao.etudiant']->modifierEtudiant($id);
+    $token = $app['security.token_storage']->getToken();
+    $user = $token->getUser();
+    $etudiantConnecte = $app['dao.etudiant']->findUserConnected($user);
+    $delai = 0;
+    header("Refresh: $delai;url=http://localhost/segmi-solidaire/etudiant/infos");
+    return $app['twig']->render('etudiant_accueil.twig', array('etudiants' => $etudiantConnecte));
+})->bind('modif_Infos');
+
+
+
+/*****EVENEMENTS*****/
+/*liste evenements etudiant*/
+$app->get('/etudiant/mesEvenements', function () use ($app) {
+    $token = $app['security.token_storage']->getToken();
+    $user = $token->getUser();
+    $evenements['tous'] = $app['dao.evenement']->findEvenementsUser($user);
+    return $app['twig']->render('etudiant_evenements.twig', array('evenements' => $evenements));
+})->bind('gestion_etudiant_evenements');
+
+/*suppression evenement de l'etudiant*/
+$app->get('/etudiant/supprimerEvenement/{id}', function ($id) use ($app) {
+    $app['dao.evenement']->supprimerEvenement($id);
+    $token = $app['security.token_storage']->getToken();
+    $user = $token->getUser();
+    $evenements['tous'] = $app['dao.evenement']->findEvenementsUser($user);
+    $delai = 2;
+    header("Refresh: $delai;url=http://localhost/segmi-solidaire/etudiant/mesEvenements");
+    return $app['twig']->render('etudiant_evenements.twig', array('evenements' => $evenements));
+})->bind('supprimerEvenement');
+
+/*modifier evenement de l'etudiant*/
+$app->get('/etudiant/monEvenement/{id}', function ($id) use ($app) {
+    $evenement = $app['dao.evenement']->find($id);
+    return $app['twig']->render('etudiant_modif_evenement.twig', array('evenement' => $evenement));
+})->bind('modifierEvenement');
+
+
+$app->post('/etudiant/monEvenement/modifier/{id}', function ($id) use ($app) {
+    $app['dao.evenement']->modifierEvenement($id);
+    $token = $app['security.token_storage']->getToken();
+    $user = $token->getUser();
+    $evenements['tous'] = $app['dao.evenement']->findEvenementsUser($user);
+    $delai = 0;
+    header("Refresh: $delai;url=http://localhost/segmi-solidaire/etudiant/mesEvenements");
+    return $app['twig']->render('etudiant_evenements.twig', array('evenements' => $evenements));
+})->bind('modif_Evenement_Etu');
+
+
+
+/*****COURS*****/
+/*liste cours etudiant*/
+$app->get('/etudiant/mesCours', function () use ($app) {
+    $token = $app['security.token_storage']->getToken();
+    $user = $token->getUser();
+    $cours['tous'] = $app['dao.cours']->findCoursUser($user);
+    return $app['twig']->render('etudiant_cours.twig', array('cours' => $cours));
+})->bind('gestion_etudiant_cours');
+
+/*suppression cours de l'etudiant*/
+$app->get('/etudiant/supprimerCours/{id}', function ($id) use ($app) {
+    $app['dao.cours']->supprimerCours($id);
+    $token = $app['security.token_storage']->getToken();
+    $user = $token->getUser();
+    $cours['tous'] = $app['dao.cours']->findCoursUser($user);
+    $delai = 2;
+    header("Refresh: $delai;url=http://localhost/segmi-solidaire/etudiant/mesCours");
+    return $app['twig']->render('etudiant_cours.twig', array('cours' => $cours));
+})->bind('supprimerCours');
+
+/*modifier cours de l'etudiant**/
+$app->get('/etudiant/monCours/{id}', function ($id) use ($app) {
+    $cours = $app['dao.cours']->find($id);
+    return $app['twig']->render('etudiant_modif_cours.twig', array('cours' => $cours));
+})->bind('modifierCours');
+
+
+$app->post('/etudiant/monCours/modifier/{id}', function ($id) use ($app) {
+    $app['dao.cours']->modifierCours($id);
+    $token = $app['security.token_storage']->getToken();
+    $user = $token->getUser();
+    $cours['tous'] = $app['dao.cours']->findCoursUser($user);
+    $delai = 0;
+    header("Refresh: $delai;url=http://localhost/segmi-solidaire/etudiant/mesCours");
+    return $app['twig']->render('etudiant_cours.twig', array('cours' => $cours));
+})->bind('modif_Cours_Etu');
+
+
+
+/*****ANNALES*****/
+/*liste annales etudiant*/
+$app->get('/etudiant/mesAnnales', function () use ($app) {
+    $token = $app['security.token_storage']->getToken();
+    $user = $token->getUser();
+    $annales['tous'] = $app['dao.annale']->findAnnalesUser($user);
+    return $app['twig']->render('etudiant_annales.twig', array('annales' => $annales));
+})->bind('gestion_etudiant_annales');
+
+/*suppression annale de l'etudiant*/
+$app->get('/etudiant/supprimerAnnale/{id}', function ($id) use ($app) {
+    $app['dao.annale']->supprimerAnnale($id);
+    $token = $app['security.token_storage']->getToken();
+    $user = $token->getUser();
+    $annales['tous'] = $app['dao.annale']->findAnnalesUser($user);
+    $delai = 2;
+    header("Refresh: $delai;url=http://localhost/segmi-solidaire/etudiant/mesAnnales");
+    return $app['twig']->render('etudiant_annales.twig', array('annales' => $annales));
+})->bind('supprimerAnnale');
+
+/*modifier annale de l'etudiant*/
+$app->get('/etudiant/monAnnale/{id}', function ($id) use ($app) {
+    $annale = $app['dao.annale']->find($id);
+    return $app['twig']->render('etudiant_modif_annale.twig', array('annale' => $annale));
+})->bind('modifierAnnale');
+
+
+$app->post('/etudiant/monAnnale/modifier/{id}', function ($id) use ($app) {
+    $app['dao.annale']->modifierAnnale($id);
+    $token = $app['security.token_storage']->getToken();
+    $user = $token->getUser();
+    $annales['tous'] = $app['dao.annale']->findAnnalesUser($user);
+    $delai = 0;
+    header("Refresh: $delai;url=http://localhost/segmi-solidaire/etudiant/mesAnnales");
+    return $app['twig']->render('etudiant_annales.twig', array('annales' => $annales));
+})->bind('modif_Annale_Etu');
+
+
+
+/*****JOBS*****/
+/*liste jobs etudiant*/
+$app->get('/etudiant/mesJobs', function () use ($app) {
+    $token = $app['security.token_storage']->getToken();
+    $user = $token->getUser();
+    $jobs['tous'] = $app['dao.job']->findJobsUser($user);
+    return $app['twig']->render('etudiant_jobs.twig', array('jobs' => $jobs));
+})->bind('gestion_etudiant_jobs');
+
+/*suppression job de l'etudiant*/
+$app->get('/etudiant/supprimerJob/{id}', function ($id) use ($app) {
+    $app['dao.job']->supprimerJob($id);
+    $token = $app['security.token_storage']->getToken();
+    $user = $token->getUser();
+    $jobs['tous'] = $app['dao.job']->findJobsUser($user);
+    $delai = 2;
+    header("Refresh: $delai;url=http://localhost/segmi-solidaire/etudiant/mesJobs");
+    return $app['twig']->render('etudiant_jobs.twig', array('jobs' => $jobs));
+})->bind('supprimerJob');
+
+/*modifier job de l'etudiant*/
+$app->get('/etudiant/monJob/{id}', function ($id) use ($app) {
+    $job = $app['dao.job']->find($id);
+    return $app['twig']->render('etudiant_modif_job.twig', array('job' => $job));
+})->bind('modifierJob');
+
+
+$app->post('/etudiant/monJob/modifier/{id}', function ($id) use ($app) {
+    $app['dao.job']->modifierJob($id);
+    $token = $app['security.token_storage']->getToken();
+    $user = $token->getUser();
+    $jobs['tous'] = $app['dao.job']->findJobsUser($user);
+    $delai = 0;
+    header("Refresh: $delai;url=http://localhost/segmi-solidaire/etudiant/mesJobs");
+    return $app['twig']->render('etudiant_jobs.twig', array('jobs' => $jobs));
+})->bind('modif_Job_Etu');
+
+
+
+/*****LIVRES*****/
+/*liste livres etudiant*/
+$app->get('/etudiant/mesLivres', function () use ($app) {
+    $token = $app['security.token_storage']->getToken();
+    $user = $token->getUser();
+    $livres['tous'] = $app['dao.livre']->findLivresUser($user);
+    return $app['twig']->render('etudiant_livres.twig', array('livres' => $livres));
+})->bind('gestion_etudiant_livres');
+
+/*suppression livre de l'etudiant*/
+$app->get('/etudiant/supprimerLivre/{id}', function ($id) use ($app) {
+    $app['dao.livre']->supprimerLivre($id);
+    $token = $app['security.token_storage']->getToken();
+    $user = $token->getUser();
+    $livres['tous'] = $app['dao.livre']->findLivresUser($user);
+    $delai = 2;
+    header("Refresh: $delai;url=http://localhost/segmi-solidaire/etudiant/mesLivres");
+    return $app['twig']->render('etudiant_livres.twig', array('livres' => $livres));
+})->bind('supprimerLivre');
+
+/*modifier livre de l'etudiant*/
+$app->get('/etudiant/monLivre/{id}', function ($id) use ($app) {
+    $livre = $app['dao.livre']->find($id);
+    return $app['twig']->render('etudiant_modif_livre.twig', array('livre' => $livre));
+})->bind('modifierLivre');
+
+
+$app->post('/etudiant/monLivre/modifier/{id}', function ($id) use ($app) {
+    $app['dao.livre']->modifierLivre($id);
+    $token = $app['security.token_storage']->getToken();
+    $user = $token->getUser();
+    $livres['tous'] = $app['dao.livre']->findLivresUser($user);
+    $delai = 0;
+    header("Refresh: $delai;url=http://localhost/segmi-solidaire/etudiant/mesLivres");
+    return $app['twig']->render('etudiant_livres.twig', array('livres' => $livres));
+})->bind('modif_Livre_Etu');
+
+
 
 /***
  *** LES FORMULAIRES D'AJOUT ***
@@ -231,7 +461,9 @@ $app->get('/AjoutEvenement', function () use ($app) {
 })->bind('ajouter_evenement');/*quand on clique sur ajouter un evenement*/
 
 $app->post('/AjoutEvenement/ajouter', function () use ($app) {
-    $app['dao.evenement']->ajouterEvenement();
+    $token = $app['security.token_storage']->getToken();
+    $user = $token->getUser();
+    $app['dao.evenement']->ajouterEvenement($user);
     $delai = 0;
     header("Refresh: $delai;url=http://localhost/segmi-solidaire/");
     return $app['twig']->render('home.twig');
@@ -244,7 +476,9 @@ $app->get('/AjoutAideCours', function () use ($app) {
 })->bind('ajouter_aide');/*quand on clique sur ajouter une aide*/
 
 $app->post('/AjoutAideCours/ajouter', function () use ($app) {
-    $app['dao.cours']->ajouterAideCours();
+    $token = $app['security.token_storage']->getToken();
+    $user = $token->getUser();
+    $app['dao.cours']->ajouterAideCours($user);
     $cours['tous'] = $app['dao.cours']->findFirstAll();
     return $app['twig']->render('liste_cours.twig', array('cours' => $cours));
 })->bind('ajout_aide');/*quand on clique sur le bouton d'ajout*/
@@ -256,7 +490,9 @@ $app->get('/AjoutJob', function () use ($app) {
 })->bind('ajouter_job');/*quand on clique sur ajouter un mini-job*/
 
 $app->post('/AjoutJob/ajouter', function () use ($app) {
-    $app['dao.job']->ajouterMiniJob();
+    $token = $app['security.token_storage']->getToken();
+    $user = $token->getUser();
+    $app['dao.job']->ajouterMiniJob($user);
     $jobs['tous'] = $app['dao.job']->findFirstAll();
     return $app['twig']->render('liste_jobs_all.twig', array('jobs' => $jobs));
 })->bind('ajout_job');/*quand on clique sur le bouton d'ajout*/
@@ -268,8 +504,12 @@ $app->get('/AjoutAnnale', function () use ($app) {
 })->bind('ajouter_annale');/*quand on clique sur ajouter une annale*/
 
 $app->post('/AjoutAnnale/ajouter', function () use ($app) {
-    $app['dao.annale']->ajouterAnnale();
+    $token = $app['security.token_storage']->getToken();
+    $user = $token->getUser();
+    $app['dao.annale']->ajouterAnnale($user);
     $allAnnales['toutes'] = $app['dao.annale']->findFirstAll();
+    $delai = 2;
+    header("Refresh: $delai;url=http://localhost/segmi-solidaire/listeAnnales");
     return $app['twig']->render('liste_annales.twig', array('annales' => $allAnnales));
 })->bind('ajout_annale');/*quand on clique sur le bouton d'ajout*/
 
@@ -280,12 +520,16 @@ $app->get('/AjoutLivre', function () use ($app) {
 })->bind('ajouter_livre');/*quand on clique sur vendre des livres*/
 
 $app->post('/AjoutLivre/ajouter', function () use ($app) {
-    $app['dao.livre']->ajouterLivre();
+    $token = $app['security.token_storage']->getToken();
+    $user = $token->getUser();
+    $app['dao.livre']->ajouterLivre($user);
     $livres['tous'] = $app['dao.livre']->findFirstAll();
     return $app['twig']->render('liste_livres_all.twig', array('livres' => $livres));/*redirection*/
 })->bind('ajout_livre');/*quand on clique sur le bouton d'ajout*/
 
-///////////////////////////////ANNALES//////////////////////////////////////////
+
+/*****Les views avec données******/
+//////////////////////////////////////ANNALES//////////////////////////////////////////
 
 /*liste de toutes les annales*/
 $app->get('/listeAnnales', function () use ($app) {
@@ -324,7 +568,8 @@ $app->get('/listeAnnalesM2', function () use ($app) {
 /*vue de l'annale choisie*/
 $app->get('/annale/{id}', function ($id) use ($app) {
     $annale = $app['dao.annale']->find($id);
-    return $app['twig']->render('annale_details.twig', array('annale' => $annale));
+    $infosEtudiant = $app['dao.annale']->findInfosEtudiantAnnale($id);
+    return $app['twig']->render('annale_details.twig', array('annale' => $annale, 'infosEtudiant' => $infosEtudiant));
 })->bind('annaleDetails');
 
 ///////////////////////////////COURS//////////////////////////////////////////
@@ -368,7 +613,8 @@ $app->get('/listeCoursM2', function () use ($app) {
 /*vue du cours choisi*/
 $app->get('/cours/{id}', function ($id) use ($app) {
     $cours = $app['dao.cours']->find($id);
-    return $app['twig']->render('cours_details.twig', array('cours' => $cours));
+    $infosEtudiant = $app['dao.cours']->findInfosEtudiantCours($id);
+    return $app['twig']->render('cours_details.twig', array('cours' => $cours, 'infosEtudiant' => $infosEtudiant));
 })->bind('coursDetails');
 
 ///////////////////////////////MINI-JOB//////////////////////////////////////////
@@ -379,7 +625,8 @@ $app->get('/jobs_all', function () use ($app) {
 
 $app->get('/job/{id}', function ($id) use ($app) {
     $job = $app['dao.job']->find($id);
-    return $app['twig']->render('job_details.twig', array('job' => $job));
+    $infosEtudiant = $app['dao.job']->findInfosEtudiantJob($id);
+    return $app['twig']->render('job_details.twig', array('job' => $job, 'infosEtudiant' => $infosEtudiant));
 })->bind('jobDetails');
 
 ///////////////////////////////EVENEMENTS//////////////////////////////////////////
@@ -403,10 +650,10 @@ $app->get('/listeConference', function () use ($app) {
     return $app['twig']->render('liste_evenementConference.twig', array('evenementsConf' => $evenementsConf));
 })->bind('evenementConf');
 
-
 $app->get('/evenement/{id}', function ($id) use ($app) {
     $evenement = $app['dao.evenement']->find($id);
-    return $app['twig']->render('evenement_details.twig', array('evenement' => $evenement));
+    $infosEtudiant = $app['dao.evenement']->findInfosEtudiantEvenement($id);
+    return $app['twig']->render('evenement_details.twig', array('evenement' => $evenement, 'infosEtudiant' => $infosEtudiant));
 })->bind('evenementDetails');
 
 ///////////////////////////////LIVRES//////////////////////////////////////////
@@ -417,5 +664,6 @@ $app->get('/livres_all', function () use ($app) {
 
 $app->get('/livre/{id}', function ($id) use ($app) {
     $livre = $app['dao.livre']->find($id);
-    return $app['twig']->render('livre_details.twig', array('livre' => $livre));
+    $infosEtudiant = $app['dao.livre']->findInfosEtudiantLivre($id);
+    return $app['twig']->render('livre_details.twig', array('livre' => $livre,'infosEtudiant' => $infosEtudiant));
 })->bind('livreDetails');

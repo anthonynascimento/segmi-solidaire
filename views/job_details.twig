@@ -17,15 +17,19 @@
         <br>
         <h4> Description des missions</h4>
         <p>{{ job.description|raw }}</p>
-        <hr><br>
+        <br>
 
         <h4>Categorie</h4>
         <p>{{ job.categorie }}</p>
-        <hr><br>
-        <div class="col-lg-5 col-lg-offset-1" style="text-align:justify;">
-            <h4>Coordonnées de celui qui propose</h4>
-            <p>On affiche ici les coordonnées nom, prenom, tel de la personne qui a posté ce job</p>
-        </div>
+        <br>
 
+        <hr>
+        <div class="col-lg-5 col-lg-offset-1" style="text-align:justify;">
+            <h4>Informations de contact</h4>
+            <p>Prénom: <b>{{ infosEtudiant.prenom }}</b></p>
+            <p>Email: <b>{{ infosEtudiant.username }}</b></p>
+            <p>Téléphone: <b>{{ infosEtudiant.telephone }}</b></p>
+
+        </div>
     </div>
 {% endblock %}

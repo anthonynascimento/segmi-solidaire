@@ -21,7 +21,7 @@
     <br>
         <div class="container-login100">
             <div class="wrap-login100">
-                <form class="login100-form validate-form"  action="{{ path('login') }}" method="post">
+                <form class="login100-form validate-form"  action="{{ path('connexion') }}" method="post">
 						<span class="login100-form-title p-b-26">
 							Se connecter
 						</span>
@@ -35,8 +35,8 @@
                         </div>
                     {% endif %}
                     <div class="wrap-input100 validate-input" data-validate="Email requis">
-                        <input class="input100" type="text" name="_email">
-                        <span class="focus-input100" data-placeholder="Email"></span>
+                        <input class="input100" type="text" name="_username">
+                        <span class="focus-input100" data-placeholder="Email" ></span>
                     </div>
 
                     <div class="wrap-input100 validate-input" data-validate="Mot de passe requis">

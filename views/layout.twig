@@ -27,50 +27,45 @@
         <img id="logo_upx" src="{{ app.request.basepath }}/web/images/logo_upx.png">
         <ul>
             <li><a href="{{ path('home') }}">Accueil</a></li>
-            <li>
-                <a href="{{ path('cours') }}">Cours</a><!--tous les cours-->
-                <ul>
-                    <li><a href="{{ path('cours_l1') }}">Cours L1</a></li>
-                    <li><a href="{{ path('cours_l2') }}">Cours L2</a></li>
-                    <li><a href="{{ path('cours_l3') }}">Cours L3</a></li>
-                    <li><a href="{{ path('cours_m1') }}">Cours M1</a></li>
-                    <li><a href="{{ path('cours_m2') }}">Cours M2</a></li>
 
-                </ul>
-            </li>
             <li>
-                <a href="{{ path('annales') }}">Annales</a><!--toutes les annales-->
+                <a href="#">Cours</a><!--tous les cours-->
                 <ul>
-                    <li><a href="{{ path('annales_l1') }}">Niveau L1</a></li>
-                    <li><a href="{{ path('annales_l2') }}">Niveau L2</a></li>
-                    <li><a href="{{ path('annales_l3') }}">Niveau L3</a></li>
-                    <li><a href="{{ path('annales_m1') }}">Niveau M1</a></li>
-                    <li><a href="{{ path('annales_m2') }}">Niveau M2</a></li>
-
+                    <li><a href="{{ path('cours') }}">Tous les cours</a></li>
                     <li>
-                        <a href="#">And a submenu &hellip;</a>
+                        <a href="#">Par niveaux &hellip;</a>
                         <ul>
-                            <li><a href="#">Lorem ipsum dolor</a></li>
-                            <li><a href="#">Phasellus consequat</a></li>
-                            <li><a href="#">Magna phasellus</a></li>
-                            <li><a href="#">Etiam dolore nisl</a></li>
+                            <li><a href="{{ path('cours_l1') }}">Cours L1</a></li>
+                            <li><a href="{{ path('cours_l2') }}">Cours L2</a></li>
+                            <li><a href="{{ path('cours_l3') }}">Cours L3</a></li>
+                            <li><a href="{{ path('cours_m1') }}">Cours M1</a></li>
+                            <li><a href="{{ path('cours_m2') }}">Cours M2</a></li>
                         </ul>
                     </li>
                 </ul>
             </li>
+
+            <li>
+                <a href="#">Annales</a><!--toutes les annales-->
+                <ul>
+                    <li><a href="{{ path('annales') }}">Toutes les annales</a></li>
+                    <li>
+                        <a href="#">Par niveaux &hellip;</a>
+                        <ul>
+                            <li><a href="{{ path('annales_l1') }}">Niveau L1</a></li>
+                            <li><a href="{{ path('annales_l2') }}">Niveau L2</a></li>
+                            <li><a href="{{ path('annales_l3') }}">Niveau L3</a></li>
+                            <li><a href="{{ path('annales_m1') }}">Niveau M1</a></li>
+                            <li><a href="{{ path('annales_m2') }}">Niveau M2</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+
             <li>
                 <a href="#">Livres</a>
                 <ul>
                     <li><a href="{{ path('livres_all') }}">Tous les livres à vendre</a></li>
-                    <li>
-                        <a href="#">And a submenu &hellip;</a>
-                        <ul>
-                            <li><a href="#">Lorem ipsum dolor</a></li>
-                            <li><a href="#">Phasellus consequat</a></li>
-                            <li><a href="#">Magna phasellus</a></li>
-                            <li><a href="#">Etiam dolore nisl</a></li>
-                        </ul>
-                    </li>
                 </ul>
             </li>
 
@@ -78,49 +73,70 @@
                 <a href="#">Mini Jobs</a>
                 <ul>
                     <li><a href="{{ path('jobs_all') }}">Tous les jobs</a></li>
-                    <li>
-                        <a href="#">And a submenu &hellip;</a>
-                        <ul>
-                            <li><a href="#">Lorem ipsum dolor</a></li>
-                            <li><a href="#">Phasellus consequat</a></li>
-                            <li><a href="#">Magna phasellus</a></li>
-                            <li><a href="#">Etiam dolore nisl</a></li>
-                        </ul>
-                    </li>
                 </ul>
             </li>
+
             <li>
-                <a href="{{ path('evenement') }}">Évènement</a><!--tous les evenements-->
+                <a href="#">Évènement</a><!--tous les evenements-->
                 <ul>
+                    <li><a href="{{ path('evenement') }}">Tous les évènements</a></li>
+                    <li>
+                     <a href="#">Par catégorie &hellip;</a>
+                 <ul>
+
                     <li><a href="{{ path('evenementSport') }}">Sport</a></li>
                     <li><a href="{{ path('evenementSoiree') }}">Soirée</a></li>
                     <li><a href="{{ path('evenementConf') }}">Conférence</a></li>
                 </ul>
+                    </li>
+                </ul>
             </li>
 
+
+            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
             <li>
                 <a href="#">Déposer une annonce</a>
                 <ul>
                     <li><a href="{{ path('ajouter_evenement') }}">Ajouter un évènement</a></li>
                     <li><a href="{{ path('ajouter_aide') }}">Proposer son aide dans une matière</a></li>
                     <li><a href="{{ path('ajouter_job') }}">Proposer un mini job</a></li>
-                    <li><a href="{{ path('ajouter_annale') }}">Ajouter des annales</a></li>
-                    <li><a href="{{ path('ajouter_livre') }}">Vendre des livres</a></li>
-                    <li>
-                        <a href="#">And a submenu &hellip;</a>
-                        <ul>
-                            <li><a href="#">Lorem ipsum dolor</a></li>
-                            <li><a href="#">Phasellus consequat</a></li>
-                            <li><a href="#">Magna phasellus</a></li>
-                            <li><a href="#">Etiam dolore nisl</a></li>
-                        </ul>
+                    <li><a href="{{ path('ajouter_annale') }}">Ajouter une annale</a></li>
+                    <li><a href="{{ path('ajouter_livre') }}">Vendre un livre</a></li>
+                </ul>
+
+                    {% else %}
+                    <li><a href="{{ path('login') }}">Connexion</a></li>
+                    <li><a href="{{ path('inscription') }}">Inscription</a></li>
+
+                {% endif %}
+
+            {% if is_granted('IS_AUTHENTICATED_FULLY') and is_granted('ROLE_ADMIN') == false %}
+            <!--si etudiant connecté -->
+            <li><a href="{{ path('gestion_etudiant_accueil') }}">Gestion de compte</a></li>
+
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    <i style="color: black;" class="fa fa-user fa-fw"></i> <i style="color: black;" class="fa fa-caret-down"></i>
+                </a>
+                <ul class="dropdown-menu dropdown-user">{{ app.user.username }}
+                    <li><a href="{{ path('deconnexion') }}"><i style="color: black;"class="fa fa-sign-out fa-fw"></i> Logout</a>
                     </li>
                 </ul>
-            <li><a href="{{ path('login') }}">Connexion</a></li>
-            <li><a href="{{ path('inscription') }}">Inscription</a></li>
+                {% endif %}
 
+            {% if is_granted('ROLE_ADMIN') %}
             <!--si admin connecté -->
-            <li><a href="{{ path('gestion_admin_accueil') }}">Gestion</a></li>
+                <li><a href="{{ path('gestion_admin_accueil') }}">Gestion Admin</a></li>
+
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    <i style="color: black;" class="fa fa-user fa-fw"></i> <i style="color: black;" class="fa fa-caret-down"></i>
+                </a>
+                <ul class="dropdown-menu dropdown-user">{{ app.user.username }}
+                    <li><a href="{{ path('deconnexion') }}"><i style="color: black;"class="fa fa-sign-out fa-fw"></i> Logout</a>
+                    </li>
+                </ul>
+            {% endif %}
 
         </ul>
         <img id="logo" style="height: 80px;" src="{{ app.request.basepath }}/web/images/logo.png">
@@ -146,8 +162,6 @@
             <a href="{{ path('jobs_all') }}">Mini Jobs</a>
             ·
             <a href="{{ path('evenement') }}">Évènement</a>
-            ·
-            <a href="#">Déposer une annonce</a>
             ·
             <a href="{{ path('login') }}">Connexion</a>
         </p>

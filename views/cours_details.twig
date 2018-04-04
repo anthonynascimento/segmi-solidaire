@@ -32,27 +32,16 @@
                                 <h4>Description</h4>
                                 <p>{{ cours.description|raw }}</p>
                             </div>
-                            {% if cours.idEtudiant is not empty %}
                             <hr><br>
+
                             <div class="col-lg-5 col-lg-offset-1" style="text-align:justify;">
-                                <h4>Coordonnées de la personne qui propose :</h4>
+                                <h4>Informations de contact</h4>
+                                <p>Prénom: <b>{{ infosEtudiant.prenom }}</b></p>
+                                <p>Email: <b>{{ infosEtudiant.username }}</b></p>
+                                <p>Téléphone: <b>0{{ infosEtudiant.telephone }}</b></p>
 
-                                <h4>Nom</h4>
-                                <p>{{ cours.e.nom }}</p>
-                                <br>
-                                <h4>Prénom</h4>
-                                <p>{{ cours.prenom }}</p>
-                                <br>
-                                <h4>Email</h4>
-                                <p>{{ cours.email }}</p>
-                                <br>
-                                <h4>Téléphone</h4>
-                                <p>{{ cours.telephone }}</p>
-                                <br>
-
-                                <p>On affiche ici les coordonnées nom, prenom, tel de la personne qui a posté l'aide à ce cours</p>
                             </div>
-                            {% endif %}
+                            </div>
                         </div>
                     </div>
                 </div>

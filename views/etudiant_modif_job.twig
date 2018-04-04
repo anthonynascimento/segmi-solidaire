@@ -7,8 +7,8 @@
 {% block content %}
     <div class="container">
         <div class="row">
-            <h2>Modifier le mini-job</h2>
-            <form class="container" method="POST"  action="{{ path('modif_Job', {'id': job.idJob }) }}">
+            <h2>Modifier votre mini-job</h2>
+            <form class="container" method="POST"  action="{{ path('modif_Job_Etu', {'id': job.idJob }) }}">
                 <br><br>
 
                 <div class="col-xs-4"><h4>Le titre du mini-job que vous proposez</h4>
@@ -64,11 +64,10 @@
                     <br>
 
 
-                    <button  type="submit" class="btn btn-success" onclick="alert('Mini-job modifié avec succès !')";>Modifier</button>
+                    <button type="submit" class="btn btn-success" onclick="alert('Mini-job modifié avec succès !')";>Modifier</button>
                     <br><br>
                 </div>
             </form>
         </div>
     </div>
-
 {% endblock %}

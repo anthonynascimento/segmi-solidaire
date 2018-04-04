@@ -1,0 +1,45 @@
+{% extends "layout.twig" %}
+
+{% set menu_selected = 'home' %}
+
+{% block title %}etudiant{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <h2>Modifier mes infos</h2>
+            <form class="container" method="POST"  action="{{ path('modif_Infos', {'id': etudiant.idEtudiant }) }}">
+                <br><br>
+
+                <div class="col-xs-4"><h1 style="font-size: larger">Mes informations</h1><br>
+                    <!-- Page Heading/Breadcrumbs -->
+
+                    <h1 class="mt-4 mb-3">Nom
+                        <input style="" type="text" placeholder="Nom étudiant" class="form-control" value="{{ etudiant.nom }}" name="nom" required>
+                    </h1>
+                    <br>
+
+                    <h1 class="mt-4 mb-3">Prénom
+                        <input  type="text" placeholder="Prénom étudiant" class="form-control" value="{{ etudiant.prenom }}" name="prenom" required>
+                    </h1>
+                    <br>
+
+                    <h1 class="mt-4 mb-3">Email @
+                        <input style="background-color: lightgrey " type="email" placeholder="Email étudiant" class="form-control" value="{{ etudiant.username }}" name="username" readonly>
+                        <p>Demander à l'administrateur du site pour modification de votre identifiant de connexion qui est votre adresse email</p>
+                    </h1>
+                    <br>
+
+                    <h1 class="mt-4 mb-3">Téléphone
+                        <br>
+                        <input type="tel" placeholder="Téléphone étudiant" maxlength="10" class="form-control" value="0{{ etudiant.telephone }}" name="telephone" required>
+                    </h1>
+                    <br>
+
+                    <button type="submit" class="btn btn-success" onclick="alert('Information(s) modifiée(s) !')";>Modifier</button>
+                    <br><br>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

@@ -29,14 +29,15 @@ class UtilisateurDAO implements UserProviderInterface
      * @param string $username
      * @return User
      */
-    public function loadUserByUsername($email)
+    /*username correspond à l'email du l'utilisateur*/
+    public function loadUserByUsername($username)
     {
-        $stmt = $this->conn->executeQuery('SELECT * FROM etudiant WHERE email = ?', array(strtolower($email)));
+        $stmt = $this->conn->executeQuery('SELECT * FROM etudiant WHERE username = ?', array(strtolower($username)));
         if (!$user = $stmt->fetch()) {
 
-            throw new UsernameNotFoundException(sprintf('email "%s" does not exist.', $email));
+            throw new UsernameNotFoundException(sprintf('Username "%s" does not exist.', $username));
         }
-        return new User($user['email'], $user['password'], explode(',', $user['roles']), true, true, true, true);
+        return new User($user['username'], $user['mdp'], explode(',', $user['roles']), true, true, true, true);
     }
 
 
