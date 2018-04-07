@@ -17,20 +17,22 @@
                 {% for evenementsSport in evenementsSport['tous'] %}
                     <article style="cursor: pointer; height:800px" onclick="parent.location='{{ path('evenementDetails', {'id': evenementsSport.idEvenement }) }}'" class="4u 12u(mobile) special">
                         <a href="#" class="image featured"><img style="height: 350px;" src="web/images/{{ evenementsSport.image }}" alt=""/></a>
+                        <div style="max-height: 15em; overflow: auto">
                         <header>
                             <h3><a href="#">{{ evenementsSport.titre }}</a></h3>
                         </header>
-                        <div style="overflow: auto;">
-                        <p style="max-height: 15em; overflow: auto">
+
+                        <p style="">
                             {{ evenementsSport.description|raw }}
                         </p>
+
+                        <p>
+                            Début de l'évenement: <b>{{ evenementsSport.dateDebut }}</b>
+                        </p>
+                        <p>
+                            Fin de l'évenement: <b>{{ evenementsSport.dateFin }}</b>
+                        </p>
                         </div>
-                        <p>
-                            Début de l'évenement: {{ evenementsSport.dateDebut }}
-                        </p>
-                        <p>
-                            Fin de l'évenement: {{ evenementsSport.dateFin }}
-                        </p>
                     </article>
 
                 {% endfor %}

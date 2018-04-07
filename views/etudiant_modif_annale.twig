@@ -100,11 +100,10 @@
                     <br>
 
                     <h4>L'annale en .pdf/.odt/.doc/xls/image</h4>
-                    <input type="file" name="fichier">
+                    <input id="file" type="file" name="fichier" onblur="verifFichier()">
                     <p>Fichier initial: {{ annale.fichier }}</p>
-                    <p style="color: red;">Veuillez choisir un fichier obligatoirement</p>
 
-                        <button type="submit" class="btn btn-success" onclick="alert('Annale modifée avec succès !')";>Ajouter</button>
+                        <button id ="submit" type="submit" class="btn btn-success" onclick="alert('Annale modifée avec succès !')";>Ajouter</button>
                         <br><br>
                 </div>
             </form>
@@ -151,6 +150,16 @@
                 $('#M1').hide();
                 $('#M2').show();
             }
+        }
+
+        function verifFichier() {
+            $("#submit").click(function(){
+                var fileName = $("#file").val();
+                if(fileName.length == 0) {
+                    $("#file").append('<span> You must send a file </span>');
+                }
+
+            })
         }
     </script>
 {% endblock %}

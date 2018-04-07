@@ -55,10 +55,15 @@ class AnnaleDAO extends DAO
             $path = 'web/fichiers/' . $_FILES['fichier']['name'];
             $fichier=$_FILES['fichier']['name'];
             if (!file_exists($path)) {
+                    $sql = "insert into annale (nom,datePublication,niveau,fichier,matiere,username) values('" . $_POST['nom'] . "','" . $_POST['datePublication'] . "','" . $_POST['niveau'] . "','" . $fichier . "','" . $_POST['matiere'] . "','" . $username . "')";
+                    $this->getDb()->query($sql);
+                    move_uploaded_file($_FILES['fichier']['tmp_name'], $path);
 
-                $sql = "insert into annale (nom,datePublication,niveau,fichier,matiere,username) values('" . $_POST['nom'] . "','" . $_POST['datePublication'] . "','" . $_POST['niveau'] . "','" . $fichier . "','" . $_POST['matiere'] . "','" . $username . "')";
-                $this->getDb()->query($sql);
-                move_uploaded_file($_FILES['fichier']['tmp_name'], $path);
+                    echo "<br><br><br><br><br><br><br>";
+                    echo "<div class=\"container\">";
+                    echo "<div class=\"alert alert-success\">";
+                    echo "<strong>Annale ajoutée !</strong> ";
+                    echo "</div> </div> ";
 
             } else {
                 echo "<br>";
@@ -72,20 +77,18 @@ class AnnaleDAO extends DAO
                 echo "<strong>Le nom du fichier existe déjà, veuillez le renommer et recommencer.</strong> ";
                 echo "</div> </div> ";
             }
-            if($sql){
-                echo "<br><br><br><br><br><br>";
-                echo "<div class=\"container\">";
-                echo "<div class=\"alert alert-success\">";
-                echo "<strong>Annale ajoutée !</strong> ";
-                echo "</div> </div> ";
-            }
-            else {
-                echo "<br><br><br><br><br>";
-                echo "<div class=\"container\">";
-                echo "<div class=\"alert alert-danger\">";
-                echo "<strong>Une erreur s'est produite !</strong> ";
-                echo "</div> </div> ";
-            }
+
+        } else {
+
+            echo "<br>";
+            echo "<br>";
+            echo "<br>";
+            echo "<br>";
+            echo "<br>";
+            echo "<div class=\"container\">";
+            echo "<div class=\"alert alert-warning\">";
+            echo "<strong>Aucun fichier selectionné, veuillez recommencer</strong> ";
+            echo "</div> </div> ";
         }
     }
 
@@ -106,17 +109,13 @@ class AnnaleDAO extends DAO
         if (is_uploaded_file($_FILES['fichier']['tmp_name']) && $_FILES['fichier']['error'] == 0) {
             $path = 'web/fichiers/' . $_FILES['fichier']['name'];
             $fichier = $_FILES['fichier']['name'];
-            if(empty($fichier)) {
-                $sql = "select fichier from annale where idAnnale = $id";
-                $resultat = $this->getDb()->query($sql);
-                $fichier = $resultat;
-            }else {
-                $fichier = $_FILES['fichier']['name'];
-            }
                 $sql = "UPDATE annale SET nom='" . addslashes($_POST['nom']) . "', datePublication='" . addslashes($_POST['datePublication']) . "',fichier='" . $fichier . "',niveau='" . addslashes($_POST['niveau']) . "', matiere='" . addslashes($_POST['matiere']) . "' where idAnnale='" . $id . "'";
                 $this->getDb()->query($sql);
                     move_uploaded_file($_FILES['fichier']['tmp_name'], $path);
 
+        } else {
+            $sql = "UPDATE annale SET nom='" . addslashes($_POST['nom']) . "', datePublication='" . addslashes($_POST['datePublication']) . "',niveau='" . addslashes($_POST['niveau']) . "', matiere='" . addslashes($_POST['matiere']) . "' where idAnnale='" . $id . "'";
+            $this->getDb()->query($sql);
         }
     }
 

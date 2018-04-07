@@ -16,33 +16,27 @@
             </header>
         </section>
 
+        <!-- Carousel -->
+        <h3> Évènements à venir</h3>
 
-        <section class="carousel" style="height: 100%">
-            <!-- Carousel -->
-            <h3> Évènements à venir</h3>
-            <div class="reel">
+        <section style=""class="carousel">
+
+            <div style=""class="reel" style="overflow: visible; transform: translate(-628px, 0px);">
 
                 {% if evenements['tous'] is not empty %}
                     {% for evenements in evenements['tous'] %}
-                        <article style="cursor: pointer;width: 30%;height: 60%"
-                                 onclick="parent.location='{{ path('evenementDetails', {'id': evenements.idEvenement }) }}'"
-                                 class="4u 12u(mobile) special">
-                            <a style="overflow: auto;width:380px;height: 255px"
-                               class="image featured"><img
-                                        src="web/images/{{ evenements.image }}" alt=""/></a>
-                            <div class="form-group">
-                                <header>
-                                    <h3><a>{{ evenements.titre }}</a></h3>
-                                </header>
-                                <div style="overflow: auto">
-                                    <p style="overflow: auto; max-height: 6em;">
-                                        {{ evenements.description|raw }}
-                                    </p>
-                                </div>
-                            </div>
+                        <article style="cursor: pointer;"onclick="parent.location='{{ path('evenementDetails', {'id': evenements.idEvenement }) }}'"  class="4u 12u(mobile) special">
+                            <a  class="image featured"><img style="width: 360px; height: 220px;" src="web/images/{{ evenements.image }}" alt=""/></a>
+                            <header>
+                                <h3><a>{{ evenements.titre }}</a></h3>
+                            </header>
+
+                                <p  style="overflow: auto; height: 6em;">
+                                    {{ evenements.description|striptags|raw }}
+                                </p>
+
 
                         </article>
-
                     {% endfor %}
 
                 {% else %}
@@ -128,6 +122,7 @@
                 {% endif %}
 
 
+
             </div>
         </section>
 
@@ -140,8 +135,7 @@
                     <p>
                         Bienvenue sur SEGMI Solidaire,<br/>
                         Un site d'entraide dédié aux étudiants de l'UFR SEGMI de l'Université Paris-Nanterre.
-                        Ici vous pouvez trouver et partager livres, annales et cours mais aussi organiser des évènements
-                        ou encore déposer et chercher des annonces de mini-jobs. Bonne visite!
+                        Ici vous pouvez trouver et partager livres, annales et cours mais aussi organiser des évènements ou encore déposer et chercher des annonces de mini-jobs. Bonne visite!
                     </p>
                 </header>
                 <p>

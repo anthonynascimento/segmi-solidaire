@@ -49,7 +49,6 @@ class JobDAO extends DAO
         return $jobs;
     }
 
-    /*en parametre il faudra le num etudiant*/
     public function ajouterMiniJob($username){
 
         $sql = "insert into job (titre,description,categorie,username) values('" . $_POST['titre'] . "','" . $_POST['description'] . "','" . $_POST['categorie'] . "','" . $username . "')";

@@ -59,29 +59,19 @@ class EvenementDAO extends DAO
         }
     }
 
+
     public function modifierEvenement($id)
     {
         if (is_uploaded_file($_FILES['image']['tmp_name']) && $_FILES['image']['error'] == 0) {/*nom stocker sur le serveur*/
             $path = 'web/images/' . $_FILES['image']['name'];/*chemin pour stocker l'image avec son nom d'origine depuis la machine du client*/
             $image = $_FILES['image']['name'];/*recupere le nom de l'image depuis l'upload du client*/
+            $sql = "UPDATE evenement SET titre='" . addslashes($_POST['titre']) . "', description='" . addslashes($_POST['description']) . "',lieu='" . addslashes($_POST['lieu']) . "',dateDebut='" . addslashes($_POST['dateDebut']) . "', dateFin='" . addslashes($_POST['dateFin']) . "',type='" . addslashes($_POST['type']) . "',image='" . $image . "' where idEvenement='" . $id . "'";
+            $this->getDb()->query($sql);
+            move_uploaded_file($_FILES['image']['tmp_name'], $path);
 
-                if (empty($_POST($image))) {
-                    echo "<br>";
-                    echo "<br>";
-                    echo "<br>";
-                    echo "<br>";
-                    echo "<br>";
-                    echo "<br>";
-                    echo "<br>";
-                    echo "<div class=\"container\">";
-                    echo "<div class=\"alert alert-warning\">";
-                    echo "<strong>Vous devez importer une image illustrant l'évènement, veuillez recommencer.</strong> ";
-                    echo "</div> </div> ";
-                }
-                $sql = "UPDATE evenement SET titre='" . addslashes($_POST['titre']) . "', description='" . addslashes($_POST['description']) . "',lieu='" . addslashes($_POST['lieu']) . "',dateDebut='" . addslashes($_POST['dateDebut']) . "', dateFin='" . addslashes($_POST['dateFin']) . "',type='" . addslashes($_POST['type']) . "',image='" . $image . "' where idEvenement='" . $id . "'";
-                $this->getDb()->query($sql);
-                move_uploaded_file($_FILES['image']['tmp_name'], $path);
-
+        } else {
+            $sql = "UPDATE evenement SET titre='" . addslashes($_POST['titre']) . "', description='" . addslashes($_POST['description']) . "',lieu='" . addslashes($_POST['lieu']) . "',dateDebut='" . addslashes($_POST['dateDebut']) . "', dateFin='" . addslashes($_POST['dateFin']) . "',type='" . addslashes($_POST['type']) . "' where idEvenement='" . $id . "'";
+            $this->getDb()->query($sql);
         }
     }
 
@@ -138,7 +128,6 @@ class EvenementDAO extends DAO
         return $evenement;
     }
 
-    /*on rajoutera en parametre de la fonction le numero etudiant qui correpsond a la personne qui poste levenement*/
     public function ajouterEvenement($username)
     {
         if (is_uploaded_file($_FILES['image']['tmp_name']) && $_FILES['image']['error'] == 0) {/*nom stocker sur le serveur*/
@@ -149,8 +138,8 @@ class EvenementDAO extends DAO
                 $sql = "insert into evenement (titre,description,lieu,dateDebut,dateFin,type,image,username) values('" . $_POST['titre'] . "','" . $_POST['description'] . "','" . $_POST['lieu'] . "','" . $_POST['dateDebut'] . "','" . $_POST['dateFin'] . "','" . $_POST['type'] . "','" . $image . "','" . $username . "')";
                 $this->getDb()->query($sql);
                 move_uploaded_file($_FILES['image']['tmp_name'], $path);
+
             } else {
-                echo "<br>";
                 echo "<br>";
                 echo "<br>";
                 echo "<br>";
@@ -159,10 +148,23 @@ class EvenementDAO extends DAO
                 echo "<br>";
                 echo "<div class=\"container\">";
                 echo "<div class=\"alert alert-warning\">";
-                echo "<strong>Le nom du fichier existe déjà, veuillez le renommer et recommencer.</strong> ";
+                echo "<strong>Le nom de l'image existe dèjà, veuillez la renommer et recommencer.</strong> ";
                 echo "</div> </div> ";
             }
+
+        } else {
+
+            echo "<br>";
+            echo "<br>";
+            echo "<br>";
+            echo "<br>";
+            echo "<br>";
+            echo "<div class=\"container\">";
+            echo "<div class=\"alert alert-warning\">";
+            echo "<strong>Aucune image selectionnée, veuillez recommencer</strong> ";
+            echo "</div> </div> ";
         }
+
     }
 
     public function findInfosEtudiantEvenement($id)

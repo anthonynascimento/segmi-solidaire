@@ -97,11 +97,11 @@
                     </h1>
                     <br>
 
-                    <h4>L'annale en .pdf/.odt/.doc/.xls/image/...</h4>
-                    <input type="file" name="fichier">
-                    <p style="color: red;">Vous devez importer une annale obligatoirement</p>
+                    <h4>L'annale en .pdf/.odt/.doc/xls/image</h4>
+                    <input id="file" type="file" name="fichier" onblur="verifFichier()">
+                    <p style="color: red;">Vous devez importer un fichier obligatoirement</p>
 
-                    <button type="submit" class="btn btn-success" onclick="";>Ajouter</button>
+                    <button id="submit" type="submit" class="btn btn-success" onclick="";>Ajouter</button>
                     <br><br>
                 </div>
             </form>
@@ -149,5 +149,15 @@
                 $('#M2').show();
             }
         }
-    </script>
+
+        function verifFichier() {
+            var nomFichier= document.getElementById("file");
+            $("#submit").click(function(){
+                if(nomFichier.length == 0) {
+                    $("#file").append('<span> Vous devez imorter un fichier </span>');
+                }
+
+            })
+        }
+</script>
 {% endblock %}

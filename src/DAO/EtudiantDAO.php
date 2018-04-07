@@ -37,8 +37,6 @@ class EtudiantDAO extends DAO
     public function findUserConnected($id)
     {
         $sql = "SELECT * FROM etudiant where username='" . $id . "'";
-        $result = $this->getDb()->fetchAll($sql);
-
         $row = $this->getDb()->fetchAssoc($sql, array($id));
 
         if ($row)
@@ -64,8 +62,11 @@ class EtudiantDAO extends DAO
 
     public function modifierEtudiant($id)
     {
-        $sql = "UPDATE etudiant SET username='" . addslashes($_POST['username']) . "', nom='" . addslashes($_POST['nom']) . "',prenom='" . addslashes($_POST['prenom']) . "',telephone='" . addslashes($_POST['telephone']) . "' where idEtudiant='" . $id . "'";
+        if(isset($_POST['username'])) {
+            $username = $_POST['username'];
+        $sql = "UPDATE etudiant SET username='" . $username . "', nom='" . addslashes($_POST['nom']) . "',prenom='" . addslashes($_POST['prenom']) . "',telephone='" . addslashes($_POST['telephone']) . "' where idEtudiant='" . $id . "'";
         $this->getDb()->query($sql);
+        }
     }
 
     protected function buildDomainObject($row)

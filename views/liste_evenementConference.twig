@@ -17,20 +17,21 @@
                 {% for evenementsConf in evenementsConf['tous'] %}
                     <article style="cursor: pointer; height:800px" onclick="parent.location='{{ path('evenementDetails', {'id': evenementsConf.idEvenement }) }}'" class="4u 12u(mobile) special">
                         <a href="#" class="image featured"><img style="height: 350px;" src="web/images/{{ evenementsConf.image }}" alt=""/></a>
+                        <div style="max-height: 15em; overflow: auto">
                         <header>
                             <h3><a href="#">{{ evenementsConf.titre }}</a></h3>
                         </header>
-                        <div style="overflow: auto;">
-                        <p style="max-height: 15em; overflow: auto">
+                        <p>
                             {{ evenementsConf.description|raw }}
                         </p>
+
+                        <p>
+                            Début de l'évenement: <b>{{ evenementsConf.dateDebut }}</b>
+                        </p>
+                        <p>
+                            Fin de l'évenement: <b>{{ evenementsConf.dateFin }}</b>
+                        </p>
                         </div>
-                        <p>
-                            Début de l'évenement: {{ evenementsConf.dateDebut }}
-                        </p>
-                        <p>
-                            Fin de l'évenement: {{ evenementsConf.dateFin }}
-                        </p>
                     </article>
                 {% endfor %}
     {% else %}

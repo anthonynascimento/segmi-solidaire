@@ -8,6 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
+    <link rel="icon" type="image/png" href="{{ app.request.basepath }}/web/images/logo.ico" />
+    <!--[if IE]><link rel="shortcut icon" type="image/x-icon" href="{{ app.request.basepath }}/web/images/logo.ico" /><![endif]-->
 
     <title>Gestion</title>
 
@@ -81,7 +83,7 @@
                 <ul class="nav" id="side-menu">
 
                     <li>
-                        <a style="color: red;" href="{{ path('gestion_etudiant_accueil') }}"><i style="color: red;" class="fa fa-meh-o" aria-hidden="true"></i> Mes informations</a>
+                        <a style="color: red;" href="{{ path('gestion_etudiant_accueil') }}"><i style="color: red;" class="fa fa-pencil-square-o" aria-hidden="true"></i> Mes informations</a>
                     </li>
                     <li>
                         <a style="color: red;" href="{{ path('gestion_etudiant_evenements') }}"><i style="color: red;" class="fa fa-rss" aria-hidden="true"></i> Mes évènements ajoutés</a>

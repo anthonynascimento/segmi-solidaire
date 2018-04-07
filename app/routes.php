@@ -90,7 +90,7 @@ $app->get('/admin/supprimerEvenement/{id}', function ($id) use ($app) {
 $app->get('/admin/evenement/{id}', function ($id) use ($app) {
     $evenement = $app['dao.evenement']->find($id);
     return $app['twig']->render('admin_modif_evenement.twig', array('evenement' => $evenement));
-})->bind('modifierEvenement');
+})->bind('modifierEvenementAdmin');
 
 
 $app->post('/admin/evenement/modifier/{id}', function ($id) use ($app) {
@@ -121,7 +121,7 @@ $app->get('/admin/supprimerCours/{id}', function ($id) use ($app) {
 $app->get('/admin/cours/{id}', function ($id) use ($app) {
     $cours = $app['dao.cours']->find($id);
     return $app['twig']->render('admin_modif_cours.twig', array('cours' => $cours));
-})->bind('modifierCours');
+})->bind('modifierCoursAdmin');
 
 
 $app->post('/admin/cours/modifier/{id}', function ($id) use ($app) {
@@ -152,7 +152,7 @@ $app->get('/admin/supprimerAnnale/{id}', function ($id) use ($app) {
 $app->get('/admin/annale/{id}', function ($id) use ($app) {
     $annale = $app['dao.annale']->find($id);
     return $app['twig']->render('admin_modif_annale.twig', array('annale' => $annale));
-})->bind('modifierAnnale');
+})->bind('modifierAnnaleAdmin');
 
 
 $app->post('/admin/annale/modifier/{id}', function ($id) use ($app) {
@@ -183,7 +183,7 @@ $app->get('/admin/supprimerJob/{id}', function ($id) use ($app) {
 $app->get('/admin/jobs/{id}', function ($id) use ($app) {
     $job = $app['dao.job']->find($id);
     return $app['twig']->render('admin_modif_job.twig', array('job' => $job));
-})->bind('modifierJob');
+})->bind('modifierJobAdmin');
 
 
 $app->post('/admin/job/modifier/{id}', function ($id) use ($app) {
@@ -214,7 +214,7 @@ $app->get('/admin/supprimerLivre/{id}', function ($id) use ($app) {
 $app->get('/admin/livre/{id}', function ($id) use ($app) {
     $livre = $app['dao.livre']->find($id);
     return $app['twig']->render('admin_modif_livre.twig', array('livre' => $livre));
-})->bind('modifierLivre');
+})->bind('modifierLivreAdmin');
 
 
 $app->post('/admin/livre/modifier/{id}', function ($id) use ($app) {
@@ -464,7 +464,7 @@ $app->post('/AjoutEvenement/ajouter', function () use ($app) {
     $token = $app['security.token_storage']->getToken();
     $user = $token->getUser();
     $app['dao.evenement']->ajouterEvenement($user);
-    $delai = 0;
+    $delai = 2;
     header("Refresh: $delai;url=http://localhost/segmi-solidaire/");
     return $app['twig']->render('home.twig');
 })->bind('ajout_evt');/*quand on clique sur le bouton d'ajout*/

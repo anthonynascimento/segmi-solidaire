@@ -99,6 +99,7 @@ $app->error(function (\Exception $e, $code) use ($app) {
     switch ($code) {
         case 403:
             $message = 'Access denied.';
+            echo "<br><br><br><br><br><br><br>";
             break;
         case 404:
             $message = 'The requested resource could not be found.';
