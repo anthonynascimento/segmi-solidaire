@@ -81,20 +81,20 @@
                 <ul>
                     <li><a href="{{ path('evenement') }}">Tous les évènements</a></li>
                     <li>
-                     <a href="#">Par catégorie &hellip;</a>
-                 <ul>
+                        <a href="#">Par catégorie &hellip;</a>
+                        <ul>
 
-                    <li><a href="{{ path('evenementSport') }}">Sport</a></li>
-                    <li><a href="{{ path('evenementSoiree') }}">Soirée</a></li>
-                    <li><a href="{{ path('evenementConf') }}">Conférence</a></li>
-                </ul>
+                            <li><a href="{{ path('evenementSport') }}">Sport</a></li>
+                            <li><a href="{{ path('evenementSoiree') }}">Soirée</a></li>
+                            <li><a href="{{ path('evenementConf') }}">Conférence</a></li>
+                        </ul>
                     </li>
                 </ul>
             </li>
 
 
             {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-            <li>
+                <li>
                 <a href="#">Déposer une annonce</a>
                 <ul>
                     <li><a href="{{ path('ajouter_evenement') }}">Ajouter un évènement</a></li>
@@ -104,11 +104,11 @@
                     <li><a href="{{ path('ajouter_livre') }}">Vendre un livre</a></li>
                 </ul>
 
-                    {% else %}
-                    <li><a href="{{ path('login') }}">Connexion</a></li>
-                    <li><a href="{{ path('inscription') }}">Inscription</a></li>
+            {% else %}
+                <li><a href="{{ path('login') }}">Connexion</a></li>
+                <li><a href="{{ path('inscription') }}">Inscription</a></li>
 
-                {% endif %}
+            {% endif %}
 
             {% if is_granted('IS_AUTHENTICATED_FULLY') and is_granted('ROLE_ADMIN') == false %}
             <!--si etudiant connecté -->
@@ -116,27 +116,31 @@
 
             <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                    <i style="color: black;" class="fa fa-user fa-fw"></i> <i style="color: black;" class="fa fa-caret-down"></i>
+                    <i style="color: black;" class="fa fa-user fa-fw"></i> <i style="color: black;"
+                                                                              class="fa fa-caret-down"></i>
                 </a>
                 <ul class="dropdown-menu dropdown-user">{{ app.user.username }}
-                    <li><a href="{{ path('deconnexion') }}"><i style="color: black;"class="fa fa-sign-out fa-fw"></i> Logout</a>
+                    <li><a href="{{ path('deconnexion') }}"><i style="color: black;" class="fa fa-sign-out fa-fw"></i>
+                            Logout</a>
                     </li>
                 </ul>
                 {% endif %}
 
-            {% if is_granted('ROLE_ADMIN') %}
-            <!--si admin connecté -->
-                <li><a href="{{ path('gestion_admin_accueil') }}">Gestion Admin</a></li>
+                {% if is_granted('ROLE_ADMIN') %}
+                <!--si admin connecté -->
+            <li><a href="{{ path('gestion_admin_accueil') }}">Gestion Admin</a></li>
 
             <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                    <i style="color: black;" class="fa fa-user fa-fw"></i> <i style="color: black;" class="fa fa-caret-down"></i>
+                    <i style="color: black;" class="fa fa-user fa-fw"></i> <i style="color: black;"
+                                                                              class="fa fa-caret-down"></i>
                 </a>
                 <ul class="dropdown-menu dropdown-user">{{ app.user.username }}
-                    <li><a href="{{ path('deconnexion') }}"><i style="color: black;"class="fa fa-sign-out fa-fw"></i> Logout</a>
+                    <li><a href="{{ path('deconnexion') }}"><i style="color: black;" class="fa fa-sign-out fa-fw"></i>
+                            Logout</a>
                     </li>
                 </ul>
-            {% endif %}
+                {% endif %}
 
         </ul>
         <img id="logo" style="height: 80px;" src="{{ app.request.basepath }}/web/images/logo.png">
