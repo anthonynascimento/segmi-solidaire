@@ -37,7 +37,7 @@ class InscriptionDAO extends DAO
     public function inscription($mdp)
     {
 
-        $recaptcha = new \ReCaptcha\ReCaptcha('6Lem9UwUAAAAAEs2q4Nt3CY7e9QmGqgid9Vy08-V');
+        $recaptcha = new \ReCaptcha\ReCaptcha('6LfRSksUAAAAACpi4eEmnqFpQVFGTWV4yeVVwyxK');
         $resp = $recaptcha->verify($_POST['g-recaptcha-response']);
         if ($resp->isSuccess()) {
             $row = $this->getDb()->executeQuery("insert into etudiant (nom,prenom,username,telephone,mdp,roles) values ('" . addslashes($_POST['nom']) . "','" . addslashes($_POST['prenom']) . "','" . addslashes($_POST['username']) . "','" . addslashes($_POST['tel']) . "','" . addslashes($mdp) . "',' ROLE_ETUDIANT ')");
