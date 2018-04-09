@@ -68,7 +68,7 @@
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                     <i style="color: black;" class="fa fa-user fa-fw"></i> <i style="color: black;" class="fa fa-caret-down"></i>
                 </a>
-                <ul class="dropdown-menu dropdown-user">
+                <ul class="dropdown-menu dropdown-user"><span style="font-family: 'sans-serif';"><b>{{ app.user.username }}</b></span>
                     <li><a href="{{ path('deconnexion') }}"><i style="color: black;"class="fa fa-sign-out fa-fw"></i> Logout</a>
                     </li>
                 </ul>

@@ -41,9 +41,11 @@ $app->get('/login', function (Request $request) use ($app) {
 
 /*accueil admin*/
 $app->get('/admin', function () use ($app) {
-    $etudiants['tous'] = $app['dao.etudiant']->findFirstAll();
+    $token = $app['security.token_storage']->getToken();
+    $user = $token->getUser();
+    $etudiants['tous'] = $app['dao.etudiant']->findFirstAllWithout($user);
     return $app['twig']->render('admin_accueil.twig', array('etudiants' => $etudiants));
-})->bind('gestion_admin_accueil');/*placer se bouton dans l'acceuil avec if admin is granted*/
+})->bind('gestion_admin_accueil');
 
 /*suppression etudiant*/
 $app->get('/admin/supprimerEtudiant/{id}', function ($id) use ($app) {

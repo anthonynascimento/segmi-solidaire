@@ -114,7 +114,6 @@ class CoursDAO extends DAO
     }
 
 
-    /*en parametre il faudra le num etudiant*/
     public function ajouterAideCours($username){
         $matiere=$_POST['matiere'];
         $sql = "insert into cours (nomCours,description,niveau,matiere,username) values('" . $_POST['nomCours'] . "','" . $_POST['description'] . "','" . $_POST['niveau'] . "','" . $matiere . "','" . $username . "')";

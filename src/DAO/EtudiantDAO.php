@@ -22,6 +22,20 @@ class EtudiantDAO extends DAO
         return $etudiant;
     }
 
+    /*avoir tous les etudiants excepté l'admin*/
+    public function findFirstAllWithout($id){
+
+        $sql = "SELECT * FROM etudiant WHERE username NOT IN ('$id')";
+        $result = $this->getDb()->fetchAll($sql);
+
+        $etudiant = array();
+        foreach ($result as $row) {
+            $etuId = $row['idEtudiant'];
+            $etudiant[$etuId] = $this->buildDomainObject($row);
+        }
+        return $etudiant;
+    }
+
 
     public function find($id)
     {

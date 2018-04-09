@@ -113,8 +113,10 @@
 
                 {% endif %}
 
-            {% if is_granted('IS_AUTHENTICATED_FULLY') and is_granted('ROLE_ADMIN') == false %}
             <!--si etudiant connecté -->
+            {% if is_granted('IS_AUTHENTICATED_FULLY') and is_granted('ROLE_ADMINISTRATEUR') == false %}
+            <!--{/*% if is_granted('ROLE_ADMINISTRATEUR') %*/}-->
+
             <li><a href="{{ path('gestion_etudiant_accueil') }}">Gestion de compte</a></li>
 
             <li class="dropdown">
@@ -127,8 +129,9 @@
                 </ul>
                 {% endif %}
 
-            {% if is_granted('ROLE_ADMIN') %}
-            <!--si admin connecté -->
+                <!--si admin connecté -->
+            {% if is_granted('ROLE_ADMINISTRATEUR') %}
+
                 <li><a href="{{ path('gestion_admin_accueil') }}">Gestion Admin</a></li>
 
             <li class="dropdown">
